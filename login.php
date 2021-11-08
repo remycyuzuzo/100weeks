@@ -16,7 +16,7 @@
     </div>
     <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
-            <div class="col-md-5">
+            <div class="col-lg-5 col-md-6">
                 <div class="title">
                     <h3 class="text-center">100Weeks Organization Login</h3>
                 </div>
