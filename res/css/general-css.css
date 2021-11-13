@@ -1,0 +1,28 @@
+/* defaults for every page in the loged-in area */
+body,
+html {
+  min-height: 100%;
+}
+body {
+  background-color: #f8f8f8;
+  color: #383838;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #001955;
+}
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: none !important;
+}
+.bg-primary,
+.btn-primary {
+  background-color: #001955 !important;
+}

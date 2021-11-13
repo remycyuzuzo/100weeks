@@ -1,5 +1,30 @@
 {
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "bootstrap": "^5.1.3"
-  }
+  },
+  "name": "100weeks",
+  "version": "1.0.0",
+  "description": "This is tha software for managing the organization data, including finances and beneficialies data",
+  "main": "index.php",
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remycyuzuzo/100weeks.git"
+  },
+  "keywords": [
+    "mis",
+    "100weeks",
+    "non-government",
+    "organization"
+  ],
+  "author": "CYUZUZO Jean Remy, KAMIKAZI Raissa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/remycyuzuzo/100weeks/issues"
+  },
+  "homepage": "https://github.com/remycyuzuzo/100weeks#readme"
 }
