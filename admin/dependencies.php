@@ -11,3 +11,6 @@ define("BOOTSTRAP_JS", URL . "/node_modules/bootstrap/dist/js/bootstrap.min.js",
 
 /** Font awesome */
 define("FONTAWESOME", URL . "/node_modules/@fortawesome/fontawesome-free/css/all.min.css");
+
+/** Website icon */
+define('FAVICON', URL . '/images/metadata/100weeks-logo.jpg');

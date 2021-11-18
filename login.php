@@ -41,6 +41,7 @@
                     </div>
                     <p class="text-center">enter your credentials </p>
                     <form action="" method="post" id="formLogin">
+                        <div id="validation"></div>
                         <div class="form-group mb-2">
                             <input type="text" placeholder="input your email address" id="email" class="form-control">
                         </div>

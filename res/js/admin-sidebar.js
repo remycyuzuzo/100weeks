@@ -4,17 +4,6 @@
     const sideBar = document.querySelector("aside.side-bar");
     const mainContents = document.querySelector("main.main-contents");
 
-
-    class UI {
-        static showSideBar() {}
-
-        static hideStaticBar() {}
-
-        static shiftRightMain() {}
-
-        static shiftLeftMain() {}
-    }
-
     togglerBtn.addEventListener('click', (e) => {
         e.preventDefault();
         if (sideBar.classList.contains('minimized')) {
