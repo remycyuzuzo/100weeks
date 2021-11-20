@@ -1,6 +1,6 @@
 <div class="top-nav bg-white d-flex justify-content-between align-items-center pr-2 position-fixed fixed-top">
-    <div class="logo">
-        <div class="sidebar-toggler logo d-flex ">
+    <div class="logo  h-100">
+        <div class="sidebar-toggler logo d-flex">
             <div class="toggler d-flex h-100 justify-content-center align-items-center">
                 <button class="btn border" data-toggler><i class="fas fa-bars"></i></button>
             </div>
@@ -26,6 +26,9 @@
         </div>
     </div>
     <div class="user-menu">
-        <button class="btn btn-light"><i class="fas fa-user"></i></button>
+        <div class="search-box d-inline-block">
+            <button class="btn"><i class="fas fa-search"></i></button>
+        </div>
+        <button class="btn btn-light user"><i class="fas fa-user"></i></button>
     </div>
 </div>

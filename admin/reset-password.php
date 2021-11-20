@@ -42,12 +42,13 @@
                     <div class="mb-2">
                         Reset your password here
                     </div>
-                    <form action="" method="post">
+                    <form action="" method="post" data-form>
+                        <div data-validate></div>
                         <div class="form-group mb-2">
-                            <input type="password" placeholder="enter your new password" id="password" class="form-control">
+                            <input type="password" name="password" placeholder="enter your new password" id="password" class="form-control">
                         </div>
                         <div class="form-group mb-2">
-                            <input type="password" placeholder="re-enter your new password" id="retype-password" class="form-control">
+                            <input type="password" name="retype-password" placeholder="re-enter your new password" id="retype-password" class="form-control">
                         </div>
                         <div class="form-group button-box">
                             <button type="submit" class="btn btn-primary">submit</button>
@@ -61,6 +62,7 @@
         </div>
     </div>
     <script src="<?= BOOTSTRAP_JS ?>"></script>
+    <script src="<?= URL ?>/res/js/form-validators/reset-password.js" type="module"></script>
 </body>
 
 </html>

@@ -40,8 +40,9 @@ include "dependencies.php";
                         Please enter the 6 digit code delivered in your email inbox
                     </div>
                     <form action="" method="post">
+                        <div id="validate"></div>
                         <div class="form-group mb-2">
-                            <input type="number" placeholder="input 6 digit code" class="form-control">
+                            <input type="number" placeholder="input 6 digit code" class="form-control" data-code>
                         </div>
                         <div class="button-box">
                             <button type="submit" class="btn btn-primary form-control">submit</button>
@@ -65,6 +66,7 @@ include "dependencies.php";
         </div>
     </div>
     <script src="<?= BOOTSTRAP_JS ?>"></script>
+    <script src="<?= URL ?>/res/js/form-validators/verify-email.js" type="module"></script>
 </body>
 
 </html>

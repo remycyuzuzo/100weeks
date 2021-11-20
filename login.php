@@ -33,7 +33,7 @@
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-lg-5 col-md-6">
                 <div class="title">
-                    <h3 class="text-center">100Weeks Organization Login</h3>
+                    <h3 class="text-center">Login</h3>
                 </div>
                 <div class="card mt-4">
                     <div class="message py-3 d-none">
@@ -60,7 +60,7 @@
         </div>
     </div>
     <script src="<?= BOOTSTRAP_JS ?>"></script>
-    <script src="<?= URL ?>/res/js/form-validators/login-validator.js"></script>
+    <script src="<?= URL ?>/res/js/form-validators/login-validator.js" type="module"></script>
 </body>
 
 </html>

@@ -12,14 +12,25 @@ svg {
 }
 .top-nav {
   position: relative;
-  min-height: 50px;
-  border-bottom: 2px solid #e2e1e1;
+  border-bottom: 0.7px solid #001955;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  min-height: 48px;
+  z-index: 100;
 }
 .top-nav .toggler {
   width: 80px;
+  position: relative;
+}
+.top-nav .toggler > button {
+  color: #001955;
+  border: 3px #001955 solid !important;
+  border-radius: 4px;
 }
 .top-nav i {
   font-size: 16pt;
+}
+.top-nav .user-menu button.user {
+  border-radius: 50% !important;
 }
 
 /** SIDE BAR */
@@ -57,9 +68,14 @@ main.main-contents {
   margin-left: 250px;
   position: relative;
   min-height: calc(100% - 50px);
-  margin-top: 10px;
+  margin-top: 60px;
   transition: margin-left 0.2s ease-in;
 }
 main.main-contents.full {
   margin-left: 0;
+}
+
+/** dashboard */
+.summary-cards .card {
+  margin-bottom: 1.4em;
 }
