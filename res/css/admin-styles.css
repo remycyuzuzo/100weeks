@@ -7,7 +7,7 @@ a {
   text-decoration: none;
 }
 svg {
-  width: 200px;
+  width: auto;
   height: 40px;
 }
 .top-nav {
@@ -62,6 +62,12 @@ aside.side-bar ul li a {
   font-weight: 500;
   display: block;
 }
+@media screen and (max-width: 768px) {
+  aside.side-bar {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    z-index: 99;
+  }
+}
 
 /* MAIN CONTENTS */
 main.main-contents {
@@ -73,6 +79,11 @@ main.main-contents {
 }
 main.main-contents.full {
   margin-left: 0;
+}
+@media screen and (max-width: 768px) {
+  main.main-contents {
+    margin-left: 0;
+  }
 }
 
 /** dashboard */
