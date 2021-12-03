@@ -27,3 +27,9 @@ select:focus {
 .btn-primary {
   background-color: #001955 !important;
 }
+.form-group {
+  margin-bottom: 0.6em;
+}
+.invalid-value {
+  border-color: red !important;
+}
