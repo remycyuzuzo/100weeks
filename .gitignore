@@ -5,6 +5,10 @@ node_modules/
 logs
 *.log
 
+#ignore Temporaly files
+*.tmp
+*~$*
+
 # Ignore the build directory
 /dist
 

@@ -18,13 +18,14 @@ svg {
   z-index: 100;
 }
 .top-nav .toggler {
-  width: 80px;
+  width: 56px;
   position: relative;
 }
 .top-nav .toggler > button {
   color: #001955;
-  border-radius: 4px;
+  border: none !important;
 }
+
 .top-nav i {
   font-size: 16pt;
 }
