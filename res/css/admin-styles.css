@@ -98,7 +98,7 @@ form .grouped-fields {
   padding: 0.3em;
   margin-bottom: 0.6em;
 }
-form .grouped-fields h3.title {
+form .grouped-fields .title {
   border-radius: 10px;
   padding: 5px 10px;
   font-size: 16pt;

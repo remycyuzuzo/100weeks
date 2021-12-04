@@ -40,19 +40,19 @@
                         <span class="text-danger">invalid email or password</span>
                     </div>
                     <p class="text-center">enter your credentials </p>
-                    <form action="" method="post" id="formLogin">
+                    <form action="<?= URL ?>/admin/backend/login_backend.php" method="post" id="formLogin">
                         <div id="validation"></div>
                         <div class="form-group mb-2">
-                            <input type="text" placeholder="input your email address" id="email" class="form-control">
+                            <input type="text" placeholder="input your email address" name="email" id="email" class="form-control">
                         </div>
                         <div class="form-group mb-2">
-                            <input type="password" placeholder="input your password" id="password" class="form-control">
+                            <input type="password" placeholder="input your password" name="password" id="password" class="form-control">
                         </div>
                         <div class="form-group button-box">
-                            <button type="submit" class="btn btn-primary" data-dubmit>Login</button>
+                            <button type="submit" class="btn btn-primary" name="login" data-dubmit>Login</button>
                         </div>
                         <div class="text-center mt-2">
-                            <a href="<?= URL ?>/admin/forgot-pass.php">Forget password</a>
+                            <a href="<?= URL ?>/admin/forgot-pass.php">Forgot your password?</a>
                         </div>
                     </form>
                 </div>

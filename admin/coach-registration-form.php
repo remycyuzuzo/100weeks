@@ -38,7 +38,7 @@ require "./dependencies.php";
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="grouped-fields">
-                                    <h3 class="title bg-primary">Personal information</h3>
+                                    <h3 class="title bg-primary"><i class="fas fa-user-circle"></i> Personal information</h3>
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="First name" name="fname" data-required>
                                     </div>
@@ -52,11 +52,11 @@ require "./dependencies.php";
                                         <input type="tel" class="form-control" placeholder="Telephone number" name="tel" data-required>
                                     </div>
                                     <div class="form-group">
-                                        <select class="form-control" name="gender" data-required>
-                                            <option disabled selected>Select the gender</option>
-                                            <option value="F">Female</option>
-                                            <option value="M">Male</option>
-                                        </select>
+                                        <label>Gender</label>
+                                        <fieldset class="py-2">
+                                            <input type="radio" name="gender" value="F" id="radioFemale"> <label for="radioFemale">Female</label>
+                                            <input type="radio" name="gender" id="radioMale" value="M"> <label for="radioMale">Male</label>
+                                        </fieldset>
                                     </div>
                                     <div class="form-group">
                                         <input type="tel" class="form-control" placeholder="Telephone number" name="tel" data-required>
@@ -65,7 +65,7 @@ require "./dependencies.php";
                             </div>
                             <div class="col-md-12 mb-2">
                                 <div class="grouped-fields box bg-light p-2">
-                                    <h3 class="title bg-primary">mentor's login cledentials</h3>
+                                    <h3 class="title bg-primary"><i class="fas fa-key"></i> mentor's login cledentials</h3>
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="email" placeholder="Email address of the mentor" name="email">
                                     </div>
@@ -75,7 +75,13 @@ require "./dependencies.php";
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="submit-btn grouped-fields">
+                                <div class="my-2 py-1">
+                                    <label for="redirect">
+                                        <input type="checkbox" name="redirect" id="redirect">
+                                        stay on this page after inserting this mentor
+                                    </label>
+                                </div>
+                                <div class="submit-btn">
                                     <button type="button" class="btn btn-secondary">Cancel</button>
                                     <button type="submit" class="btn btn-primary" name="send">Submit</button>
                                 </div>
