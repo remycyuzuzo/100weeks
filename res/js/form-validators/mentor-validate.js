@@ -7,7 +7,9 @@ const email = document.querySelector("#email");
 const form = document.querySelector("form");
 
 class HTML {
+  /** this object will help me to know wether every field is filled accordingly */
   static isFormOk = {
+    // these are default values
     validEmail: false,
     notEmptyFields: false,
   };
@@ -31,14 +33,21 @@ class HTML {
   }
 }
 
+/** create an error div/span after every element which is required */
 requiredFields.forEach((element) => {
   HTML.appendErrorDiv(element);
 });
 HTML.appendErrorDiv(email);
+
+/** object to access an imported Validate class */
 const validator = new Validate();
 
+/** listening to the form submit event */
 form.addEventListener("submit", (e) => {
+  // prevent the form from instantly submit without validations
   e.preventDefault();
+
+  // loop through out all elements with the attribute data-required
   requiredFields.forEach((element) => {
     if (element.value.length === 0) {
       HTML.isFormOk.notEmptyFields = false;

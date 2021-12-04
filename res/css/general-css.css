@@ -26,6 +26,7 @@ select:focus {
 .bg-primary,
 .btn-primary {
   background-color: #001955 !important;
+  color: #f1f1f1;
 }
 .form-group {
   margin-bottom: 0.6em;

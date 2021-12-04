@@ -91,4 +91,15 @@ main.main-contents.full {
   margin-bottom: 1.4em;
 }
 
-/** MENTOR REGISTRATION FORM STYLES */
+/** Registration forms general forms */
+form .grouped-fields {
+  border: #c0c0c0 2px solid;
+  border-radius: 10px;
+  padding: 0.3em;
+  margin-bottom: 0.6em;
+}
+form .grouped-fields h3.title {
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 16pt;
+}

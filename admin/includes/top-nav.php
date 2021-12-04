@@ -79,6 +79,7 @@
         <div class="search-box d-inline-block">
             <button class="btn"><i class="fas fa-search"></i></button>
         </div>
+        <button class="btn btn-light notifications"><i class="fas fa-bell"></i></button>
         <button class="btn btn-light user"><i class="fas fa-user"></i></button>
     </div>
 </div>
