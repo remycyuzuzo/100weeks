@@ -20,7 +20,7 @@ require "./dependencies.php";
 <body>
     <div id="root" class="h-100">
         <!-- top-nav -->
-        <?php include "./includes/top-nav.php" ?>
+        <?php include __DIR__ . "/includes/top-nav.php" ?>
         <!-- ./top-nav -->
 
         <!-- side-bar menu -->

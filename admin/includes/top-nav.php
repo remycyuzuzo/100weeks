@@ -72,11 +72,13 @@
             </div>
         </div>
     </div>
-    <div class="user-menu">
+    <div class="user-menu px-2">
         <div class="search-box d-inline-block">
             <button class="btn"><i class="fas fa-search"></i></button>
         </div>
-        <button class="btn btn-light notifications"><i class="fas fa-bell"></i></button>
-        <button class="btn btn-light user"><i class="fas fa-user"></i></button>
+        <div class="notification-cont d-inline-block position-relative">
+            <button class="btn btn-light notifications"><i class="fas fa-bell"></i> <span class="badge bg-danger">3</span></button>
+        </div>
+        <button class="btn btn-primary user "><i class="fas fa-user"></i></button>
     </div>
 </div>

@@ -29,6 +29,9 @@ svg {
 .top-nav i {
   font-size: 16pt;
 }
+.top-nav .user-menu button {
+  position: relative;
+}
 .top-nav .user-menu button.user {
   border-radius: 50% !important;
 }
@@ -43,23 +46,53 @@ aside.side-bar {
   transition: margin-left 0.2s ease-in;
   border-right: 0.6px solid #e2e1e1;
   background-color: #fafafa;
+  overflow-y: auto;
 }
 aside.side-bar.minimized {
   margin-left: -250px;
 }
+aside.side-bar > ul {
+  margin: 1.7em 0.4em;
+}
 aside.side-bar ul {
   list-style: none;
-  margin: 1.7em 0.4em;
   padding: 0;
+  transition: all 0.1s ease;
 }
 aside.side-bar ul li {
   margin-bottom: 0.1em;
-  padding: 0.2em 0.7em;
+  overflow: hidden;
 }
 aside.side-bar ul li a {
   color: rgb(49, 49, 49);
   font-size: 14pt;
   font-weight: 500;
+  display: block;
+  padding: 0.2em 0.7em;
+}
+aside.side-bar ul ul {
+  margin: 0.4em 0;
+  padding: 1;
+  background-color: #ffffff;
+  display: none;
+}
+aside.side-bar > ul > li.active {
+  border-left: 3px #001955 solid;
+}
+aside.side-bar > ul > li.active > a {
+  border-bottom: 1px #cecece solid;
+  margin-bottom: 0.4em;
+  background-color: #001955;
+  color: #ffffff;
+}
+aside.side-bar ul li a .toggler {
+  float: right;
+  transition: ease-in-out 0.1s transform;
+}
+aside.side-bar ul li a .toggler.rotated {
+  transform: rotate(-90deg);
+}
+aside.side-bar ul li.collapsed ul {
   display: block;
 }
 @media screen and (max-width: 768px) {

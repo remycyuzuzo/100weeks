@@ -1,12 +1,14 @@
 # Ignore the node_modules directory
 node_modules/
 
+tests/
+
 # Ignore Logs
 logs
 *.log
 
 #ignore Temporaly files
-*.tmp
+*.tmp*
 *~$*
 
 # Ignore the build directory
