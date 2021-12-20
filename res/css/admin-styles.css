@@ -84,13 +84,14 @@ aside.side-bar > ul > li.active > a {
   margin-bottom: 0.4em;
   background-color: #001955;
   color: #ffffff;
+  transition: all 0.2s ease;
 }
 aside.side-bar ul li a .toggler {
   float: right;
   transition: ease-in-out 0.1s transform;
 }
 aside.side-bar ul li a .toggler.rotated {
-  transform: rotate(-90deg);
+  transform: rotate(-180deg);
 }
 aside.side-bar ul li.collapsed ul {
   display: block;

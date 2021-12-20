@@ -37,7 +37,7 @@
     let menuLink = element.parentElement.firstChild;
     menuLink.appendChild(spanEl);
     spanEl.classList.add("fas");
-    spanEl.classList.add("fa-angle-right");
+    spanEl.classList.add("fa-angle-down");
     spanEl.classList.add("toggler");
 
     menuLink.addEventListener("click", (e) => {

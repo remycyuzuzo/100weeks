@@ -30,9 +30,10 @@ require "./dependencies.php";
         <!-- main-contents -->
         <main class="main-contents">
             <div class="container">
-                <h3>Month: <?= date("M Y") ?></h3>
-                <h4>general summary</h4>
-
+                <div class="title mb-3">
+                    <h3>Month: <?= date("M Y") ?></h3>
+                    <h4>general summary</h4>
+                </div>
                 <div class="summary-cards">
                     <div class="row">
                         <div class="col-lg-3 col-6">
