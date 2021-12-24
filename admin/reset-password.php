@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?= BOOTSTRAP_CSS ?>">
     <link rel="stylesheet" href="<?= URL ?>/style.css">
     <title>100 weeks | Reset your password</title>
+    
 </head>
 
 <body class="bg-light h-100" id="login">
