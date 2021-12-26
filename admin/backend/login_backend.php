@@ -3,6 +3,7 @@
 if (isset($_POST['email'])) {
     require "./db_connection.php";
     include "../dependencies.php";
+    include $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_operations.php";
     /** Email address entered by the user through the form */
     $email = $conn->real_escape_string($_POST['email']);
     /** Password obtained through the form */
