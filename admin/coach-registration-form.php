@@ -34,7 +34,7 @@ require "./dependencies.php";
                     <h3>Register a new mentor/coach</h3>
                 </div>
                 <div class="form py-3">
-                    <form action="" method="post">
+                    <form action="./backend/coach_registration.php" method="post">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="grouped-fields">
