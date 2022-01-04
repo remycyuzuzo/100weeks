@@ -8,7 +8,7 @@ a {
 }
 svg {
   width: auto;
-  height: 40px;
+  height: 30px;
 }
 .top-nav {
   position: relative;
@@ -45,14 +45,14 @@ aside.side-bar {
   bottom: 0;
   transition: margin-left 0.2s ease-in;
   border-right: 0.6px solid #e2e1e1;
-  background-color: #fafafa;
+  background-color: #ffffff;
   overflow-y: auto;
 }
 aside.side-bar.minimized {
   margin-left: -250px;
 }
 aside.side-bar > ul {
-  margin: 1.7em 0.4em;
+  margin: 1.7em 0;
 }
 aside.side-bar ul {
   list-style: none;
@@ -60,28 +60,29 @@ aside.side-bar ul {
   transition: all 0.1s ease;
 }
 aside.side-bar ul li {
-  margin-bottom: 0.1em;
   overflow: hidden;
+  border-bottom: 1.6px solid #e2e1e1;
 }
 aside.side-bar ul li a {
   color: rgb(49, 49, 49);
-  font-size: 14pt;
   font-weight: 500;
   display: block;
-  padding: 0.2em 0.7em;
+  padding: 0.4em 0.7em;
+  transition: background-color 0.4s ease;
+}
+aside.side-bar ul li a:hover {
+  background-color: #f5f1f1;
 }
 aside.side-bar ul ul {
-  margin: 0.4em 0;
   padding: 1;
-  background-color: #ffffff;
+  background-color: #f1f1f1;
   display: none;
 }
-aside.side-bar > ul > li.active {
+aside.side-bar ul > li.active {
   border-left: 3px #001955 solid;
 }
-aside.side-bar > ul > li.active > a {
+aside.side-bar ul > li.active > a {
   border-bottom: 1px #cecece solid;
-  margin-bottom: 0.4em;
   background-color: #001955;
   color: #ffffff;
   transition: all 0.2s ease;
@@ -95,6 +96,9 @@ aside.side-bar ul li a .toggler.rotated {
 }
 aside.side-bar ul li.collapsed ul {
   display: block;
+}
+aside.side-bar .user-name-box {
+  border-bottom: #c0c0c0 2.3px solid;
 }
 @media screen and (max-width: 768px) {
   aside.side-bar {

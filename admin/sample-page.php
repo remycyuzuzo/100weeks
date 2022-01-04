@@ -30,120 +30,12 @@ require "./dependencies.php";
         <!-- main-contents -->
         <main class="main-contents">
             <div class="container">
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
-                <h3>This is third heading</h3>
+                <div class="card wrapper">
+                    <div class="card-body">
+                        <h3>Adding a service to the system</h3>
+
+                    </div>
+                </div>
 
             </div>
         </main>

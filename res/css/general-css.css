@@ -8,6 +8,7 @@ html {
 }
 body {
   color: #383838;
+  background-color: #e4e6ec;
   font-family: "Readex Pro", sans-serif;
 }
 h1,
@@ -43,4 +44,10 @@ select:focus {
   position: absolute;
   top: 0;
   left: 23px;
+}
+
+/** wrapper cards  */
+.card.wrapper {
+  border: none;
+  border-radius: 0;
 }
