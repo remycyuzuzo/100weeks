@@ -18,4 +18,5 @@ define("FONTAWESOME", URL . "/node_modules/@fortawesome/fontawesome-free/css/all
 /** Website icon */
 define('FAVICON', URL . '/images/metadata/100weeks-logo.jpg');
 
-//fgfgfgf
+/** AXIOS libraly */
+define('AXIOS', URL . '/node_modules/axios/dist/axios.min.js');

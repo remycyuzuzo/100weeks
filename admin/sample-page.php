@@ -33,6 +33,7 @@ require "./dependencies.php";
                 <div class="card wrapper">
                     <div class="card-body">
                         <h3>Adding a service to the system</h3>
+                        <a href="">load a page using axios</a>
 
                     </div>
                 </div>
@@ -47,6 +48,7 @@ require "./dependencies.php";
     </div>
 
     <!-- JAVASCRIPT FILES -->
+    <script src="<?= AXIOS ?>"></script>
     <script src="<?= URL ?>/res/js/admin-sidebar.js"></script>
     <script src="<?= BOOTSTRAP_JS ?>"></script>
 </body>
