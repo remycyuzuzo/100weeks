@@ -1,5 +1,5 @@
 <?php
-require "./dependencies.php";
+require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,17 +14,20 @@ require "./dependencies.php";
     <link rel="stylesheet" href="<?= FONTAWESOME ?>">
     <link rel="stylesheet" href="<?= URL ?>/res/css/general-css.css">
     <link rel="stylesheet" href="<?= URL ?>/res/css/admin-styles.css">
-    <title>Sample page</title>
+
+    <script src="<?= AXIOS ?>"></script>
+
+    <title>Coaches</title>
 </head>
 
 <body>
     <div id="root" class="h-100">
         <!-- top-nav -->
-        <?php include "./includes/top-nav.php" ?>
+        <?php include $_SERVER["DOCUMENT_ROOT"] . "admin/includes/top-nav.php" ?>
         <!-- ./top-nav -->
 
         <!-- side-bar menu -->
-        <?php include "./includes/side-bar.php"; ?>
+        <?php include $_SERVER["DOCUMENT_ROOT"] . "admin/includes/side-bar.php"; ?>
         <!-- ./side-bar -->
 
         <!-- main-contents -->
@@ -33,7 +36,9 @@ require "./dependencies.php";
                 <div class="card wrapper">
                     <div class="card-body">
                         <div class="title">
-                            <h3>Register a new mentor/coach</h3>
+                            <a href="<?= URL ?>/admin/coaches/coaches.php" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> back to the list</a>
+                        </div>
+                        <div class="tab-contents">
                             <div class="form py-3">
                                 <form action="" method="post">
                                     <div class="row">
@@ -94,9 +99,6 @@ require "./dependencies.php";
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </main>
         <!-- ./main-contents -->

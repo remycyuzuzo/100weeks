@@ -33,8 +33,8 @@ require "./dependencies.php";
                 <div class="card wrapper">
                     <div class="card-body">
                         <h3>Adding a service to the system</h3>
-                        <a href="">load a page using axios</a>
-
+                        <a href="" id="link">load a page using axios</a>
+                        <div class="result"></div>
                     </div>
                 </div>
 
@@ -51,6 +51,31 @@ require "./dependencies.php";
     <script src="<?= AXIOS ?>"></script>
     <script src="<?= URL ?>/res/js/admin-sidebar.js"></script>
     <script src="<?= BOOTSTRAP_JS ?>"></script>
+
+    <script>
+        // Make a request for a user with a given ID
+        link = document.querySelector('#link')
+        r = document.querySelector('.result')
+        link.addEventListener('click', e => {
+            e.preventDefault()
+            r.innerHTML = "Loading.."
+            axios.get('./tests/page.php')
+                .then(function(response) {
+                    // handle success
+                    console.log(response)
+                    r.innerHTML = response.data
+                })
+                .catch(function(error) {
+                    // handle error
+                    console.log(error);
+                })
+                .then(function() {
+                    console.log("always run")
+                });
+
+
+        })
+    </script>
 </body>
 
 </html>

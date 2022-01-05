@@ -27,6 +27,9 @@ textarea:focus,
 select:focus {
   box-shadow: none !important;
 }
+.btn {
+  border: none;
+}
 .bg-primary,
 .btn-primary {
   background-color: #001955 !important;
