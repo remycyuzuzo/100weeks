@@ -39,6 +39,7 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
                             <a href="<?= URL ?>/admin/coaches/coaches.php" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> back to the list</a>
                         </div>
                         <div class="tab-contents">
+                            <span class="text-muted"><i class="fas fa-question-circle"></i> fill the form as required</span>
                             <div class="form py-3">
                                 <form action="" method="post">
                                     <div class="row">

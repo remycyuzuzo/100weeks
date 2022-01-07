@@ -12,6 +12,7 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
 
     <link rel="stylesheet" href="<?= BOOTSTRAP_CSS ?>">
     <link rel="stylesheet" href="<?= FONTAWESOME ?>">
+    <link rel="stylesheet" href="<?= DATATABLES_CSS ?>">
     <link rel="stylesheet" href="<?= URL ?>/res/css/general-css.css">
     <link rel="stylesheet" href="<?= URL ?>/res/css/admin-styles.css">
 
@@ -45,7 +46,7 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
 
                         <div class="tab-contents">
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="table table-hover" id="coachesTable">
                                     <thead>
                                         <th>#</th>
                                         <th>name</th>
@@ -74,8 +75,12 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
 
     <!-- JAVASCRIPT FILES -->
     <script src="<?= URL ?>/res/js/admin-sidebar.js"></script>
-    <script src="<?= URL ?>/res/js/form-validators/mentor-validate.js" type="module"></script>
     <script src="<?= BOOTSTRAP_JS ?>"></script>
+    <script src="<?= DATATABLES_JS ?>"></script>
+    <!-- activate the data-table -->
+    <script>
+        const dataTable = new DataTable("#coachesTable");
+    </script>
 </body>
 
 </html>

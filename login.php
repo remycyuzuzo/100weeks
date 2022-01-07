@@ -49,7 +49,7 @@
                             <input type="password" placeholder="input your password" name="password" id="password" class="form-control">
                         </div>
                         <div class="form-group button-box">
-                            <button type="submit" class="btn btn-primary" name="login" data-dubmit>Login</button>
+                            <button type="submit" class="btn btn-primary" name="login" data-submit>Login</button>
                         </div>
                         <div class="text-center mt-2">
                             <a href="<?= URL ?>/admin/forgot-pass.php">Forgot your password?</a>

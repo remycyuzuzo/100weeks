@@ -20,3 +20,7 @@ define('FAVICON', URL . '/images/metadata/100weeks-logo.jpg');
 
 /** AXIOS libraly */
 define('AXIOS', URL . '/node_modules/axios/dist/axios.min.js');
+
+/** vanillaJS DataTables */
+define("DATATABLES_JS", URL . "/node_modules/vanilla-datatables/dist/vanilla-datatables.min.js");
+define("DATATABLES_CSS", URL . "/node_modules/vanilla-datatables/dist/vanilla-datatables.min.css");
