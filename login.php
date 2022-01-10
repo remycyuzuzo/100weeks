@@ -8,11 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="<?= BOOTSTRAP_CSS ?>">
+    <link rel="stylesheet" href="<?= FONTAWESOME ?>">
+    <link rel="stylesheet" href="<?= URL ?>/res/css/general-css.css">
     <link rel="stylesheet" href="<?= URL ?>/style.css">
     <title>100 weeks login</title>
 </head>
 
-<body class="bg-light h-100" id="login">
+<body class="h-100" id="login">
     <div class="logo-box bg-white d-flex justify-content-center">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 568 94">
             <g fill="#001955">
@@ -30,18 +32,29 @@
         </svg>
     </div>
     <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
+        <div class="row h-100 justify-content-center">
             <div class="col-lg-5 col-md-6">
-                <div class="title">
-                    <h3 class="text-center">Login</h3>
-                </div>
-                <div class="card mt-4">
-                    <div class="message py-3 d-none">
-                        <span class="text-danger">invalid email or password</span>
-                    </div>
-                    <p class="text-center">enter your credentials </p>
+                <div class="card wrapper mt-4">
+                    <p class="text-center"><i class="fas fa-user"></i> enter your credentials </p>
                     <form action="<?= URL ?>/admin/backend/login_backend.php" method="post" id="formLogin">
-                        <div id="validation"></div>
+                        <div id="validation">
+                            <?php
+                            if (isset($_REQUEST["error"])) {
+                                if ($_REQUEST["error"] == "invalid-credentials") {
+                            ?>
+                                    <div class="message alert alert-danger text-center">
+                                        <span class="">incorrect email or password</span>
+                                    </div>
+                                <?php
+                                } else if ($_REQUEST["error"] == "internal-error") {
+                                ?>
+                                    <div class="message alert alert-danger text-center">
+                                        <span class="">there was an error, contact the system administrator</span>
+                                    </div>
+                            <?php
+                                }
+                            } ?>
+                        </div>
                         <div class="form-group mb-2">
                             <input type="text" placeholder="input your email address" name="email" id="email" class="form-control">
                         </div>
@@ -59,7 +72,7 @@
             </div>
         </div>
     </div>
-    <script src="<?= BOOTSTRAP_JS ?>"></script>
+    <script src="<?= AXIOS ?>"></script>
     <script src="<?= URL ?>/res/js/form-validators/login-validator.js" type="module"></script>
 </body>
 

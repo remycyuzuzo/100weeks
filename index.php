@@ -1,5 +1,5 @@
 <?php
-include "./admin/dependencies.php";
+include_once "./admin/dependencies.php";
 
 # check whether the session/cookie is set, if not, redirect the page to the login page
 if (isset($_SESSION['logged_in'])) {

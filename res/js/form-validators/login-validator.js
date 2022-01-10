@@ -1,4 +1,4 @@
-import { Validate, UI } from "./form-validate-module.js";
+import { Validate, UI, Data } from "./form-validate-module.js";
 
 const emailField = document.querySelector("#email");
 const passwordField = document.querySelector("#password");
@@ -23,7 +23,7 @@ form.addEventListener("submit", (e) => {
       "danger",
       validationMessage
     );
-    return false;
+    return;
   }
 
   form.submit();

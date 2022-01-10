@@ -37,3 +37,60 @@ export class UI {
     this.alert.innerText = "";
   }
 }
+
+/**
+ * Using ajax to send data via http
+ * via AXIOS libraly
+ */
+export class Data {
+  constructor(email, password, form) {
+    this.password = password;
+    this.email = email;
+    this.form = form;
+
+    this.sendData();
+    this.returnedData = returnData();
+  }
+
+  returnData() {
+    console.log(this.returnedData);
+    return this.returnedData;
+  }
+
+  sendData() {
+    const url = this.form.action;
+    console.log(url);
+    axios({
+      method: "post",
+      url: url,
+      data: {
+        email: this.email,
+        password: this.password,
+      },
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then((response) => {
+        // handle success
+        console.log(response.data);
+        let msg = response.data;
+        if (response.data.res === true) {
+          this.returnedData = {
+            result: true,
+            message: msg.message,
+          };
+        } else {
+          this.returnedData = {
+            result: false,
+            message: msg.message,
+          };
+        }
+      })
+      .catch(function (error) {
+        // handle error
+        console.log("error: ", error);
+      })
+      .then(function () {
+        console.log("always run");
+      });
+  }
+}

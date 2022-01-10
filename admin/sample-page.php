@@ -59,7 +59,7 @@ require "./dependencies.php";
         link.addEventListener('click', e => {
             e.preventDefault()
             r.innerHTML = "Loading.."
-            axios.get('./tests/page.php')
+            axios.get('./tests/page.php?hello')
                 .then(function(response) {
                     // handle success
                     console.log(response)

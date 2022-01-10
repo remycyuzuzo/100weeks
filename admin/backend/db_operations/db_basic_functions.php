@@ -17,7 +17,9 @@ class DB
     public static function selectFromDb($sql, $conn)
     {
         $res = $conn->query($sql);
-        if ($res) {
+
+        echo $conn->error;
+        if ($res !== false) {
             if ($res->num_rows > 0) {
                 return $res;
             } else return null;

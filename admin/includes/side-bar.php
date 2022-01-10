@@ -17,7 +17,6 @@
         </div>
         <ul>
             <li><a href="<?= URL ?>/admin/dashboard.php">Dashboard</a></li>
-            <li><a href="#">General report & exports</a></li>
             <li><a href="#">Weekly savings</a></li>
             <li><a href="#">Loans</a></li>
             <li class=""><a href="#">VLAS</a>
@@ -33,6 +32,7 @@
                     <li><a href="<?= URL ?>/admin/beneficiary-registration-form.php">Add new beneficiaries</a></li>
                 </ul>
             </li>
+            <li><a href="#">General report & exports</a></li>
             <li><a href="users.php">System users</a>
                 <ul>
                     <li><a href="users.php">Manage Users</a></li>

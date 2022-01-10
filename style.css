@@ -1,49 +1,60 @@
 /** defaults */
-body, html {
-    height: 80%;
+body,
+html {
+  height: 80%;
 }
 body {
-    font-family: proxima-nova,sans-serif;
+  font-family: proxima-nova, sans-serif;
+  background-color: #bebebe;
 }
-h1, h2, h3, h4 {
-    text-align: center;
+h1,
+h2,
+h3,
+h4 {
+  text-align: center;
 }
 a {
-    text-decoration: dashed;
+  text-decoration: dashed;
 }
-button:focus, a:focus, input:focus, textarea:focus, select:focus {
-    box-shadow: none!important;
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: none !important;
 }
-.bg-primary, .btn-primary {
-    background-color: #001955 !important;
-    color: #ffffff !important;
-    border: none;
+.bg-primary,
+.btn-primary {
+  background-color: #001955 !important;
+  color: #ffffff !important;
+  border: none;
 }
-.bg-white, .bg-light {
-    color: #001955 !important;
+.bg-white,
+.bg-light {
+  color: #001955 !important;
 }
 
 /** Login simple logo box */
 #login .logo-box svg {
-    width: 200px;
-    height: 75px;
+  width: 200px;
+  height: 75px;
 }
 #login .card {
-    padding: 2.3em 1.6em;
+  padding: 2.3em 1.6em;
 }
 #login form input {
-    background-color: #f8f8f8;
+  background-color: #f8f8f8;
 }
 #login form .button-box {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 #login form .button-box button {
-    width: 100%;
+  width: 100%;
 }
 #login .line-box {
-    height: 30px;
+  height: 30px;
 }
 #login .line-box .line {
-    width: 1.3px;
-    background-color: #bebebe;
+  width: 1.3px;
+  background-color: #bebebe;
 }
