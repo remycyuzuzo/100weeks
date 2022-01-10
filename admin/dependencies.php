@@ -24,3 +24,6 @@ define('AXIOS', URL . '/node_modules/axios/dist/axios.min.js');
 /** vanillaJS DataTables */
 define("DATATABLES_JS", URL . "/node_modules/vanilla-datatables/dist/vanilla-datatables.min.js");
 define("DATATABLES_CSS", URL . "/node_modules/vanilla-datatables/dist/vanilla-datatables.min.css");
+
+/** Bulletproof PHP library */
+define("BULLETPROOF_LIB", $_SERVER['DOCUMENT_ROOT'] . "/php_libs/bulletproof-master/src/bulletproof.php");

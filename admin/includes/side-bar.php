@@ -23,12 +23,12 @@
                 <ul>
                     <li><a href="<?= URL ?>/admin/vsla.php">View VSLAS</a></li>
                     <li><a href="<?= URL ?>/admin/vsla-creation.php">Add a VSLA</a></li>
-                    <li><a href="">VSLA properties</a></li>
+                    <li><a href="#">VSLA properties</a></li>
                 </ul>
             </li>
             <li><a href="#">Beneficiaries</a>
                 <ul>
-                    <li class=""><a href="">View beneficiaries</a></li>
+                    <li class=""><a href="<?= URL ?>/admin/beneficiaries/view-beneficiaries.php">View beneficiaries</a></li>
                     <li><a href="<?= URL ?>/admin/beneficiary-registration-form.php">Add new beneficiaries</a></li>
                 </ul>
             </li>

@@ -31,11 +31,11 @@
     }, 900);
   });
 
-  // add an active class on the current page
+  // add an active CSS class on the current page menu on the sidebar
   const links = document.querySelectorAll("aside ul a");
   let currentPage = window.location.pathname;
-  const findPageUri = (page) => {
-    let pathArray = page.split("/").slice(-1);
+  const findPageUri = (pageFullPath) => {
+    let pathArray = pageFullPath.split("/").slice(-1);
     return pathArray[0];
   };
   currentPage = findPageUri(currentPage);
