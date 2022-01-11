@@ -28,7 +28,7 @@
         sideBar.classList.remove("minimized");
         mainContents.classList.remove("full");
       }
-    }, 900);
+    }, 100);
   });
 
   // add an active CSS class on the current page menu on the sidebar

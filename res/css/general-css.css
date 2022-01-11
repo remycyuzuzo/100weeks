@@ -54,3 +54,6 @@ select:focus {
   border: none;
   border-radius: 0;
 }
+.card .card-header {
+  background: unset !important;
+}

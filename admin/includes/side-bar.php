@@ -19,10 +19,10 @@
             <li><a href="<?= URL ?>/admin/dashboard.php">Dashboard</a></li>
             <li><a href="#">Weekly savings</a></li>
             <li><a href="#">Loans</a></li>
-            <li class=""><a href="#">VLAS</a>
+            <li class=""><a href="#">VSLAs</a>
                 <ul>
-                    <li><a href="<?= URL ?>/admin/vsla.php">View VSLAS</a></li>
-                    <li><a href="<?= URL ?>/admin/vsla-creation.php">Add a VSLA</a></li>
+                    <li><a href="<?= URL ?>/admin/vsla/vsla-view.php">View & edit VSLAs</a></li>
+                    <li><a href="<?= URL ?>/admin/vsla/vsla-creation.php">Add a VSLA</a></li>
                     <li><a href="#">VSLA properties</a></li>
                 </ul>
             </li>
