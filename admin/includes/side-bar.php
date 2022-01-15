@@ -1,3 +1,4 @@
+<div id="overlay" class="d-none"></div>
 <aside class="side-bar d-flex flex-column justify-content-between">
     <div>
         <div class="user-name-box p-2">

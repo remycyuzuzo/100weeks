@@ -57,3 +57,19 @@ select:focus {
 .card .card-header {
   background: unset !important;
 }
+
+/** tables */
+table thead tr {
+  background-color: #f2f2f2;
+}
+
+/** form group divs */
+.form-group {
+  margin-bottom: 1.2em;
+}
+label {
+  font-weight: 500;
+}
+[disabled] {
+  cursor: no-drop;
+}

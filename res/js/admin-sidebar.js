@@ -4,29 +4,38 @@
   const togglerBtn = document.querySelector("[data-toggler]");
   const sideBar = document.querySelector("aside.side-bar");
   const mainContents = document.querySelector("main.main-contents");
+  const overlay = document.querySelector("#overlay");
 
+  const handleSideBar = () => {
+    sideBar.classList.toggle("maximized");
+    mainContents.classList.toggle("full");
+    if (window.innerWidth <= 768 && sideBar.classList.contains("maximized")) {
+      overlay.classList.remove("d-none");
+    } else {
+      overlay.classList.add("d-none");
+    }
+  };
   togglerBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    if (sideBar.classList.contains("minimized")) {
-      sideBar.classList.remove("minimized");
-      mainContents.classList.remove("full");
-    } else {
-      sideBar.classList.add("minimized");
-      mainContents.classList.add("full");
-    }
+    handleSideBar();
   });
+  overlay.addEventListener("click", (e) => handleSideBar());
+
   if (window.innerWidth <= 768) {
-    sideBar.classList.add("minimized");
+    sideBar.classList.remove("maximized");
+    mainContents.classList.remove("full");
+  } else {
+    sideBar.classList.add("maximized");
     mainContents.classList.add("full");
   }
   window.addEventListener("resize", () => {
     setTimeout(() => {
       if (window.innerWidth <= 768) {
-        sideBar.classList.add("minimized");
-        mainContents.classList.add("full");
-      } else {
-        sideBar.classList.remove("minimized");
+        sideBar.classList.remove("maximized");
         mainContents.classList.remove("full");
+      } else {
+        sideBar.classList.add("maximized");
+        mainContents.classList.add("full");
       }
     }, 100);
   });

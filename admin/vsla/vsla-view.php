@@ -1,5 +1,5 @@
 <?php
-require $_SERVER["DOCUMENT_ROOT"] . "/dependencies.php";
+require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +20,11 @@ require $_SERVER["DOCUMENT_ROOT"] . "/dependencies.php";
 <body>
     <div id="root" class="h-100">
         <!-- top-nav -->
-        <?php include "./includes/top-nav.php" ?>
+        <?php include $_SERVER["DOCUMENT_ROOT"] . "admin/includes/top-nav.php" ?>
         <!-- ./top-nav -->
 
         <!-- side-bar menu -->
-        <?php include "./includes/side-bar.php"; ?>
+        <?php include $_SERVER["DOCUMENT_ROOT"] . "admin/includes/side-bar.php"; ?>
         <!-- ./side-bar -->
 
         <!-- main-contents -->
@@ -32,7 +32,14 @@ require $_SERVER["DOCUMENT_ROOT"] . "/dependencies.php";
             <div class="container">
                 <div class="card wrapper">
                     <div class="card-body">
-
+                        <div class="results">
+                            <?php if (isset($_GET['successfully-added'])) { ?>
+                                <div class="alert alert-success">
+                                    The VSLA group was added
+                                    <span class="close"></span>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
 

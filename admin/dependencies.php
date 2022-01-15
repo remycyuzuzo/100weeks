@@ -27,3 +27,5 @@ define("DATATABLES_CSS", URL . "/node_modules/vanilla-datatables/dist/vanilla-da
 
 /** Bulletproof PHP library */
 define("BULLETPROOF_LIB", $_SERVER['DOCUMENT_ROOT'] . "/php_libs/bulletproof-master/src/bulletproof.php");
+
+define("VSLA_ZONE_TYPE", "parish");

@@ -34,7 +34,7 @@ class DB
      * @return array Returns ['result'=>true] if data are inserted successfully, returns false+error message
      * @param MYSQLI $conn the database connection
      */
-    public static function insertIntoDb($table, array $columns, $data, $conn)
+    public static function insertIntoDb(string $table, array $data, $conn)
     {
 
         // construct the query string adding the column and values parts
@@ -42,6 +42,14 @@ class DB
         /**
          * @var string $sql a string querying the database to insert stuff
          */
+        $i = 0;
+
+        foreach ($data as $column => $value) {
+            $columns[$i] = $column;
+            $values[$i] = $value;
+            $i++;
+        }
+
         $sql = "INSERT INTO $table (";
         for ($i = 0; $i < count($columns); $i++) {
             $sql .= $columns[$i];
@@ -49,22 +57,25 @@ class DB
             else $sql .= ")";
         }
         $sql .= " VALUES(";
-        for ($i = 0; $i < count($data); $i++) {
+        for ($i = 0; $i < count($values); $i++) {
             // using conditions to identify numbers from strings in order to enclose in quotes or not
-            $sql .= (is_numeric($data[$i])) ? $data[$i] : "'$data[$i]'";
-            if ((count($data) - 1) !== $i) $sql .= ",";
+            $sql .= (is_numeric($values[$i])) ? $values[$i] : "'$values[$i]'";
+            if ((count($values) - 1) !== $i) $sql .= ",";
             else $sql .= ")";
         }
         /**
          * @var MySQLI_Result $result is an object containing query result information
          */
         $result = $conn->query($sql);
+        $verdict = [];
 
         // check whether the data actually entered the database or nor
         if ($result) {
-            return ['result' => true];
+            $verdict['result'] = true;
         } else {
-            return ['result' => false, 'errorMessage' => $conn->error];
+            $verdict['result'] = false;
+            $verdict['errorMessage'] =  $conn->error;
         }
+        return $verdict;
     }
 }
