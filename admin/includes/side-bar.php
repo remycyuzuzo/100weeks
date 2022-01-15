@@ -30,7 +30,7 @@
             <li><a href="#">Beneficiaries</a>
                 <ul>
                     <li class=""><a href="<?= URL ?>/admin/beneficiaries/view-beneficiaries.php">View beneficiaries</a></li>
-                    <li><a href="<?= URL ?>/admin/beneficiary-registration-form.php">Add new beneficiaries</a></li>
+                    <li><a href="<?= URL ?>/admin/beneficiaries/new-beneficiary-form.php">Add new beneficiary</a></li>
                 </ul>
             </li>
             <li><a href="#">General report & exports</a></li>
