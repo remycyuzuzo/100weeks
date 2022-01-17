@@ -36,6 +36,14 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
             <div class="container">
                 <div class="card wrapper">
                     <div class="card-body">
+                        <div class="results">
+                            <?php if (isset($_GET['successfully-added'])) { ?>
+                                <div class="alert alert-success">
+                                    Beneficiary added successfully
+                                    <span class="close"></span>
+                                </div>
+                            <?php } ?>
+                        </div>
                         <div class="title d-flex justify-content-between">
                             <h3 class="mb-0">Beneficiaries</h3>
                             <div class="d-inline-block float-right">
