@@ -26,7 +26,7 @@ export class UI {
   static showAlert(message, className, where) {
     this.alert = where;
     this.alertClassName = className;
-    this.alert.classList.add("alert");
+    this.alert.className = "alert";
     this.alert.classList.add(`alert-${className}`);
     this.alert.innerText = message;
   }

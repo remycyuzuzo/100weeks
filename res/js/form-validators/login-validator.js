@@ -1,4 +1,5 @@
-import { Validate, UI, Data } from "./form-validate-module.js";
+// import axios from "axios";
+import { Validate, UI } from "./form-validate-module.js";
 
 const emailField = document.querySelector("#email");
 const passwordField = document.querySelector("#password");
@@ -25,6 +26,19 @@ form.addEventListener("submit", (e) => {
     );
     return;
   }
-
-  form.submit();
+  const formData = new FormData(form);
+  const url = "/admin/backend/login_backend.php";
+  UI.showAlert("loading...", "", validationMessage);
+  axios
+    .post(url, formData)
+    .then((response) => {
+      if (response.data.result) {
+        UI.showAlert(response.data.message, "success", validationMessage);
+        window.location = response.data.redirectURL;
+      } else {
+        console.log("error");
+        UI.showAlert(response.data.message, "danger", validationMessage);
+      }
+    })
+    .catch((error) => console.log(error));
 });

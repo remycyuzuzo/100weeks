@@ -1,5 +1,5 @@
 <?php
-require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +31,11 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
         <main class="main-contents">
             <div class="container">
                 <div class="card wrapper">
+                    <div class="card-header">
+                        <h3>Savings</h3>
+                    </div>
                     <div class="card-body">
+
                         <div class="results">
                             <?php if (isset($_GET['successfully-added'])) { ?>
                                 <div class="alert alert-success">
@@ -40,6 +44,18 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
                                 </div>
                             <?php } ?>
                         </div>
+                        <div class="tab-nav">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link" data-savingtab="new-savings" href="#">Register savings</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-savingtab="saving-history" href="#">view saving history</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-contents"></div>
                     </div>
                 </div>
 
@@ -56,6 +72,8 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
     <script src="<?= AXIOS ?>"></script>
     <script src="<?= URL ?>/res/js/admin-sidebar.js"></script>
     <script src="<?= BOOTSTRAP_JS ?>"></script>
+
+    <script src="<?= URL ?>/res/js/savings-tabs.js" type="module"></script>
 
 </body>
 

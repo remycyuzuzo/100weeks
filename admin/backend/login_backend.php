@@ -10,8 +10,11 @@ if (isset($_POST["email"])) {
 
     /** Email address entered by the user through the form */
     $email = $conn->real_escape_string($_POST['email']);
+
     /** Password obtained through the form */
     $password = $conn->real_escape_string($_POST['password']);
+
+    $result = array();
 
     $url = URL;
     $user_type = "";
@@ -29,16 +32,20 @@ if (isset($_POST["email"])) {
     $result_admin = DB::selectFromDb($sql_admin, $conn);
 
     if ($result_coach === false || $result_admin === false) {
-        echo "<script>window.location = '$url/login.php?error=internal-error'</script>";
+        $result = array("result" => false, "message" => "error: " . $conn->error);
     } else if ($result_coach !== null) {
-        echo "<h1>This feature is yet to be added</h1>";
+        $result = array("result" => false, "message" => "error: This user does not have any autholity");
     } else if ($result_admin !== null) {
         // add a session
         $_SESSION["logged_in"] = $result_admin;
-        echo "<script>window.location = '$url/admin/dashboard.php'</script>";
+        $result = array("result" => true, "message" => "Login success, Redirecting... ", "redirectURL" => URL . "/admin/dashboard.php");
     } else {
-        echo "<script>window.location = '$url/login.php?error=invalid-credentials'</script>";
+        $result = array("result" => false, "message" => "Incorrect email or password");
     }
+
+    echo json_encode($result);
+
+    exit();
 
 
     // $sql = "SELECT administrator.email, system_users.password, system_users.user_type,coaches.status, administrator.status 

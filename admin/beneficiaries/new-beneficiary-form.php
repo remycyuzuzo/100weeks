@@ -122,6 +122,10 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_operations/classVsla.php";
                                         </div>
                                     </div>
 
+                                    <div class="mb-2">
+                                        <label for="checked"><input type="checkbox" name="" id="checked"> I have checked that all information are corrected</label>
+                                    </div>
+
                                     <div class="submit-btn">
                                         <button type="button" class="btn btn-outline-danger">Cancel</button>
                                         <button type="submit" class="btn btn-primary" name="send">Submit</button>
@@ -133,7 +137,6 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_operations/classVsla.php";
                         </div>
                     </div>
                 </div>
-
             </div>
         </main>
         <!-- ./main-contents -->

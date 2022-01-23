@@ -22,6 +22,9 @@ label {
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 50;
 }
+.tab-contents {
+  min-height: 100px;
+}
 
 /** TOP NAVIGATION */
 .top-nav {

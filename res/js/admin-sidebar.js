@@ -1,5 +1,4 @@
 (function () {
-  console.log(window.location.pathname);
   /** get necessary elements */
   const togglerBtn = document.querySelector("[data-toggler]");
   const sideBar = document.querySelector("aside.side-bar");
@@ -9,28 +8,31 @@
   const handleSideBar = () => {
     sideBar.classList.toggle("maximized");
     mainContents.classList.toggle("full");
-    if (window.innerWidth <= 768 && sideBar.classList.contains("maximized")) {
+    if (window.innerWidth <= 820 && sideBar.classList.contains("maximized")) {
       overlay.classList.remove("d-none");
     } else {
       overlay.classList.add("d-none");
     }
   };
+
   togglerBtn.addEventListener("click", (e) => {
     e.preventDefault();
     handleSideBar();
   });
-  overlay.addEventListener("click", (e) => handleSideBar());
 
-  if (window.innerWidth <= 768) {
+  overlay.addEventListener("click", () => handleSideBar());
+
+  if (window.innerWidth <= 820) {
     sideBar.classList.remove("maximized");
     mainContents.classList.remove("full");
   } else {
     sideBar.classList.add("maximized");
     mainContents.classList.add("full");
   }
+
   window.addEventListener("resize", () => {
     setTimeout(() => {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= 820) {
         sideBar.classList.remove("maximized");
         mainContents.classList.remove("full");
       } else {
@@ -45,8 +47,12 @@
   let currentPage = window.location.pathname;
   const findPageUri = (pageFullPath) => {
     let pathArray = pageFullPath.split("/").slice(-1);
+    if (pathArray[0] == "") {
+      pathArray = pageFullPath.split("/").slice(-2);
+    }
     return pathArray[0];
   };
+
   currentPage = findPageUri(currentPage);
   links.forEach((link) => {
     const href = findPageUri(link.attributes.href.value);
