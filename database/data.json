@@ -1,0 +1,21 @@
+[
+  {
+    "VSLA_id": "2",
+    "VSLA_name": "testing name",
+    "members": [
+      { "fname": "Jane", "lname": "Mukantabana", "beneficiary_id_card": "" }
+    ]
+  },
+  {
+    "VSLA_id": "7",
+    "VSLA_name": "testing name",
+    "members": [
+      { "fname": "Jane", "lname": "Mukantabana", "beneficiary_id_card": "" },
+      {
+        "fname": "Mukantuza",
+        "lname": "Neza",
+        "beneficiary_id_card": "125355262636277"
+      }
+    ]
+  }
+]

@@ -18,7 +18,7 @@ class DB
     {
         $res = $conn->query($sql);
 
-        echo $conn->error;
+        // echo $conn->error;
         if ($res !== false) {
             if ($res->num_rows > 0) {
                 return $res;

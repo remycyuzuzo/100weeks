@@ -1,0 +1,43 @@
+<?php
+// import all required files
+
+require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_connection.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/db_basic_functions.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classBeneficiary.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classZone.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classVsla.php";
+
+if (isset($_GET['getBeneficiaryVSLA'])) {
+    $vsla = new VSLA($conn);
+    $parish = new VSLA_zone();
+    $beneficiary = new Beneficiary($conn);
+
+    $sqlVSLA = "SELECT distinct beneficiaries.VSLA_id,beneficiaries.VSLA_id,vsla_groups.VSLA_name from beneficiaries inner join vsla_groups on (beneficiaries.VSLA_id = vsla_groups.VSLA_id) WHERE vsla_groups.status='active' order by VSLA_name ASC";
+
+    $res = DB::selectFromDb($sqlVSLA, $conn);
+    $results = array();
+    $ben = array();
+
+    if ($res === null) {
+        echo json_encode(array("error: " => "Nothing found"));
+    } else if ($res === false) {
+        echo json_encode(array("error: " => $conn->error));
+    } else {
+        while ($row = $res->fetch_assoc()) {
+            $ben = array();
+            $sqlBeneficiary = "SELECT beneficiaries.fname, beneficiaries.lname, beneficiaries.VSLA_id, beneficiaries.beneficiary_id_card from beneficiaries where beneficiaries.VSLA_id = $row[VSLA_id] order by lname asc";
+            $rowBen = DB::selectFromDb($sqlBeneficiary, $conn);
+            while ($fetchBen = $rowBen->fetch_assoc()) {
+                array_push($ben, array("fname" => $fetchBen["fname"], "lname" => $fetchBen["lname"], "beneficiary_id_card" => $fetchBen["beneficiary_id_card"]));
+            }
+
+            array_push($results, array("VSLA_id" => $row["VSLA_id"], "VSLA_name" => $row["VSLA_name"], "members" => $ben));
+        }
+        echo json_encode($results);
+    }
+}
+
+if (isset($_GET['getBeneficiaries'])) {
+
+    echo json_encode($rowBen);
+}
