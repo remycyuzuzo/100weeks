@@ -12,22 +12,7 @@
             </form>
         </div>
     </div> <!-- ./search-box -->
-    <?php  ?>
+    <div class="vsla-list">
 
-    <div class="table">
-        <table class="table" id="table">
-            <thead>
-                <th>#</th>
-                <th>Name</th>
-
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>

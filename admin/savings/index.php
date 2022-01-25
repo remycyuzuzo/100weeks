@@ -71,10 +71,8 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
     <!-- JAVASCRIPT FILES -->
     <script src="<?= AXIOS ?>"></script>
     <script src="<?= URL ?>/res/js/admin-sidebar.js"></script>
-    <script src="<?= BOOTSTRAP_JS ?>"></script>
-
     <script src="<?= URL ?>/res/js/savings-tabs.js" type="module"></script>
-
+    <script src="<?= BOOTSTRAP_JS ?>"></script>
 </body>
 
 </html>

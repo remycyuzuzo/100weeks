@@ -19,9 +19,10 @@ if (isset($_GET['getBeneficiaryVSLA'])) {
     $ben = array();
 
     if ($res === null) {
-        echo json_encode(array("error: " => "Nothing found"));
+        $results = array("dataStatus" => "nodata");
     } else if ($res === false) {
-        echo json_encode(array("error: " => $conn->error));
+        $results = array("dataStatus" => "error");
+        array_push($results, array("error" => $conn->error));
     } else {
         while ($row = $res->fetch_assoc()) {
             $ben = array();
@@ -33,8 +34,9 @@ if (isset($_GET['getBeneficiaryVSLA'])) {
 
             array_push($results, array("VSLA_id" => $row["VSLA_id"], "VSLA_name" => $row["VSLA_name"], "members" => $ben));
         }
-        echo json_encode($results);
     }
+
+    echo json_encode($results);
 }
 
 if (isset($_GET['getBeneficiaries'])) {
