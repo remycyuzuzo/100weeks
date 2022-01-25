@@ -27,13 +27,18 @@ export function loadTable() {
         const vslaDiv = document.createElement("div");
         const table = document.createElement("table");
         const thead = table.createTHead();
+        const tbody = table.createTBody();
+        thead.innerHTML = `<th>#</th><th>Name</th><th>ID number</th>`;
 
         let h3 = document.createElement("h3");
-        h3.innerText = `VSLA: ${vsla.VSLA_name}(${vsla.VSLA_id})`;
+        h3.innerText = `VSLA: ${vsla.VSLA_name}(ID: ${vsla.VSLA_id})`;
         vslaDiv.appendChild(h3);
+        let i = 0;
         vsla.members.forEach((member) => {
-          let trow = table.insertRow();
-          trow.innerHTML = `<td>${member.fname} ${member.lname}</td><td>${member.beneficiary_id_card}</td>`;
+          let trow = tbody.insertRow();
+          trow.innerHTML = `<td>${++i}</td><td>${member.fname} ${
+            member.lname
+          }</td><td>${member.beneficiary_id_card}</td>`;
         });
         vslaDiv.appendChild(table);
         contDiv.appendChild(vslaDiv);
@@ -44,7 +49,7 @@ export function loadTable() {
     .catch((error) => {
       console.log(error);
       showAlert(
-        "There was an error retrieving the data.. check your connectivity"
+        "There was an error retrieving the data, contact the administrator"
       );
     });
 }

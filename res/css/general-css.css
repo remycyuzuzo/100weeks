@@ -20,6 +20,9 @@ h6 {
   color: #001955;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+h3 {
+  font-size: 14pt;
+}
 button:focus,
 a:focus,
 input:focus,
@@ -61,6 +64,10 @@ select:focus {
 /** tables */
 table thead tr {
   background-color: #f2f2f2;
+}
+td,
+th {
+  padding: 4px 12px !important;
 }
 
 /** form group divs */
