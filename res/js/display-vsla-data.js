@@ -28,22 +28,37 @@ export function loadTable() {
         const table = document.createElement("table");
         const thead = table.createTHead();
         const tbody = table.createTBody();
-        thead.innerHTML = `<th>#</th><th>Name</th><th>ID number</th>`;
+
+        thead.innerHTML = `<th>#</th><th>Name</th><th>ID number</th><th></th>`;
 
         let h3 = document.createElement("h3");
         h3.innerText = `VSLA: ${vsla.VSLA_name}(ID: ${vsla.VSLA_id})`;
         vslaDiv.appendChild(h3);
         let i = 0;
+
         vsla.members.forEach((member) => {
           let trow = tbody.insertRow();
           trow.innerHTML = `<td>${++i}</td><td>${member.fname} ${
             member.lname
-          }</td><td>${member.beneficiary_id_card}</td>`;
+          }</td><td>${member.beneficiary_id_card}</td>
+          <td><button data-memberid='${
+            member.beneficiary_id_card
+          }'">Add</button></td>`;
         });
+
         vslaDiv.appendChild(table);
         contDiv.appendChild(vslaDiv);
 
         table.className = "table";
+      });
+      const button = document.querySelectorAll("[data-memberid]");
+
+      button.forEach((element) => {
+        element.className = "btn btn-info btn-sm";
+        element.innerHTML = `new saving <i class="fas fa-plus-circle"></i>`;
+        element.addEventListener("click", () => {
+          console.log("clicked ", element.dataset.memberid);
+        });
       });
     })
     .catch((error) => {
