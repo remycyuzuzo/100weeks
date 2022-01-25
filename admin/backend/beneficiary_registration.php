@@ -27,7 +27,6 @@ if (isset($_REQUEST['beneficiary_insert'])) {
 
     /** Profile image */
     $image = new UploadImage($_FILES['image']);
-    echo var_dump($_FILES);
 
     // if ($image["profileimage"]) {
     // Pass a custom name, or it will be auto-generated
@@ -42,7 +41,7 @@ if (isset($_REQUEST['beneficiary_insert'])) {
     // }
 
 
-    $data = array('beneficiary_id_card' => $idcardnumber, 'fname' => $fname, 'lname' => $lname, "VSLA_id" => $vsla_id, "tel_number" => $telnumber, "gender" => $gender, "date_joined" => date("Y:m:d"), "date_registered" => date("Y:m:d"), "profile_picture" => $image->getName(), "status" => "active");
+    $data = array('beneficiary_id_card' => $idcardnumber, 'fname' => $fname, 'lname' => $lname, "VSLA_id" => $vsla_id, "tel_number" => $telnumber, "gender" => $gender, "date_joined" => date("Y:m:d"), "date_registered" => date("Y:m:d"), "profile_picture" => $image->getName() . "." . $image->getMime(), "status" => "active");
 
     /** VSLA object */
     $beneficiary = new Beneficiary($conn);
@@ -55,10 +54,7 @@ if (isset($_REQUEST['beneficiary_insert'])) {
 
     if ($res) {
         $upload = $image->upload();
-
-        if ($upload) {
-            echo "image uploaded at: " . $upload->getFullPath();
-        } else {
+        if (!$upload) {
             echo $image->getError();
             die();
         }

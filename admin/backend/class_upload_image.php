@@ -47,7 +47,7 @@ class UploadImage
     /**
      * @var array The min and max image size allowed for upload (in bytes)
      */
-    protected $size = array(100, 1500000);
+    protected $size = array(100, 3500000);
 
     /**
      * @var array The max height and width image allowed

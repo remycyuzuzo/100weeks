@@ -47,7 +47,7 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
                         <div class="title d-flex justify-content-between">
                             <h3 class="mb-0">Beneficiaries</h3>
                             <div class="d-inline-block float-right">
-                                <a href="<?= URL ?>/admin/coaches/new-coach-form.php" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"></i> new coach</a>
+                                <a href="<?= URL ?>/admin/beneficiaries/new-beneficiary-form.php" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"></i> new beneficiary</a>
                                 <button class="btn btn-light btn-sm"><i class="fas fa-download"></i> download</button>
                             </div>
                         </div>
