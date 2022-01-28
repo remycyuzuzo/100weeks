@@ -1,3 +1,4 @@
+import { loadSavingForm } from "./load-savings-form.js";
 export function loadTable() {
   // console.log(tabs);
   const contDiv = document.querySelector(".vsla-list");
@@ -14,7 +15,6 @@ export function loadTable() {
   axios
     .get(url)
     .then((response) => {
-      console.log(response);
       if (response.data.dataStatus == "nodata") {
         showAlert("nothing to display - data will be displayed here", "info");
         return;
@@ -32,7 +32,7 @@ export function loadTable() {
         thead.innerHTML = `<th>#</th><th>Name</th><th>ID number</th><th></th>`;
 
         let h3 = document.createElement("h3");
-        h3.innerText = `VSLA: ${vsla.VSLA_name}(ID: ${vsla.VSLA_id})`;
+        h3.innerText = `VSLA: ${vsla.VSLA_name}`;
         vslaDiv.appendChild(h3);
         let i = 0;
 
@@ -54,17 +54,17 @@ export function loadTable() {
       const button = document.querySelectorAll("[data-memberid]");
 
       button.forEach((element) => {
-        element.className = "btn btn-info btn-sm";
+        element.className = "btn btn-secondary btn-sm new-saving";
         element.innerHTML = `new saving <i class="fas fa-plus-circle"></i>`;
         element.addEventListener("click", () => {
-          console.log("clicked ", element.dataset.memberid);
+          loadSavingForm();
         });
       });
     })
     .catch((error) => {
       console.log(error);
       showAlert(
-        "There was an error retrieving the data, contact the administrator"
+        "There was an error while getting your data, contact the administrator"
       );
     });
 }
