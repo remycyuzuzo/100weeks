@@ -18,7 +18,7 @@
         </div>
         <ul>
             <li><a href="<?= URL ?>/admin/dashboard.php">Dashboard</a></li>
-            <li><a href="<?= URL ?>/admin/savings/">Weekly savings</a></li>
+            <li><a href="<?= URL ?>/admin/savings/">Payments</a></li>
             <li><a href="<?= URL ?>/admin/loans/">Loans</a></li>
             <li class=""><a href="<?= URL ?>/admin/vsla/">VSLAs</a></li>
             <li><a href="#">Beneficiaries</a>

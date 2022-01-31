@@ -1,5 +1,7 @@
 import { loadTable } from "./display-vsla-data.js";
 
+// I didn't rename everything to payment, so don't get confused
+
 const tabs = document.querySelectorAll("[data-savingtab]");
 
 const tabContents = document.querySelector(".tab-contents");

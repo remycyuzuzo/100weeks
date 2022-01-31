@@ -29,9 +29,9 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
 
         <!-- main-contents -->
         <main class="main-contents">
-            <div class="form-overlay d-none">
+            <div class="form-overlay overflow-auto d-none">
                 <div class="d-flex justify-content-center align-items-center h-100">
-                    <div class="form-container">hellow</div>
+                    <div class="form-container">Please wait..</div>
                 </div>
             </div>
             <div class="container">
@@ -40,15 +40,6 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
                         <h3>Savings</h3>
                     </div>
                     <div class="card-body">
-
-                        <div class="results">
-                            <?php if (isset($_GET['successfully-added'])) { ?>
-                                <div class="alert alert-success">
-                                    The VSLA group was added
-                                    <span class="close"></span>
-                                </div>
-                            <?php } ?>
-                        </div>
                         <div class="tab-nav">
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">

@@ -3,8 +3,7 @@
 const formContainer = document.querySelector(".form-overlay .form-container");
 const formOverlay = document.querySelector(".form-overlay");
 
-function loadSavingForm() {
-  const url = "/admin/savings/new-savings-form.php";
+function loadPaymentForm(url) {
   axios
     .get(url)
     .then((response) => {
@@ -28,4 +27,4 @@ function loadSavingForm() {
     });
 }
 
-export { loadSavingForm, formOverlay };
+export { loadPaymentForm, formOverlay };

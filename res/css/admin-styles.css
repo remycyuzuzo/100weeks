@@ -182,6 +182,7 @@ main.main-contents.full {
   min-width: 300px;
   min-height: 350px;
   display: block;
+  overflow: auto;
 }
 
 main.main-contents.full .form-overlay {
@@ -214,4 +215,14 @@ form .grouped-fields .title {
   font-size: 16pt;
   color: #001955;
   background-color: #dce5fc;
+}
+
+/** VSLA tables */
+.vsla-list tbody tr {
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .idcardCell {
+    display: none;
+  }
 }

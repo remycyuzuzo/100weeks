@@ -53,6 +53,17 @@ class Beneficiary
         else return true;
     }
 
+    public function getSingleBeneficiary(int $beneficiary_id, $order = "asc")
+    {
+        $sql = "SELECT * from beneficiaries where beneficiary_id_card = $beneficiary_id ORDER BY lname $order";
+        $res = $this->db::selectFromDb($sql, $this->conn);
+        if ($res === false) {
+            $this->error .= $this->conn->error;
+            return false;
+        } elseif ($res->num_rows <= 0) return null;
+        else return $res;
+    }
+
     public function getErrors()
     {
         return $this->error;

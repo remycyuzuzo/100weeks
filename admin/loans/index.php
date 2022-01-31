@@ -52,6 +52,9 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
                                 <li class="nav-item">
                                     <a class="nav-link" data-savingtab="saving-history" href="#">view saving history</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-savingtab="saving-history" href="#">unpaid loans</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="tab-contents"></div>
