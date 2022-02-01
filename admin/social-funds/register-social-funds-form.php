@@ -25,7 +25,7 @@ $name = $row["lname"] . " " . $row["fname"];
         <div class="beneficiary-info">
             <h3><?= $name ?></h3>
         </div>
-        <form action="" method="POST" enctype="multipart/form-data" id="new-savings-form">
+        <form action="" method="POST" enctype="multipart/form-data" id="payment-form">
             <input type="hidden" name="coach_id" value="<?= isset($_REQUEST["logged_in"]) ? $_REQUEST["logged_in"] : "" ?>">
             <div class="form-group">
                 <label for="week">Select week</label>

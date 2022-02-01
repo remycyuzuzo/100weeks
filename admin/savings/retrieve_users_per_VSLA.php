@@ -29,9 +29,16 @@ if (isset($_GET['getBeneficiaryVSLA'])) {
                 $ben = array();
                 $sqlBeneficiary = "SELECT beneficiaries.fname, beneficiaries.lname, beneficiaries.VSLA_id, beneficiaries.beneficiary_id_card from beneficiaries where beneficiaries.VSLA_id = $row[VSLA_id] order by lname asc";
                 $rowBen = DB::selectFromDb($sqlBeneficiary, $conn);
+
+                if ($rowBen === null) array_push($results, array("dataStatus" => "nodata"));
+                elseif ($rowBen === false) array_push($results, array("dataStatus" => "error", "error" => $conn->error));
+
+                // fetch the detailed beneficiary information
                 while ($fetchBen = $rowBen->fetch_assoc()) {
                     array_push($ben, array("fname" => $fetchBen["fname"], "lname" => $fetchBen["lname"], "beneficiary_id_card" => $fetchBen["beneficiary_id_card"]));
                 }
+
+                // fetch the beneficiary financial information
 
                 array_push($results, array("VSLA_id" => $row["VSLA_id"], "VSLA_name" => $row["VSLA_name"], "members" => $ben));
             }
