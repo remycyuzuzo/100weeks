@@ -8,9 +8,11 @@ if (isset($_POST['idcard'])) {
     $fname = $conn->real_escape_string($_POST['fname']);
     $lname = $conn->real_escape_string($_POST['lname']);
 
-    $res = DB::insertIntoDb("coaches", ["idnumber", "fname", "lname"], [$idnumber, $fname, $lname], $conn);
+    $data = array("idnumber" => $idnumber, "fname" => $fname, "lname" => $lname);
 
-    if($res['result']===true) {
+    $res = DB::insertIntoDb("coaches", $data, $conn);
+
+    if ($res['result'] === true) {
         echo "success";
     } else {
         echo $res['errorMessage'];
