@@ -25,15 +25,17 @@ $name = $row["lname"] . " " . $row["fname"];
         <div class="beneficiary-info">
             <h3><?= $name ?></h3>
         </div>
-        <form action="" method="POST" enctype="multipart/form-data" id="payment-form">
-            <input type="hidden" name="coach_id" value="<?= isset($_REQUEST["logged_in"]) ? $_REQUEST["logged_in"] : "" ?>">
+        <form action="<?= URL ?>/admin/backend/register_savings.php" method="POST" enctype="multipart/form-data" id="payment-form">
+            <input type="hidden" name="registering_weekly_saving">
+            <input type="hidden" name="user_id" value="<?= isset($_REQUEST["logged_in"]) ? $_REQUEST["logged_in"] : "" ?>">
+            <input type="hidden" name="beneficiary_id" value="<?= $_REQUEST["member_id"] ?>">
             <div class="form-group">
                 <label for="week">Select week</label>
-                <input type="week" id="week" class="form-control">
+                <input type="week" id="week" name="week" class="form-control" data-required>
             </div>
             <div class="form-group">
                 <label for="amount">amount</label>
-                <input type="number" id="amount" class="form-control">
+                <input type="number" id="amount" name="amount" class="form-control" data-required>
             </div>
             <div class="form-group">
                 <button type="button" class="close-btn btn btn-secondary"><i class="fas fa-times-circle"></i> cancel</button>

@@ -14,7 +14,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
     <link rel="stylesheet" href="<?= FONTAWESOME ?>">
     <link rel="stylesheet" href="<?= URL ?>/res/css/general-css.css">
     <link rel="stylesheet" href="<?= URL ?>/res/css/admin-styles.css">
-    <title>All VSLAs</title>
+    <title>100Weeks - Payments</title>
 </head>
 
 <body>

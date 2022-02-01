@@ -36,7 +36,6 @@ class DB
      */
     public static function insertIntoDb(string $table, array $data, $conn)
     {
-
         // construct the query string adding the column and values parts
 
         /**

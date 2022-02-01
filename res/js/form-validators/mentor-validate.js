@@ -94,3 +94,5 @@ email.addEventListener("keyup", () => {
     HTML.appendError("invalid email address", email);
   }
 });
+
+export default HTML;
