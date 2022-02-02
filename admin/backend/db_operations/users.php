@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php");
 
 class User
 {

@@ -6,8 +6,8 @@ class VSLA_zone
 
     public function __construct()
     {
-        require $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_connection.php";
-        require_once $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_operations/db_basic_functions.php";
+        require $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_connection.php";
+        require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/db_basic_functions.php";
 
         $this->conn = $conn;
         $this->db = new DB();

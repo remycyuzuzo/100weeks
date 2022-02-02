@@ -3,9 +3,9 @@
 
 if (isset($_POST["registering_social_funds"])) {
     // include required scripts
-    require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/dependencies.php";
     require_once DB_CONNECT;
-    require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/db_basic_functions.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/db_basic_functions.php";
 
     // get POST data    
     /** The week */

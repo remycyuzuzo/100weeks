@@ -1,7 +1,7 @@
 <?php
 
 /** db connection */
-define("DB_CONNECT", $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_connection.php");
+define("DB_CONNECT", $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_connection.php");
 
 /** project url */
 define('URL', 'http://100weeks.test', true);

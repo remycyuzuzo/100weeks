@@ -4,9 +4,9 @@ session_start();
 if (isset($_POST["email"])) {
 
     // import required files
-    require $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_connection.php";
-    include $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
-    include $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_operations/db_basic_functions.php";
+    require $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_connection.php";
+    include $_SERVER["DOCUMENT_ROOT"] . "//admin/dependencies.php";
+    include $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/db_basic_functions.php";
 
     /** Email address entered by the user through the form */
     $email = $conn->real_escape_string($_POST['email']);

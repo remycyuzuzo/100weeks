@@ -2,10 +2,10 @@
 
 if (isset($_REQUEST["insert_zone"])) {
 
-    require_once $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
-    require_once $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_connection.php";
-    require_once $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_operations/db_basic_functions.php";
-    require_once $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_operations/classZone.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_connection.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/db_basic_functions.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classZone.php";
 
     $zone_name = isset($_POST['zone_name']) ? $conn->real_escape_string($_POST["zone_name"]) : "";
     $zone_address = isset($_POST['zone_address']) ? $conn->real_escape_string($_POST["zone_address"]) : "";

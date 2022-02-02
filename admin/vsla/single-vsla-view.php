@@ -1,5 +1,5 @@
 <?php
-require $_SERVER["DOCUMENT_ROOT"] . "/dependencies.php";
+require $_SERVER["DOCUMENT_ROOT"] . "//dependencies.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

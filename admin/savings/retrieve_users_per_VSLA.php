@@ -1,11 +1,11 @@
 <?php
 // import all required files
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_connection.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/db_basic_functions.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classBeneficiary.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classZone.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classVsla.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_connection.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/db_basic_functions.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/classBeneficiary.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/classZone.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/classVsla.php";
 
 if (isset($_GET['getBeneficiaryVSLA'])) {
     try {

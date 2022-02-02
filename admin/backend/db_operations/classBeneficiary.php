@@ -5,7 +5,7 @@ class Beneficiary
     private $error = "";
     function __construct($conn)
     {
-        require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/db_basic_functions.php";
+        require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/db_basic_functions.php";
         $this->conn = $conn;
         $this->db = new DB();
     }

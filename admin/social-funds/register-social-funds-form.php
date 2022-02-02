@@ -3,9 +3,9 @@ if (!isset($_GET['member_id'])) {
     exit();
 }
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/dependencies.php";
 require_once DB_CONNECT;
-require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classBeneficiary.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/classBeneficiary.php";
 
 $beneficiary = new Beneficiary($conn);
 $res = $beneficiary->getSingleBeneficiary($_GET['member_id']);

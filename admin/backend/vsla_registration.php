@@ -3,10 +3,10 @@
 // check whether this is not a click-bait attack
 if (isset($_REQUEST['vsla'])) {
 
-    include_once $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
-    include_once $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_connection.php";
-    require_once $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_operations/db_basic_functions.php";
-    require_once $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_operations/classVsla.php";
+    include_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
+    include_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_connection.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/db_basic_functions.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classVsla.php";
 
     /** vsla given name */
     $vsla_name = isset($_POST['name']) ? $conn->real_escape_string($_POST["name"]) : "";

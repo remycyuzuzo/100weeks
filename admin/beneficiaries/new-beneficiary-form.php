@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require $_SERVER["DOCUMENT_ROOT"] . "admin/dependencies.php";
-require $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_connection.php";
-require $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_operations/classVsla.php";
+require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
+require $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_connection.php";
+require $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classVsla.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,11 +24,11 @@ require $_SERVER["DOCUMENT_ROOT"] . "admin/backend/db_operations/classVsla.php";
 <body>
     <div id="root" class="h-100">
         <!-- top-nav -->
-        <?php include $_SERVER["DOCUMENT_ROOT"] . "admin/includes/top-nav.php" ?>
+        <?php include $_SERVER["DOCUMENT_ROOT"] . "/admin/includes/top-nav.php" ?>
         <!-- ./top-nav -->
 
         <!-- side-bar menu -->
-        <?php include $_SERVER["DOCUMENT_ROOT"] . "admin/includes/side-bar.php"; ?>
+        <?php include $_SERVER["DOCUMENT_ROOT"] . "/admin/includes/side-bar.php"; ?>
         <!-- ./side-bar -->
 
         <!-- main-contents -->
