@@ -1,11 +1,13 @@
 <?php
 // import all required files
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_connection.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/db_basic_functions.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/classBeneficiary.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/classZone.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/classVsla.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
+require_once DB_CONNECT;
+require_once ROOT . "/admin/backend/db_operations/db_basic_functions.php";
+require_once ROOT . "/admin/backend/db_operations/classBeneficiary.php";
+require_once ROOT . "/admin/backend/db_operations/classZone.php";
+require_once ROOT . "/admin/backend/db_operations/classVsla.php";
+require_once ROOT . "/admin/backend/db_operations/BeneficiaryFinancialInformation.php";
 
 if (isset($_GET['getBeneficiaryVSLA'])) {
     try {
@@ -35,7 +37,12 @@ if (isset($_GET['getBeneficiaryVSLA'])) {
 
                 // fetch the detailed beneficiary information
                 while ($fetchBen = $rowBen->fetch_assoc()) {
-                    array_push($ben, array("fname" => $fetchBen["fname"], "lname" => $fetchBen["lname"], "beneficiary_id_card" => $fetchBen["beneficiary_id_card"]));
+                    $pInfo = new PaymentInfo();
+                    $beneficiary_finances = $pInfo->checkForPaymentInfo($fetchBen["beneficiary_id_card"], $row["VSLA_id"]);
+
+                    $beneficiary_data = array("fname" => $fetchBen["fname"], "lname" => $fetchBen["lname"], "beneficiary_id_card" => $fetchBen["beneficiary_id_card"], "finance_data" => $beneficiary_finances);
+
+                    array_push($ben, $beneficiary_data);
                 }
 
                 // fetch the beneficiary financial information
@@ -44,7 +51,7 @@ if (isset($_GET['getBeneficiaryVSLA'])) {
             }
         }
     } catch (Exception $e) {
-        array_push($results, array("errorEsception" => $e->getMessage()));
+        array_push($results, array("errorException" => $e->getMessage()));
     }
 
     echo json_encode($results);

@@ -36,4 +36,20 @@ class VSLA
         } elseif ($res->num_rows <= 0) return null;
         else return $res;
     }
+
+    public function getSingleVSLAInfo(int $VSLAId)
+    {
+        $sql = "SELECT * from vsla_groups where VSLA_id = $VSLAId";
+        $res = $this->db::selectFromDb($sql, $this->conn);
+        if ($res === false) {
+            $this->error .= $this->conn->error;
+            return false;
+        } elseif ($res->num_rows <= 0) return null;
+        else return $res->fetch_assoc();
+    }
+
+    public function getErrors()
+    {
+        return ($this->error != "") ? $this->error : NULL;
+    }
 }

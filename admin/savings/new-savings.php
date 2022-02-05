@@ -12,7 +12,5 @@
             </form>
         </div>
     </div> <!-- ./search-box -->
-    <div class="vsla-list">
-
-    </div>
+    <div class="vsla-list"></div>
 </div>

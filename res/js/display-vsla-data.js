@@ -1,4 +1,9 @@
 import { loadPaymentForm } from "./load-payment-form.js";
+
+/**
+ * @function loadTable
+ * Loads the table consisting the list of VSLAs with members of each one
+ */
 export function loadTable() {
   // console.log(tabs);
   const contDiv = document.querySelector(".vsla-list");
@@ -10,6 +15,30 @@ export function loadTable() {
     contDiv.appendChild(div);
   };
 
+  /**
+   *
+   * @param {string} className
+   * @param {string} launchForm
+   * @param {int} memberID
+   * @returns {HTMLButtonElement}
+   */
+  function newPaymentButton(className, launchForm, memberID) {
+    const button = document.createElement("button");
+    button.className = `${className}`;
+    button.classList.add("mr-2");
+    button.dataset.launchform = `${launchForm}`;
+    button.dataset.memberid = memberID;
+    let buttonInnerHTML = `<i class="fas fa-plus-circle"></i> `;
+
+    if (launchForm === "savings") buttonInnerHTML += "savings";
+    else if (launchForm === "socialfunds") buttonInnerHTML += "social funds";
+    else if (launchForm === "loan") buttonInnerHTML += "loan";
+
+    button.innerHTML = `${buttonInnerHTML}`;
+
+    return button;
+  }
+
   const url = "/admin/savings/retrieve_users_per_VSLA.php?getBeneficiaryVSLA";
   axios
     .get(url)
@@ -18,10 +47,12 @@ export function loadTable() {
         showAlert("nothing to display - data will be displayed here", "info");
         return;
       }
+
       if (response.data.dataStatus === "error") {
         showAlert("there is system error: contact the system admin");
         return;
       }
+
       response.data.forEach((vsla) => {
         const vslaDiv = document.createElement("div");
         const table = document.createElement("table");
@@ -40,20 +71,40 @@ export function loadTable() {
         vsla.members.forEach((member) => {
           let trow = tbody.insertRow();
           trow.setAttribute("data-memberid", member.beneficiary_id_card);
+
           trow.innerHTML = `<td>${++i}</td><td>${member.fname} ${
             member.lname
           }</td><td class="idcardCell">${member.beneficiary_id_card}</td>
-          <td class="align-right">
-            <button class="savings btn btn-primary btn-sm new-saving" data-launchform="savings" data-memberid='${
+          `;
+
+          const buttonColumnCell = trow.insertCell();
+
+          buttonColumnCell.appendChild(
+            newPaymentButton(
+              "savings btn btn-primary btn-sm new-saving",
+              "savings",
               member.beneficiary_id_card
-            }'">saving <i class="fas fa-plus-circle"></i></button>
-            <button class="social-funds btn btn-secondary btn-sm" data-launchform="socialfunds" data-memberid='${
+            )
+          );
+
+          buttonColumnCell.appendChild(
+            newPaymentButton(
+              "social-funds btn btn-secondary btn-sm",
+              "socialfunds",
               member.beneficiary_id_card
-            }'">social funds <i class="fas fa-plus-circle"></i></button>
-            <button class="loan btn btn-success btn-sm" data-launchform="loan" data-memberid='${
-              member.beneficiary_id_card
-            }'">loan <i class="fas fa-plus-circle"></i></button>
-          </td>`;
+            )
+          );
+          if (member.finance_data.result) {
+            if (member.finance_data.hasActiveLoan) {
+              buttonColumnCell.appendChild(
+                newPaymentButton(
+                  "loan btn btn-success btn-sm",
+                  "loan",
+                  member.beneficiary_id_card
+                )
+              );
+            }
+          }
         });
 
         tableDiv.appendChild(table);
@@ -63,6 +114,7 @@ export function loadTable() {
         table.className = "table table-striped";
         tableDiv.className = "table-responsive";
       });
+
       const trigger = document.querySelectorAll("[data-launchform]");
 
       trigger.forEach((element) => {

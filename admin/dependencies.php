@@ -6,6 +6,9 @@ define("DB_CONNECT", $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_connection.
 /** project url */
 define('URL', 'http://100weeks.test', true);
 
+define('ROOT', $_SERVER["DOCUMENT_ROOT"] . "/", true);
+
+
 /** path of bootstrap.min.css file, replace this during production with remote package */
 define("BOOTSTRAP_CSS", URL . "/node_modules/bootstrap/dist/css/bootstrap.min.css", true);
 

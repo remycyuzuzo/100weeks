@@ -23,6 +23,9 @@ h6 {
 h3 {
   font-size: 14pt;
 }
+.mr-2 {
+  margin-right: 4px !important;
+}
 button:focus,
 a:focus,
 input:focus,
