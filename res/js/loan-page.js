@@ -1,6 +1,6 @@
-import { loadTable } from "./display-vsla-data.js";
-
-const tabs = document.querySelectorAll("[data-savingtab]");
+import { loadLoanForm } from "./load-loan-registation-form.js";
+import { loadActiveLoanList } from "./load-active-loan.js";
+const tabs = document.querySelectorAll("[data-loantab]");
 
 const tabContents = document.querySelector(".tab-contents");
 
@@ -8,15 +8,15 @@ class Tabs {
   constructor(tabs, location) {
     this.allTabs = tabs;
     this.location = location;
-    this.storageData = localStorage.getItem("activeSavingTab");
+    this.storageData = localStorage.getItem("activeloanTab");
     if (this.storageData) {
       this.activeTab = document.querySelector(
-        `[data-savingtab=${this.storageData}]`
+        `[data-loantab=${this.storageData}]`
       );
       this.setCurrentTab(this.storageData);
     } else {
-      this.activeTab = document.querySelector("[data-savingtab=new-savings]");
-      this.setCurrentTab("new-savings");
+      this.activeTab = document.querySelector("[data-loantab=new-loan]");
+      this.setCurrentTab("new-loan");
     }
   }
 
@@ -30,7 +30,6 @@ class Tabs {
   resetActiveClass() {
     this.allTabs.forEach((tab) => {
       tab.className = "nav-link";
-      // tab.classList.add("fade");
     });
   }
 
@@ -38,19 +37,19 @@ class Tabs {
     if (this.currentTab === null) return;
     let url = "";
     switch (this.currentTab) {
-      case "new-savings":
-        url = "/admin/savings/new-savings.php";
-        this.setLocalStorage("new-savings");
+      case "new-loan":
+        url = "/admin/loans/new-loan-form.php";
+        this.setLocalStorage("new-loan");
         break;
 
-      case "saving-history":
-        url = "/admin/savings/savings-weekly-history.php";
-        this.setLocalStorage("saving-history");
+      case "active-loans":
+        url = "/admin/loans/active-loans.php";
+        this.setLocalStorage("active-loans");
         break;
 
       default:
-        url = "/admin/savings/new-savings.php";
-        this.setLocalStorage("new-savings");
+        url = "/admin/loans/active-loans.php";
+        this.setLocalStorage("new-loan");
         break;
     }
     this.showLoadingGif();
@@ -68,7 +67,9 @@ class Tabs {
         console.log(error);
       })
       .then(() => {
-        loadTable();
+        // if (this.currentTab === "new-loan") loadLoanForm(this.location);
+        // if (this.currentTab === "active-loans")
+        //   loadActiveLoanList(this.location);
       });
   }
 
@@ -77,7 +78,7 @@ class Tabs {
   }
 
   setLocalStorage() {
-    localStorage.setItem("activeSavingTab", this.currentTab);
+    localStorage.setItem("activeloanTab", this.currentTab);
   }
 
   showLoadingGif() {
@@ -96,6 +97,6 @@ tabs.forEach((tab) => {
   tab.onclick = (e) => {
     e.preventDefault();
     tabObj.activeTab = tab;
-    tabObj.setCurrentTab(tab.dataset.savingtab);
+    tabObj.setCurrentTab(tab.dataset.loantab);
   };
 });

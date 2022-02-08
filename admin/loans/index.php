@@ -14,7 +14,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
     <link rel="stylesheet" href="<?= FONTAWESOME ?>">
     <link rel="stylesheet" href="<?= URL ?>/res/css/general-css.css">
     <link rel="stylesheet" href="<?= URL ?>/res/css/admin-styles.css">
-    <title>All VSLAs</title>
+    <title>Loans</title>
 </head>
 
 <body>
@@ -47,13 +47,10 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
                         <div class="tab-nav">
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link" data-savingtab="new-savings" href="#">Register savings</a>
+                                    <a class="nav-link" data-loantab="active-loans" href="#">active loans</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-savingtab="saving-history" href="#">view saving history</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-savingtab="saving-history" href="#">unpaid loans</a>
+                                    <a class="nav-link" data-loantab="new-loan" href="#">Register loan</a>
                                 </li>
                             </ul>
                         </div>
@@ -75,7 +72,8 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
     <script src="<?= URL ?>/res/js/admin-sidebar.js"></script>
     <script src="<?= BOOTSTRAP_JS ?>"></script>
 
-    <script src="<?= URL ?>/res/js/savings-tabs.js" type="module"></script>
+    <!-- scripts that manages tabs and load data accordings on the loans page -->
+    <script src="<?= URL ?>/res/js/loan-page.js" type="module"></script>
 
 </body>
 
