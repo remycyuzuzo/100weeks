@@ -96,7 +96,7 @@ export function loadTable() {
           );
           if (member.finance_data.result) {
             // display the loan buttononly if the beneficiary has an active loan to pay
-            if (member.finance_data.hasActiveLoan) {
+            if (member.finance_data.hasActiveLoan == true) {
               buttonColumnCell.appendChild(
                 newPaymentButton(
                   "loan btn btn-success btn-sm",

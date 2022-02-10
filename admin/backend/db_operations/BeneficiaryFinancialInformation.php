@@ -9,10 +9,12 @@ class PaymentInfo
         require DB_CONNECT;
         require_once ROOT . "admin/backend/db_operations/db_basic_functions.php";
         require_once ROOT . "admin/backend/db_operations/classVsla.php";
+        require_once ROOT . "admin/backend/db_operations/classLoans.php";
 
         $this->conn = $conn;
         $this->db = new DB();
         $this->vsla = new VSLA($this->conn);
+        $this->loan = new Loan();
     }
 
     /**
@@ -44,7 +46,7 @@ class PaymentInfo
         }
 
         $loan = $res->fetch_assoc();
-        array_push($response, array("result" => true, "hasActiveLoan" => true, "loanTotalAmount" => $loan["loan_amount"], "loanLeftToPay" => $loan["debt_left"], "weeklySavings" => $vsla["amount_per_share"], "social_funds" => $vsla["social_funds_amount"]));
+        $response = array("result" => true, "hasActiveLoan" => true, "loanTotalAmount" => $loan["loan_amount"], "loanLeftToPay" => $loan["debt_left"], "weeklySavings" => $vsla["amount_per_share"], "social_funds" => $vsla["social_funds_amount"]);
 
         return $response;
     }
