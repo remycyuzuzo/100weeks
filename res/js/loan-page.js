@@ -67,9 +67,8 @@ class Tabs {
         console.log(error);
       })
       .then(() => {
-        // if (this.currentTab === "new-loan") loadLoanForm(this.location);
-        // if (this.currentTab === "active-loans")
-        //   loadActiveLoanList(this.location);
+        if (this.currentTab === "new-loan") loadLoanForm();
+        else if (this.currentTab === "active-loans") loadActiveLoanList();
       });
   }
 

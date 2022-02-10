@@ -12,6 +12,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
 
     <link rel="stylesheet" href="<?= BOOTSTRAP_CSS ?>">
     <link rel="stylesheet" href="<?= FONTAWESOME ?>">
+    <link rel="stylesheet" href="<?= DATATABLES_CSS ?>">
     <link rel="stylesheet" href="<?= URL ?>/res/css/general-css.css">
     <link rel="stylesheet" href="<?= URL ?>/res/css/admin-styles.css">
     <title>Loans</title>
@@ -29,7 +30,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
 
         <!-- main-contents -->
         <main class="main-contents">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="card wrapper">
                     <div class="card-header">
                         <h3>Savings</h3>
@@ -74,6 +75,8 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
 
     <!-- scripts that manages tabs and load data accordings on the loans page -->
     <script src="<?= URL ?>/res/js/loan-page.js" type="module"></script>
+    <script src="<?= DATATABLES_JS ?>"></script>
+
 
 </body>
 
