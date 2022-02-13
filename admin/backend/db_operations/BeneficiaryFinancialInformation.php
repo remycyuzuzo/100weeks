@@ -26,7 +26,7 @@ class PaymentInfo
 
         $response = array();
 
-        $sql = "SELECT * FROM loan_information where beneficiary_id = $beneficiary_id AND loan_status='active'";
+        $sql = "SELECT * FROM loan_information where beneficiary_id = '$beneficiary_id' AND loan_status='active'";
 
         $vsla = $this->vsla->getSingleVSLAInfo($VSLAId);
         if (!$vsla || $vsla === null) {
@@ -49,5 +49,16 @@ class PaymentInfo
         $response = array("result" => true, "hasActiveLoan" => true, "loanTotalAmount" => $loan["loan_amount"], "loanLeftToPay" => $loan["debt_left"], "weeklySavings" => $vsla["amount_per_share"], "social_funds" => $vsla["social_funds_amount"]);
 
         return $response;
+    }
+
+    public function hasActiveLoan(string $beneficiary_id)
+    {
+        $sql = "SELECT beneficiary_id, loan_status FROM loan_information where beneficiary_id = '$beneficiary_id' AND loan_status='active'";
+
+        $res = $this->db::selectFromDb($sql, $this->conn);
+
+        if ($res === false) throw new Exception("There is a processing error: " . $this->conn->error);
+        if ($res === null) return false;
+        else return true;
     }
 }

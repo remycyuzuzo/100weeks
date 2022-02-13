@@ -46,6 +46,9 @@ select:focus {
 .form-group {
   margin-bottom: 0.6em;
 }
+label {
+  margin-bottom: 0.3em;
+}
 .invalid-value {
   border-color: red !important;
 }

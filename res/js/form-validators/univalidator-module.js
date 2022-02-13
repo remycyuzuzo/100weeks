@@ -13,8 +13,8 @@ class HTML {
     this.el.parentElement.appendChild(alertBox);
   }
 
-  static clearErrors() {
-    document.querySelectorAll(`.error`).forEach((element) => element.remove());
+  static clearErrors(element) {
+    if (element) element.remove();
   }
 }
 

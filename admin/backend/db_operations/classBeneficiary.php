@@ -42,25 +42,26 @@ class Beneficiary
         else return $res;
     }
 
-    public function doesBeneficiaryExists(int $beneficiary_id, $order = "asc")
+    public function doesBeneficiaryExists(string $beneficiary_id)
     {
-        $sql = "SELECT beneficiary_id_card from beneficiaries where beneficiary_id_card = $beneficiary_id ORDER BY lname $order";
+        $sql = "SELECT beneficiary_id_card from beneficiaries where beneficiary_id_card = '$beneficiary_id'";
         $res = $this->db::selectFromDb($sql, $this->conn);
         if ($res === false) {
-            $this->error .= $this->conn->error;
+            throw new Exception("there is an error: " . $this->conn->error);
+        } elseif ($res === null) {
             return false;
-        } elseif ($res->num_rows <= 0) return null;
-        else return true;
+        } else return true;
     }
 
     public function getSingleBeneficiary(int $beneficiary_id, $order = "asc")
     {
-        $sql = "SELECT * from beneficiaries where beneficiary_id_card = $beneficiary_id ORDER BY lname $order";
+        $sql = "SELECT * from beneficiaries where beneficiary_id_card = '$beneficiary_id' ORDER BY lname $order";
         $res = $this->db::selectFromDb($sql, $this->conn);
+
         if ($res === false) {
             $this->error .= $this->conn->error;
             return false;
-        } elseif ($res->num_rows <= 0) return null;
+        } elseif ($res === null) return null;
         else return $res;
     }
 

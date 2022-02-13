@@ -15,9 +15,15 @@ class Loan
         $this->db = new DB();
     }
 
-    public function registerNewLoan()
+    public function registerNewLoan($data)
     {
-        # code...
+        $res = $this->db::insertIntoDb("loan_information", $data, $this->conn);
+        if ($res["result"] === true) {
+            return true;
+        } else {
+            $this->errors .= $res["errorMessage"];
+            return false;
+        }
     }
 
     /**
