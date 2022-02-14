@@ -30,7 +30,7 @@
         }
 
         $paymentInfo = new PaymentInfo();
-        if (!$paymentInfo->hasActiveLoan($beneficiary_id)) {
+        if ($paymentInfo->hasActiveLoan($beneficiary_id)) {
             throw new Exception("The beneficiary is not eligible for the loan");
         }
 
@@ -42,7 +42,11 @@
 
         $beneficiary_VSLA = $vsla->getSingleVSLAInfo($row["VSLA_id"]);
 
-        $response = array("result" => true, "beneficiaryName" => $beneficiary_name, "beneficiaryVSLA" => $beneficiary_VSLA["VSLA_name"]);
+        $response = array(
+            "result" => true,
+            "beneficiaryName" => $beneficiary_name,
+            "beneficiaryVSLA" => $beneficiary_VSLA["VSLA_name"]
+        );
 
         echo json_encode($response);
     } catch (Exception $e) {

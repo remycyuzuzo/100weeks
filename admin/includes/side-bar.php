@@ -27,7 +27,7 @@
                     <li><a href="<?= URL ?>/admin/beneficiaries/new-beneficiary-form.php">Add new beneficiary</a></li>
                 </ul>
             </li>
-            <li><a href="#">General report & exports</a></li>
+            <li><a href="<?= URL ?>/admin/reports/">General report & exports</a></li>
             <li><a href="users.php">System users</a>
                 <ul>
                     <li><a href="users.php">Manage Users</a></li>
