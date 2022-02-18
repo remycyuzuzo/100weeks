@@ -34,7 +34,7 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classZone.php"
                         </div>
                         <div class="form-group col-md-6">
                             <label for="paying_frequency">Select the VSLA <?= VSLA_ZONE_TYPE  ?> <span class="text-danger">*</span></label>
-                            <select class="form-control" id="paying_frequency" name="paying_frequency" data-required>
+                            <select class="form-control" id="paying_frequency" name="vsla_zone_id" data-required>
                                 <option value="" selected disabled>Select</option>
                                 <?php
                                 $zone = new VSLA_zone();

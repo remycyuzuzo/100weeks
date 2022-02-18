@@ -1,91 +1,13 @@
 [
   {
-    "VSLA_id": "2",
-    "VSLA_name": "testing name",
-    "members": [
-      {
-        "fname": "Jane",
-        "lname": "Mukantabana",
-        "beneficiary_id_card": "8787665655944",
-        "finance_data": [
-          {
-            "result": true,
-            "hasActiveLoan": false,
-            "weeklySavings": "1000",
-            "social_funds": "100"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "VSLA_id": "7",
-    "VSLA_name": "testing name",
-    "members": [
-      {
-        "fname": "Mukantuza",
-        "lname": "Neza",
-        "beneficiary_id_card": "125355262636277",
-        "finance_data": {
-          "result": true,
-          "hasActiveLoan": true,
-          "loanTotalAmount": "10000",
-          "loanLeftToPay": "6000",
-          "weeklySavings": "1000",
-          "social_funds": "100"
-        }
-      }
-    ]
-  },
-  {
-    "VSLA_id": "15",
-    "VSLA_name": "Ubumwe Rwaza",
-    "members": [
-      {
-        "fname": "Sperasia",
-        "lname": "Mukagitego",
-        "beneficiary_id_card": "6325362821928329",
-        "finance_data": [
-          {
-            "result": true,
-            "hasActiveLoan": false,
-            "weeklySavings": "1000",
-            "social_funds": "100"
-          }
-        ]
-      },
-      {
-        "fname": "Mariya",
-        "lname": "Yohanna",
-        "beneficiary_id_card": "7327237282",
-        "finance_data": {
-          "result": true,
-          "hasActiveLoan": true,
-          "loanTotalAmount": "13000",
-          "loanLeftToPay": "17000",
-          "weeklySavings": "1000",
-          "social_funds": "100"
-        }
-      }
-    ]
-  },
-  {
-    "VSLA_id": "14",
-    "VSLA_name": "Urugwiro Group",
-    "members": [
-      {
-        "fname": "Janine",
-        "lname": "Niyomwiza",
-        "beneficiary_id_card": "2736277182839",
-        "finance_data": [
-          {
-            "result": true,
-            "hasActiveLoan": false,
-            "weeklySavings": "1000",
-            "social_funds": "100"
-          }
-        ]
-      }
-    ]
+    "result": true,
+    "parishID": "1",
+    "parishName": "Ruhengeri",
+    "totalSavings": 0,
+    "totalSocialFunds": 0,
+    "numberOfVSLAs": 0,
+    "totalMembersInZone": 0,
+    "totalLoanAmount": 0,
+    "numberOfLoans": "0"
   }
 ]

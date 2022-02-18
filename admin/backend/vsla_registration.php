@@ -23,8 +23,11 @@ if (isset($_REQUEST['vsla'])) {
     /** VSLA Founding date */
     $saving_amount = isset($_POST['saving_amount']) ? $conn->real_escape_string($_POST["saving_amount"]) : "";
 
-    /** VSLA Founding date */
+    /** VSLA default social funds amount */
     $social_funds = isset($_POST['social_funds']) ? $conn->real_escape_string($_POST["social_funds"]) : "";
+
+    /** VSLA Zone ID */
+    $zone_id = isset($_POST['vsla_zone_id']) ? $conn->real_escape_string($_POST["vsla_zone_id"]) : "";
 
     /** Maximum loan per person */
     $maximum_loan = isset($_POST['maximum_loan']) ? $conn->real_escape_string($_POST["maximum_loan"]) : "";
@@ -35,7 +38,7 @@ if (isset($_REQUEST['vsla'])) {
     $loan_overdue_interest_rate = isset($_POST["loan_overdue_rate"]) ? $conn->real_escape_string($_POST["loan_overdue_rate"]) : "";
     // REGISTER THE VSLA
 
-    $data = array('VSLA_name' => $vsla_name, 'datetime_registered' => date("Y:m:d m:s:i"), "date_created" => $vsla_founding_date, "date_joined_the_organization" => $vsla_joining_date, "meetings_frequency" => 4, "amount_per_share" => $saving_amount, "social_funds_amount" => $social_funds, "maximum_loan_amount" => $maximum_loan, "default_overdue_loan_fine" => $loan_overdue_interest_rate);
+    $data = array('VSLA_name' => $vsla_name, "vsla_zone_id" => $zone_id, "date_created" => $vsla_founding_date, "date_joined_the_organization" => $vsla_joining_date, "meetings_frequency" => 4, "amount_per_share" => $saving_amount, "social_funds_amount" => $social_funds, "maximum_loan_amount" => $maximum_loan, "default_overdue_loan_fine" => $loan_overdue_interest_rate);
 
     /** VSLA object */
     $vsla = new VSLA($conn);

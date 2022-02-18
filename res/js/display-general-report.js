@@ -1,6 +1,6 @@
 function loadGeneralReportTable() {
   const resultDiv = document.querySelector(".report-table");
-  const url = "/admin/reports/load_general_report.php";
+  const url = "/admin/reports/generate_general_report.php";
   axios
     .get(url)
     .then((response) => {
@@ -12,7 +12,7 @@ function loadGeneralReportTable() {
 
         // create the table
         const table = document.createElement("table");
-        table.className = "table table-stripped";
+        table.className = "table table-striped";
         table.id = "datatable";
 
         // insert tHead
