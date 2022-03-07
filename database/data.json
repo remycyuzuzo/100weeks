@@ -1,13 +1,38 @@
 [
   {
-    "result": true,
     "parishID": "1",
     "parishName": "Ruhengeri",
     "totalSavings": 0,
     "totalSocialFunds": 0,
-    "numberOfVSLAs": 0,
-    "totalMembersInZone": 0,
-    "totalLoanAmount": 0,
-    "numberOfLoans": "0"
+    "numberOfVSLAs": 5,
+    "totalMembersInZone": 1,
+    "totalLoanAmount": 10000,
+    "numberOfLoans": 0,
+    "numberOfSavings": 0,
+    "valueOfVSLAAssets": 0
+  },
+  {
+    "parishID": "2",
+    "parishName": "Rwaza",
+    "totalSavings": 3000,
+    "totalSocialFunds": 300,
+    "numberOfVSLAs": 5,
+    "totalMembersInZone": 2,
+    "totalLoanAmount": 21000,
+    "numberOfLoans": 0,
+    "numberOfSavings": 0,
+    "valueOfVSLAAssets": 0
+  },
+  {
+    "parishID": "3",
+    "parishName": "Rugeshi",
+    "totalSavings": 7600,
+    "totalSocialFunds": 0,
+    "numberOfVSLAs": 5,
+    "totalMembersInZone": 2,
+    "totalLoanAmount": 64997,
+    "numberOfLoans": 0,
+    "numberOfSavings": 0,
+    "valueOfVSLAAssets": 0
   }
 ]

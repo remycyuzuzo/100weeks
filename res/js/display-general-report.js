@@ -1,33 +1,39 @@
 function loadGeneralReportTable() {
   const resultDiv = document.querySelector(".report-table");
-  const url = "/admin/reports/generate_general_report.php";
+  const url = "/admin/reports/generate_report_draft.php";
   axios
     .get(url)
     .then((response) => {
-      console.log(response.data);
       if (response.data.result === true) {
-        // create an table wrapper
+        // create an table wrapper div
         const tableContainer = document.createElement("div");
         tableContainer.className = "table-responsive";
 
         // create the table
         const table = document.createElement("table");
-        table.className = "table table-striped";
-        table.id = "datatable";
+        table.className = "table table-bordered table-hover";
 
         // insert tHead
         const thead = table.createTHead();
         thead.innerHTML = `
             <tr>
-                <th>#</th>
-                <th>Parishes</th>
-                <th>Number of VSLAs</th>
-                <th>Members</th>
-                <th>total paid</th>
-                <th>penalties</th>
-                <th>total in-debt</th>
-                <th>Date issued</th>
-                <th>Due date</th>
+                <th rowspan="2">#</th>
+                <th rowspan="2">Parishes</th>
+                <th rowspan="2">Number of VSLAs</th>
+                <th rowspan="2">Members</th>
+                <th colspan="2">Savings</th>
+                <th colspan="2">Loans</th>
+                <th rowspan="2">Social funds</th>
+                <th colspan="2">Other assets</th>
+                <th rowspan="2">Total</th>
+            </tr>
+            <tr>
+              <th>Nber</th>
+              <th>Value</th>
+              <th>Nber</th>
+              <th>Value</th>              
+              <th>Nature</th>
+              <th>Values</th>            
             </tr>
           `;
 
@@ -35,18 +41,21 @@ function loadGeneralReportTable() {
         const tBody = table.createTBody();
 
         // place data into row cells
-        response.data.loanHolders.forEach((dataRow, index) => {
+        response.data.parishes.forEach((dataRow, index) => {
           const tBodyRow = tBody.insertRow();
           tBodyRow.innerHTML = `
-              <td> ${(index += 1)} </td>
-              <td> ${dataRow.fname} ${dataRow.lname} </td>
-              <td> ${dataRow.beneficiary_id_card}</td>
-              <td> ${toCurrency(parseFloat(dataRow.loan_amount))} </td>
-              <td> ${toCurrency(dataRow.total_loan_paid)} </td>
-              <td> ${toCurrency(0)} </td>
-              <td> ${toCurrency(dataRow.debt_left)} </td>
-              <td> ${dataRow.approval_date} </td>
-              <td> ${dataRow.loan_due_date} </td>
+              <td> <strong>${(index += 1)}</strong> </td>
+              <td> ${dataRow.parishName}</td>
+              <td> ${dataRow.numberOfVSLAs}</td>
+              <td> ${dataRow.totalMembersInZone} </td>
+              <td> ${dataRow.numberOfSavings} </td>
+              <td> ${toCurrency(dataRow.totalSavings)} </td>
+              <td> ${dataRow.numberOfLoans} </td>
+              <td> ${toCurrency(dataRow.totalLoanAmount)} </td>
+              <td> ${dataRow.totalSocialFunds} </td>
+              <td> N/A </td>
+              <td> ${dataRow.valueOfVSLAAssets} </td>
+              <td> ${toCurrency(dataRow.total)} </td>
             `;
         });
 

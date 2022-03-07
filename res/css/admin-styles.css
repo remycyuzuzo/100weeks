@@ -97,7 +97,8 @@ aside.side-bar ul li a {
   padding: 0.4em 0.7em;
   transition: background-color 0.4s ease;
 }
-aside.side-bar ul li a:hover {
+aside.side-bar ul li a:hover,
+aside.side-bar ul li a:focus {
   background-color: #f5f1f1;
 }
 aside.side-bar ul ul {

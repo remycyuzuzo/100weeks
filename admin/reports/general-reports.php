@@ -1,1 +1,1 @@
-<div class="report-table"></div>
+<div class="report-table my-2"></div>

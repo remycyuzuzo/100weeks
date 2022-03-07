@@ -77,6 +77,12 @@ td,
 th {
   padding: 4px 12px !important;
 }
+th[colspan] {
+  text-align: center;
+}
+th[rowspan] {
+  vertical-align: middle;
+}
 
 /** form group divs */
 .form-group {
