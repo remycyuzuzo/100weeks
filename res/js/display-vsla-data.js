@@ -57,6 +57,7 @@ export function loadTable() {
         const vslaDiv = document.createElement("div");
         const table = document.createElement("table");
         const tableDiv = document.createElement("div");
+        vslaDiv.className = "vsla-container border my-3";
 
         const thead = table.createTHead();
         const tbody = table.createTBody();
@@ -64,7 +65,8 @@ export function loadTable() {
         thead.innerHTML = `<th>#</th><th>Name</th><th class="idcardCell">ID number</th><th></th>`;
 
         let h3 = document.createElement("h3");
-        h3.innerText = `VSLA: ${vsla.VSLA_name}`;
+        h3.innerText = `${vsla.VSLA_name}`;
+        h3.className = "border-bottom bg-light border-secondary px-3 pb-1 mb-0";
         vslaDiv.appendChild(h3);
         let i = 0;
 
@@ -112,7 +114,7 @@ export function loadTable() {
         vslaDiv.appendChild(tableDiv);
         contDiv.appendChild(vslaDiv);
 
-        table.className = "table table-striped";
+        table.className = "table table-hover";
         tableDiv.className = "table-responsive";
       });
 
@@ -127,7 +129,7 @@ export function loadTable() {
           else if (element.dataset.launchform == "socialfunds")
             url = `/admin/social-funds/register-social-funds-form.php?member_id=${element.dataset.memberid}`;
           else if (element.dataset.launchform == "loan")
-            url = `/admin/savings/new-savings-form.php?member_id=${element.dataset.memberid}`;
+            url = `/admin/loans/loan-payment-form.php?member_id=${element.dataset.memberid}`;
           else return;
 
           loadPaymentForm(url);

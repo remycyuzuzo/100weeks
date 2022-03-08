@@ -83,19 +83,25 @@ class Loan
 
     public function hasLoan($beneficiaryID)
     {
-        $sql = "SELECT * FROM loan_information where beneficiary_id = $beneficiaryID AND loan_status='active'";
+        $sql = "SELECT beneficiary_id FROM loan_information where beneficiary_id = $beneficiaryID AND loan_status='active'";
 
         $res = $this->db::selectFromDb($sql, $this->conn);
 
-        if ($res) {
-            if ($res->num_rows > 0) {
-                return false;
-            } else {
-                return true;
-            }
+        if ($res === null) {
+            return false;
         } else {
-            $this->errors .= $this->conn->error;
-            die();
+            return true;
+        }
+    }
+
+    public function registerLoanPayment(array $payment_data)
+    {
+        $res = $this->db::insertIntoDb("loan_payments", $payment_data, $this->conn);
+        if ($res["result"] === true) {
+            return true;
+        } else {
+            $this->errors .= $res["errorMessage"];
+            return false;
         }
     }
 

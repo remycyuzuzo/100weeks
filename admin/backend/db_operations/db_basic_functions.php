@@ -27,6 +27,23 @@ class DB
     }
 
     /**
+     * This function helps to specifically select data from the database
+     * @param string $sql parse the database query
+     * @param MYSQLI $conn the database connection
+     */
+    public static function executeStandardQuery($sql, $conn)
+    {
+        $result = $conn->query($sql);
+        if ($result) {
+            $verdict['result'] = true;
+        } else {
+            $verdict['result'] = false;
+            $verdict['errorMessage'] =  $conn->error;
+        }
+        return $verdict;
+    }
+
+    /**
      * This function is used to insert data into the database table
      * @param string $table The table name
      * @param array $columns the array of columns to be inserted into

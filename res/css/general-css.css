@@ -43,6 +43,10 @@ select:focus {
   background-color: #001955 !important;
   color: #f1f1f1;
 }
+
+.border-primary {
+  border-color: #001955 !important;
+}
 .form-group {
   margin-bottom: 0.6em;
 }

@@ -149,15 +149,6 @@ aside.side-bar .user-name-box {
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
   }
 }
-/* @media screen and (min-width: 769px) {
-  main.main-contents {
-    margin-left: 250px;
-  }
-  aside.side-bar {
-    margin-left: 0;
-  }
-} */
-
 /* MAIN CONTENTS */
 main.main-contents {
   min-height: calc(100% - 50px);
@@ -222,6 +213,14 @@ form .grouped-fields .title {
 /** VSLA tables */
 .vsla-list tbody tr {
   cursor: pointer;
+}
+.vsla-list .vsla-container {
+  box-shadow: rgb(0 0 0 / 10%) -1px 1px 3px 0px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.vsla-list .vsla-container h3 {
+  border-top-width: 2px !important;
 }
 @media screen and (max-width: 768px) {
   .idcardCell {

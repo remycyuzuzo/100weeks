@@ -43,16 +43,18 @@ function loadPaymentForm(url) {
         });
 
         if (!formValidated) return;
+        if (!document.querySelector("#accept").checked) return;
         const data = new FormData(paymentForm);
         const alert = document.createElement("div");
         alert.className = "alert alert-success";
         axios
           .post(paymentForm.action, data)
           .then((response) => {
+            if (response.data.dataStatus == "doNothing") return;
             if (response.data.dataStatus == "success") {
-              alert.innerHTML = "payment registered successfully!";
+              alert.innerHTML = `${response.data.message}`;
             } else {
-              throw `error in the database: ${response.data.error}`;
+              throw `error in the database: ${response.data.message}`;
             }
           })
           .catch((err) => {

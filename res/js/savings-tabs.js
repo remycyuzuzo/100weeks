@@ -70,7 +70,9 @@ class Tabs {
         console.log(error);
       })
       .then(() => {
-        loadTable();
+        if (this.currentTab == "new-savings") {
+          loadTable();
+        }
       });
   }
 

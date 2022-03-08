@@ -7,7 +7,7 @@ Records of stuffs to be implemented
 <li>[Fix] on this previous task, only a beneficiary without an active loan should be able to request another</li>
 <li>Format the tabs interface to a sexier one</li>
 <li>[FIX] on register_new_loan, input an appropriate coach ID according to the logged-in user</li>
-<li></li>
+<li>[FIX] ON submit_loan_payment, substitute user_id with the actual one from the session</li>
 <li></li>
 <li></li>
 <li></li>

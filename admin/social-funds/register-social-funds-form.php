@@ -6,6 +6,7 @@ if (!isset($_GET['member_id'])) {
 require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/dependencies.php";
 require_once DB_CONNECT;
 require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/classBeneficiary.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/BeneficiaryFinancialInformation.php";
 
 $beneficiary = new Beneficiary($conn);
 $res = $beneficiary->getSingleBeneficiary($_GET['member_id']);
@@ -13,6 +14,9 @@ if ($res) {
     $row = $res->fetch_assoc();
 } else die("something is wrong");
 
+$beneficiary_finances = new PaymentInfo();
+$beneficiary_finances = $beneficiary_finances->checkForPaymentInfo($_GET['member_id'], $row["VSLA_id"]);
+$socialFunds = $beneficiary_finances["social_funds"];
 $name = $row["lname"] . " " . $row["fname"];
 ?>
 
@@ -36,7 +40,12 @@ $name = $row["lname"] . " " . $row["fname"];
             </div>
             <div class="form-group">
                 <label for="amount">amount</label>
-                <input type="number" name="amount" id="amount" class="form-control">
+                <input type="number" name="amount" value="<?= $socialFunds ?>" id="amount" class="form-control">
+            </div>
+            <div class="mt-1 mb-2">
+                <label for="accept">
+                    <input type="checkbox" name="iHaveRead" id="accept"> I have checked that information are correct
+                </label>
             </div>
             <div class="form-group">
                 <button type="button" class="close-btn btn btn-light">cancel</button>
