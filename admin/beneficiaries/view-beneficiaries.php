@@ -1,5 +1,41 @@
 <?php
 require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
+require DB_CONNECT;
+require_once ROOT . "admin/backend/db_operations/classBeneficiary.php";
+
+function displayAlert($message, $type = "danger")
+{
+    return "<div class=\"alert alert-$type\">$message</div>";
+}
+
+function displayBeneficiaryData($res_data)
+{
+?>
+    <table class="table table-hover" id="beneficiariesTable">
+        <thead>
+            <th>#</th>
+            <th>name</th>
+            <th>Parish</th>
+            <th>VSLA</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <?php
+            $i = 0;
+            while ($row = $res_data->fetch_assoc()) {
+            ?>
+                <tr data-beneficiary_id="<?= $row["beneficiary_id_card"] ?>">
+                    <td><?= ++$i ?></td>
+                    <td><a href=""><?= $row["lname"] . " " . $row["fname"] ?></a></td>
+                    <td></td>
+                    <td><?= $row["VSLA_id"] ?></td>
+                    <td><button class="btn btn-sm btn-light"><i class="fas fa-edit"></i> edit</button></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+<?php
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +54,7 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
 
     <script src="<?= AXIOS ?>"></script>
 
-    <title>Coaches</title>
+    <title>Beneficiary</title>
 </head>
 
 <body>
@@ -55,20 +91,24 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
 
                         <div class="tab-contents">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="beneficiariesTable">
-                                    <thead>
-                                        <th>#</th>
-                                        <th>name</th>
-                                        <th>location</th>
-                                        <th>action</th>
-                                    </thead>
-                                    <tbody>
-                                        <td>1</td>
-                                        <td>Mukandayambaje</td>
-                                        <td>Musanze</td>
-                                        <td><button class="btn btn-sm btn-light"><i class="fas fa-edit"></i> edit</button></td>
-                                    </tbody>
-                                </table>
+                                <?php
+
+                                try {
+                                    $beneficiary = new Beneficiary($conn);
+                                    $res = $beneficiary->getAllBeneficiaries();
+                                    if ($res === false) throw new Exception("System error: " . $beneficiary->getErrors());
+                                    if ($res !== null) {
+                                        displayBeneficiaryData($res);
+                                    } else echo displayAlert("There is no beneficiary registered", "info");
+                                } catch (Error $e) {
+                                    $error = $e->getMessage();
+                                    displayAlert($error);
+                                } catch (Exception $e) {
+                                    $error = $e->getMessage();
+                                    displayAlert($error);
+                                }
+                                ?>
+
                             </div>
                         </div>
                     </div>

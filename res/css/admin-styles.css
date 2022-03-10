@@ -116,20 +116,9 @@ aside.side-bar div > ul > li.active > a {
   color: #ffffff;
   transition: all 0.2s ease;
 }
-aside.side-bar ul li ul li.active {
-  border-left: 4px solid green;
+aside.side-bar ul li ul li.active a {
+  font-weight: 700;
   position: relative;
-}
-aside.side-bar ul li ul li.active::before {
-  position: absolute;
-  content: "";
-  left: 0;
-  top: 36%;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 7.5px solid green;
-  height: 0;
-  width: 0;
 }
 aside.side-bar ul li a .toggler {
   float: right;

@@ -31,9 +31,11 @@ class Beneficiary
         }
     }
 
-    public function getAllBeneficiaries(string $order = "asc")
+    public function getAllBeneficiaries(string $order = "asc", bool $showActiveBeneficiaryOnly = true, int $sortByVSLAId = 0)
     {
-        $sql = "SELECT * from beneficiaries where status = 'active' ORDER BY lname $order";
+        if ($showActiveBeneficiaryOnly) $sql = "SELECT * from beneficiaries where status = 'active' OR VSLA_id=$sortByVSLAId ORDER BY lname $order";
+        else $sql = "SELECT * from beneficiaries ORDER BY lname $order";
+
         $res = $this->db::selectFromDb($sql, $this->conn);
         if ($res === false) {
             $this->error .= $this->conn->error;
