@@ -46,10 +46,12 @@ try {
 
     # then, update the table to write amount left to pay
     $debt_left = $loan_info["debt_left"] - $amount;
-    if ($debt_left <= 0) {
+    if ($debt_left === 0) {
         $sql = "UPDATE `loan_information` SET `loan_status` = 'paid' WHERE `loan_information`.`loan_id` = $loan_info[loan_id]";
         $res = DB::executeStandardQuery($sql, $conn);
         if (!$res["result"]) die("Error in updating loan status: " . $conn->error);
+    } elseif ($debt_left < 0) {
+        throw new Error("Entered too much money");
     }
     $sql = "UPDATE `loan_information` SET `debt_left` = $debt_left WHERE `loan_information`.`loan_id` = $loan_info[loan_id]";
     $res = DB::executeStandardQuery($sql, $conn);
@@ -64,5 +66,8 @@ try {
     echo json_encode($response);
 } catch (Error $e) {
     $response = array("dataStatus" => false, "message" => $e->getMessage());
+    echo json_encode($response);
+} catch (Throwable $t) {
+    $response = array("dataStatus" => "notice", "message" => $e->getMessage());
     echo json_encode($response);
 }

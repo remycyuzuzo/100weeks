@@ -2,40 +2,9 @@
 require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
 require DB_CONNECT;
 require_once ROOT . "admin/backend/db_operations/classBeneficiary.php";
-
-function displayAlert($message, $type = "danger")
-{
-    return "<div class=\"alert alert-$type\">$message</div>";
-}
-
-function displayBeneficiaryData($res_data)
-{
-?>
-    <table class="table table-hover" id="beneficiariesTable">
-        <thead>
-            <th>#</th>
-            <th>name</th>
-            <th>Parish</th>
-            <th>VSLA</th>
-            <th></th>
-        </thead>
-        <tbody>
-            <?php
-            $i = 0;
-            while ($row = $res_data->fetch_assoc()) {
-            ?>
-                <tr data-beneficiary_id="<?= $row["beneficiary_id_card"] ?>">
-                    <td><?= ++$i ?></td>
-                    <td><a href=""><?= $row["lname"] . " " . $row["fname"] ?></a></td>
-                    <td></td>
-                    <td><?= $row["VSLA_id"] ?></td>
-                    <td><button class="btn btn-sm btn-light"><i class="fas fa-edit"></i> edit</button></td>
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-<?php
-}
+require_once ROOT . "admin/backend/db_operations/classZone.php";
+require_once ROOT . "admin/backend/db_operations/classVsla.php";
+require_once ROOT . "admin/beneficiaries/display_beneficiaries_data_functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,21 +53,55 @@ function displayBeneficiaryData($res_data)
                             <h3 class="mb-0">Beneficiaries</h3>
                             <div class="d-inline-block float-right">
                                 <a href="<?= URL ?>/admin/beneficiaries/new-beneficiary-form.php" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"></i> new beneficiary</a>
-                                <button class="btn btn-light btn-sm"><i class="fas fa-download"></i> download</button>
+                                <?php if (!isset($_GET["view-single"])) { ?>
+                                    <button class="btn btn-light btn-sm"><i class="fas fa-download"></i> download</button>
+                                <?php  } ?>
                             </div>
                         </div>
                         <hr />
 
                         <div class="tab-contents">
-                            <div class="table-responsive">
-                                <?php
 
+                            <?php
+
+
+                            $beneficiary = new Beneficiary($conn);
+
+                            if (isset($_GET["view-single"])) {
+                                echo '<div class="mb-3"><a class="btn btn-light" href="' . URL . '/admin/beneficiaries/view-beneficiaries.php"><i class="fas fa-table"></i> view all</a></div>';
                                 try {
-                                    $beneficiary = new Beneficiary($conn);
-                                    $res = $beneficiary->getAllBeneficiaries();
+                                    # redirect if there are some missing parameters in the URL
+                                    if (!isset($_GET["beneficiary-id"])) {
+                                        echo "<script>window.location=\"" . URL . "/admin/beneficiaries/view-beneficiaries.php\"</script>";
+                                    }
+
+                                    $beneficiary_id = $_GET["beneficiary-id"];
+                                    $beneficiary_info = $beneficiary->getSingleBeneficiary($beneficiary_id);
+                                    # check the given benficiary
+                                    if ($beneficiary_info === null) throw new Error("<i class='fas fa-info-circle'></i> There is no such person registered in our systems", "warning");
+                                    if ($beneficiary_info === false) throw new Error("Something went wrong", "danger");
+                                    # if everything is okey, display the given beneficiary
+                                    displaySingleBeneficiaryData($beneficiary_info);
+                                } catch (Error $e) {
+                                    echo  displayAlert("<i class='fas fa-exclamation-triangle'></i> Something went wrong", "warning");
+                                }
+                            } else {
+                                # Display all beneficiaries if the specific GET parameter is not present in the URL
+                                try {
+                                    $res = $beneficiary->getAllBeneficiaries(array("showOnlyActiveBeneficiary" => true));
+
+                                    // if (isset($_GET["show-only-active"])) {
+                                    //     $res = $beneficiary->getAllBeneficiaries(array("showOnlyActiveBeneficiary" => true));
+                                    //     if (isset($_GET["show-vsla-id"]))
+                                    //         $res = $beneficiary->getAllBeneficiaries(array("showOnlyActiveBeneficiary" => true, "sortByVSLAId" => $_GET["show-vsla-id"]));
+                                    // } else {
+                                    //     if (isset($_GET["show-vsla-id"]))
+                                    //         $res = $beneficiary->getAllBeneficiaries(array("sortByVSLAId" => $_GET["show-vsla-id"]));
+                                    // }
+
                                     if ($res === false) throw new Exception("System error: " . $beneficiary->getErrors());
                                     if ($res !== null) {
-                                        displayBeneficiaryData($res);
+                                        displayBeneficiaryData($res, $conn);
                                     } else echo displayAlert("There is no beneficiary registered", "info");
                                 } catch (Error $e) {
                                     $error = $e->getMessage();
@@ -107,9 +110,10 @@ function displayBeneficiaryData($res_data)
                                     $error = $e->getMessage();
                                     displayAlert($error);
                                 }
-                                ?>
+                            }
+                            ?>
 
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -129,6 +133,16 @@ function displayBeneficiaryData($res_data)
     <!-- activate the data-table -->
     <script>
         const dataTable = new DataTable("#beneficiariesTable");
+
+        // const ch = document.querySelector("#showOnlyActive");
+        // const vslaDrp = document.querySelector("#vslaDrp");
+        // const formF = document.querySelector("[data-filterform]")
+        // ch.onchange = () => {
+        //     formF.submit()
+        // }
+        // vslaDrp.onchange = () => {
+        //     formF.submit()
+        // }
     </script>
 </body>
 

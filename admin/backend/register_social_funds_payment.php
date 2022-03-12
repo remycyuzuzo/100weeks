@@ -1,11 +1,11 @@
 <?php
-// ALL SCRIPTS TO REGISTER TO THE DATABASE
+// ALL SCRIPTS TO REGISTER SOCIAL FUNDS INTO THE DATABASE
 
 if (isset($_POST["registering_social_funds"])) {
     // include required scripts
-    require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/dependencies.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
     require_once DB_CONNECT;
-    require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/db_basic_functions.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/db_basic_functions.php";
 
     // get POST data    
     /** The week */
@@ -28,10 +28,12 @@ if (isset($_POST["registering_social_funds"])) {
         if ($res["result"] === false) {
             $response = array("dataStatus" => "error", "error" => $res["errorMessage"]);
         } else {
-            $response = array("dataStatus" => "success");
+            $response = array("dataStatus" => "success", "message" => "social funds registered successfully");
         }
-    } catch (\Throwable $th) {
+    } catch (Error $th) {
         $response = array("dataStatus" => "error", "error" => $th->getMessage());
+    } catch (ParseError $e) {
+        array("dataStatus" => "error", "error" => $th->getMessage());
     }
 
     echo json_encode($response);

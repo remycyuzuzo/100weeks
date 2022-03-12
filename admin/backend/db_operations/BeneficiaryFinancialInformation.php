@@ -30,18 +30,18 @@ class PaymentInfo
 
         $vsla = $this->vsla->getSingleVSLAInfo($VSLAId);
         if (!$vsla || $vsla === null) {
-            array_push($response, array("result" => false, "error" => $this->vsla->getErrors(), "message" => "can't get a VSLA group"));
+            $response = array("result" => false, "error" => $this->vsla->getErrors(), "message" => "can't get a VSLA group");
             return $response;
         }
 
         /** @var MYSQLI_RESULT $res */
         $res = $this->db::selectFromDb($sql, $this->conn);
         if ($res === false) {
-            array_push($response, array("result" => false, "error" => $this->conn->error, "message" => "error while getting loan information"));
+            $response = array("result" => false, "error" => $this->conn->error, "message" => "error while getting loan information");
             return $response;
         }
         if ($res === null) {
-            array_push($response, array("result" => true, "hasActiveLoan" => false, "weeklySavings" => $vsla["amount_per_share"], "social_funds" => $vsla["social_funds_amount"]));
+            $response = array("result" => true, "hasActiveLoan" => false, "weeklySavings" => $vsla["amount_per_share"], "social_funds" => $vsla["social_funds_amount"]);
             return $response;
         }
 

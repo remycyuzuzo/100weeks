@@ -34,7 +34,7 @@
             throw new Exception("The beneficiary is not eligible for the loan");
         }
 
-        $row = $res->fetch_assoc();
+        $row = $res;
         $beneficiary_name = "$row[fname] $row[lname]";
 
         // get VSLA name 

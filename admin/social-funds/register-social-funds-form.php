@@ -11,7 +11,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/Benefici
 $beneficiary = new Beneficiary($conn);
 $res = $beneficiary->getSingleBeneficiary($_GET['member_id']);
 if ($res) {
-    $row = $res->fetch_assoc();
+    $row = $res;
 } else die("something is wrong");
 
 $beneficiary_finances = new PaymentInfo();

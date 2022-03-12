@@ -28,10 +28,10 @@ if (isset($_POST["registering_weekly_saving"])) {
         if ($res["result"] === false) {
             $response = array("dataStatus" => "error", "error" => $res["errorMessage"]);
         } else {
-            $response = array("dataStatus" => "success");
+            $response = array("dataStatus" => "success", "message" => "weekly savings registered");
         }
-    } catch (\Throwable $th) {
-        $response = array("dataStatus" => "error", "error" => $th->getMessage());
+    } catch (Exception $e) {
+        $response = array("dataStatus" => "error", "error" => $e->getMessage());
     }
 
     echo json_encode($response);

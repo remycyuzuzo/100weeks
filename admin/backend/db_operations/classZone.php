@@ -29,6 +29,18 @@ class VSLA_zone
         else return $res;
     }
 
+    public function getSingleZoneInfo(int $zone_id)
+    {
+        $sql = "SELECT * from vsla_zones where vsla_zone_id = $zone_id";
+        $res = $this->db::selectFromDb($sql, $this->conn);
+
+        if ($res === false) {
+            $this->error .= $this->conn->error;
+            return false;
+        } elseif ($res === null) return null;
+        else return $res->fetch_assoc();
+    }
+
     public function insertZone(array $data)
     {
         $res = $this->db::insertIntoDb("vsla_zones", $data, $this->conn);

@@ -31,10 +31,29 @@ class Beneficiary
         }
     }
 
-    public function getAllBeneficiaries(string $order = "asc", bool $showActiveBeneficiaryOnly = true, int $sortByVSLAId = 0)
+    /**
+     * @param array $config
+     */
+    public function getAllBeneficiaries(array $config = array())
     {
-        if ($showActiveBeneficiaryOnly) $sql = "SELECT * from beneficiaries where status = 'active' OR VSLA_id=$sortByVSLAId ORDER BY lname $order";
-        else $sql = "SELECT * from beneficiaries ORDER BY lname $order";
+        /* set this function's default parameters */
+        if (!isset($config["showOnlyActiveBeneficiary"]))
+            $config["showOnlyActiveBeneficiary"] = false;
+        if (!isset($config["sortByVSLAId"]))
+            $config["sortByVSLAId"] = 0;
+        if (!isset($config["order"]))
+            $config["order"] = "ASC";
+
+        # query the database
+        if ($config["showOnlyActiveBeneficiary"]) {
+            $sql = "SELECT * from beneficiaries where status = 'active' ORDER BY lname $config[order]";
+            if ($config["sortByVSLAId"] !== 0)
+                $sql = "SELECT * from beneficiaries where status = 'active' AND VSLA_id = $config[sortByVSLAId] ORDER BY lname $config[order]";
+        } else {
+            $sql = "SELECT * from beneficiaries ORDER BY lname $config[order]";
+            if ($config["sortByVSLAId"] !== 0)
+                $sql = "SELECT * from beneficiaries where VSLA_id=$config[sortByVSLAId] ORDER BY lname $config[order]";
+        }
 
         $res = $this->db::selectFromDb($sql, $this->conn);
         if ($res === false) {
@@ -64,7 +83,7 @@ class Beneficiary
             $this->error .= $this->conn->error;
             return false;
         } elseif ($res === null) return null;
-        else return $res;
+        else return $res->fetch_assoc();
     }
 
     public function getErrors()

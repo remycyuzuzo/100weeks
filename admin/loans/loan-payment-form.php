@@ -13,7 +13,7 @@ try {
     $beneficiary_finances = new PaymentInfo();
     $res = $beneficiary->getSingleBeneficiary($_GET['member_id']);
     if ($res) {
-        $row = $res->fetch_assoc();
+        $row = $res;
     } else die("something is wrong");
 
     $beneficiary_finances = $beneficiary_finances->checkForPaymentInfo($_GET['member_id'], $row["VSLA_id"]);
@@ -41,7 +41,7 @@ try {
         </div>
         <form action="<?= URL ?>/admin/loans/submit_loan_payment.php" method="POST" id="payment-form">
             <div class="form-group mb-2">
-                <input type="number" name="amount" placeholder="Amount of money (Rfw)" class="form-control">
+                <input type="number" name="amount" placeholder="Amount of money (Rfw)" class="form-control" data-amount>
             </div>
             <div class="mt-1 mb-2">
                 <label for="accept">

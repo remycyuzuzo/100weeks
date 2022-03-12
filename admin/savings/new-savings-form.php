@@ -13,7 +13,7 @@ try {
     $beneficiary_finances = new PaymentInfo();
     $res = $beneficiary->getSingleBeneficiary($_GET['member_id']);
     if ($res) {
-        $row = $res->fetch_assoc();
+        $row = $res;
     } else die("something is wrong");
 
     $beneficiary_finances = $beneficiary_finances->checkForPaymentInfo($_GET['member_id'], $row["VSLA_id"]);

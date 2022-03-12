@@ -37,7 +37,11 @@ if (isset($_REQUEST['beneficiary_insert'])) {
 
     // pass name (and optional chmod) to create folder for storage
     $image->setLocation($folderName);
-
+    $upload = $image->upload();
+    if (!$upload) {
+        echo $image->getError();
+        die();
+    }
     // }
 
 
@@ -53,11 +57,7 @@ if (isset($_REQUEST['beneficiary_insert'])) {
     $res = $beneficiary->insert_into_db();
 
     if ($res) {
-        $upload = $image->upload();
-        if (!$upload) {
-            echo $image->getError();
-            die();
-        }
+
         if (isset($_POST["return"])) {
             echo '<script>window.location="' . URL . '/admin/beneficiaries/new-beneficiary-form.php/?successfully-added"</script>';
         } else {

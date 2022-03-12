@@ -8,7 +8,7 @@ Records of stuffs to be implemented
 <li>Format the tabs interface to a sexier one</li>
 <li>[FIX] on register_new_loan, input an appropriate coach ID according to the logged-in user</li>
 <li>[FIX] ON submit_loan_payment, substitute user_id with the actual one from the session</li>
-<li></li>
+<li>Encrypt every GET parameter</li>
 <li></li>
 <li></li>
 <li></li>

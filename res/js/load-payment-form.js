@@ -30,6 +30,19 @@ function loadPaymentForm(url) {
         });
       });
 
+      // show the size of debt left as the user is typing ONLY on the loan form
+      const txtAmount = document.querySelector("[data-amount]");
+      const lblAmount = document.querySelector("#debtLeft");
+      if (txtAmount !== null && lblAmount !== null) {
+        const initialDebtValue = lblAmount.innerText;
+        txtAmount.addEventListener("keyup", () => {
+          lblAmount.innerText = initialDebtValue - txtAmount.value;
+        });
+        txtAmount.addEventListener("change", () => {
+          lblAmount.innerText = initialDebtValue - txtAmount.value;
+        });
+      }
+
       paymentForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
@@ -54,13 +67,13 @@ function loadPaymentForm(url) {
             if (response.data.dataStatus == "success") {
               alert.innerHTML = `${response.data.message}`;
             } else {
-              throw `error in the database: ${response.data.message}`;
+              throw `${response.data.message}`;
             }
           })
           .catch((err) => {
             console.log(err);
-            alert.innerHTML = "internal error: Contact the administrator";
-            alert.className = "alert alert-danger";
+            alert.innerHTML = err;
+            alert.className = "alert alert-warning";
           })
           .then(() => {
             paymentForm.appendChild(alert);
