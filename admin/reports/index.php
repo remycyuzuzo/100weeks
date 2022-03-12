@@ -33,7 +33,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
             <div class="container-fluid">
                 <div class="card wrapper">
                     <div class="card-header">
-                        <h3>Savings</h3>
+                        <h3>General Reports and exports</h3>
                     </div>
                     <div class="card-body">
                         <div class="tab-nav">
