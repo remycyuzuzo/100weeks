@@ -33,10 +33,13 @@ require "./dependencies.php";
                 <div class="card wrapper">
                     <div class="card-header">
                         <div class="title">
-                            <h3>System Administrator creation form</h3>
+                            <div class="d-flex mb-3 align-items-center">
+                                <a href="<?= URL ?>/admin/users/" class="btn btn-primary d-block"><i class="fas fa-table"></i> all users</a>
+                                <h3 class="ml-3 mb-0">System Administrator creation form</h3>
+                            </div>
+                            <hr />
                             <small class="text-muted bg-light px-2"><i class="fas fa-question-circle"></i> any field marked with <span class="text-danger">*</span> is required and must be filled</small>
                         </div>
-                        <hr />
                         <div class="form py-3">
                             <form action="" method="post">
                                 <div class="row">

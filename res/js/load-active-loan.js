@@ -12,7 +12,7 @@ function loadActiveLoanList() {
 
         // create the table
         const table = document.createElement("table");
-        table.className = "table table-stripped";
+        table.className = "table table-bordered table-hover";
         table.id = "datatable";
 
         // insert tHead

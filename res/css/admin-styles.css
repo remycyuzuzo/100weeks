@@ -186,9 +186,6 @@ main.main-contents.full .form-overlay {
 
 /** Registration forms general forms */
 form .grouped-fields {
-  border: #ebebeb 1px solid;
-  border-radius: 10px;
-  padding: 0.3em;
   margin-bottom: 0.6em;
 }
 form .grouped-fields .title {

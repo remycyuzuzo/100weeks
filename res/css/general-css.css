@@ -98,3 +98,13 @@ label {
 [disabled] {
   cursor: no-drop;
 }
+
+/* Margin */
+.ml-3 {
+  margin-left: 16px !important;
+}
+
+/* form input texts */
+.form-control {
+  border-width: 2px !important;
+}

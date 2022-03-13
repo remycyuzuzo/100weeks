@@ -35,13 +35,15 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
             <div class="container">
                 <div class="card wrapper">
                     <div class="card-body">
-                        <div class="title">
-                            <a href="<?= URL ?>/admin/coaches/coaches.php" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> back to the list</a>
+                        <div class="d-flex mb-3 align-items-center">
+                            <a href="<?= URL ?>/admin/users/" class="btn btn-primary d-block"><i class="fas fa-table"></i> all users</a>
+                            <h3 class="ml-3 mb-0">System Administrator creation form</h3>
                         </div>
+                        <hr />
                         <div class="tab-contents">
                             <span class="text-muted"><i class="fas fa-question-circle"></i> fill the form as required</span>
                             <div class="form py-3">
-                                <form action="" method="post">
+                                <form action="<?= URL ?>/admin/coaches/submit_new_coach.php" method="post">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="grouped-fields">
@@ -63,6 +65,10 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
                                                         <label for="tel">Telephone number <span class="text-danger">*</span></label>
                                                         <input type="tel" class="form-control" placeholder="Telephone number" id="tel" name="tel" data-required>
                                                     </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="address">Address <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" placeholder="Physical address" id="address" name="address" data-required>
+                                                    </div>
                                                 </div>
 
                                                 <div class="form-group">
@@ -76,7 +82,7 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
                                         </div>
                                         <div class="col-md-12 mb-2">
                                             <div class="box grouped-fields bg-light p-2">
-                                                <h3 class="title"><i class="fas fa-lock"></i> Administrator's login cledentials</h3>
+                                                <h3 class="title"><i class="fas fa-lock"></i> Login cledentials</h3>
                                                 <div class="form-group">
                                                     <label for="email">Email address <span class="text-danger">*</span></label>
                                                     <input type="text" class="form-control" id="email" placeholder="Email address of the administrator" data-required name="email">
@@ -87,9 +93,20 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
                                                 </div>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="submit_new_coach" value="true">
+
+                                        <div class="form-group">
+                                            <label for="accept" class="d-block"><input type="checkbox" id="accept"> I agree that every info I filled is correct</label>
+                                            <label for="stayOnThisPage" class="d-block"><input type="checkbox" id="stayOnThisPage"> stay on this page after submitting data</label>
+                                        </div>
+
                                         <div class="submit-btn">
                                             <button type="button" class="btn btn-outline-danger">Cancel</button>
                                             <button type="submit" class="btn btn-primary" name="send">Submit</button>
+                                        </div>
+
+                                        <div class="my-3">
+                                            <div class="result" data-result></div>
                                         </div>
                                     </div>
 

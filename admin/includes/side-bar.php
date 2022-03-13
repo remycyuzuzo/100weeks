@@ -28,10 +28,10 @@
                 </ul>
             </li>
             <li><a href="<?= URL ?>/admin/reports/">General report & exports</a></li>
-            <li><a href="users.php">System users</a>
+            <li><a href="<?= URL ?>/admin/users/">System users</a>
                 <ul>
-                    <li><a href="users.php">Manage Users</a></li>
-                    <li><a href="<?= URL ?>/admin/coaches/coaches.php">VSLA mentors</a></li>
+                    <li><a href="<?= URL ?>/admin/users/">Manage Users</a></li>
+                    <li><a href="<?= URL ?>/admin/coaches/new-coach-form.php">VSLA mentors</a></li>
                     <li><a href="<?= URL ?>/admin/admin-creation-form.php">System administrator</a></li>
                 </ul>
             </li>
