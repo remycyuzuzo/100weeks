@@ -32,6 +32,12 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
             <div class="container">
                 <div class="card wrapper">
                     <div class="card-body">
+                        <?php
+                        if (isset($_GET["coach-registered-successful"])) {
+                            echo "<div class=\"alert alert-success\" data-disappearing>The new coach registered successful \t &nbsp; <a href=\"#\" class='close'>dismiss</a></div>";
+                        }
+
+                        ?>
                         <div class="title">
                             <h3 class="mb-0"><i class="fas fa-users"></i> System users</h3>
                         </div>
@@ -51,6 +57,16 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
     <script src="<?= AXIOS ?>"></script>
     <script src="<?= URL ?>/res/js/admin-sidebar.js"></script>
     <script src="<?= BOOTSTRAP_JS ?>"></script>
+
+    <script>
+        const disappearingAlert = document.querySelector("[data-disappearing] .close")
+        if (disappearingAlert) {
+            disappearingAlert.onclick = (e) => {
+                e.preventDefault()
+                disappearingAlert.parentElement.remove()
+            }
+        }
+    </script>
 
 </body>
 

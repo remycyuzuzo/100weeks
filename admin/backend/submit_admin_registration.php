@@ -7,71 +7,64 @@ class DBError extends Exception
 
 $response = array();
 try {
-    if (!isset($_REQUEST['submit_new_coach'])) {
+    if (!isset($_REQUEST['submit_new_admin'])) {
         throw new DBError("invalid request");
     }
 
     include_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
-    include_once ROOT . "/admin/backend/db_connection.php";
-    require_once ROOT . "admin/backend/db_operations/classCoach.php";
+    include_once ROOT . "admin/backend/db_connection.php";
+    require_once ROOT . "admin/backend/db_operations/classAdmin.php";
 
 
     /** VSLA object */
-    $coach = new Coach();
+    $admin = new Admin();
 
     /** @var string $fname First name */
     $fname = isset($_POST['fname']) ? $conn->real_escape_string($_POST["fname"]) : "";
-
     /** @var string $lname Last name */
     $lname = isset($_POST['lname']) ? $conn->real_escape_string($_POST["lname"]) : "";
-
     /** @var string $idcardnumber Identification number */
     $idcardnumber = isset($_POST['idcard']) ? $conn->real_escape_string($_POST["idcard"]) : "";
-
     /** @var string $telnumber Telephone number */
     $telnumber = isset($_POST['tel']) ? $conn->real_escape_string($_POST["tel"]) : "";
-
     /** @var string $gender Gender  */
     $gender = isset($_POST["gender"]) ? $conn->real_escape_string($_POST["gender"]) : "";
-
     /** @var string $email Email address */
     $email = isset($_POST["email"]) ? $conn->real_escape_string($_POST["email"]) : "";
-
     /** @var string $password - Password */
     $password = isset($_POST["password"]) ? $conn->real_escape_string($_POST["password"]) : "";
-    $password = $coach->encryptPassword($password);
 
-    /** @var string $address - Coach address */
-    $address = isset($_POST["address"]) ? $conn->real_escape_string($_POST["address"]) : "";
-
+    $password = $admin->encryptPassword($password);
     /** @var array $data an array cntaining all data to be submitted */
     $data = array(
-        'id_card_number' => $idcardnumber,
+        'id_passport_number' => $idcardnumber,
         'fname' => $fname,
         'lname' => $lname,
         "tel_number" => $telnumber,
         "gender" => $gender,
         "email" => $email,
-        "address" => $address,
         "status" => "active"
     );
 
     // register into the database
-    $res = $coach->registerNewCoach($data);
+    $res = $admin->registerNewAdmin($data);
 
     if ($res) {
         // Immediatelly, store this info into the "users table"
         $system_user_data = array(
-            "user_type" => "coach",
-            "user_id" => $coach->getLastId(),
+            "user_type" => "admin",
+            "user_id" => $admin->getLastId(),
             "password" => $password,
             "user_time_zone" => "+2 Cailo"
         );
-        $coach->registerSystemUser($system_user_data);
+        $admin->registerSystemUser($system_user_data);
         // after registering this user, send an email to set the password or to notify the user
-        $response = array("dataStatus" => "success", "message" => "the new coach has been registered successfully");
+        $response = array(
+            "dataStatus" => "success",
+            "message" => "the new administrator has been registered successfully"
+        );
     } else {
-        throw new DBError($coach->getErrors());
+        throw new DBError($admin->getErrors());
     }
 } catch (DBError $e) {
     $response = array(

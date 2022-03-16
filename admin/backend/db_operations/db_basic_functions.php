@@ -88,10 +88,49 @@ class DB
         // check whether the data actually entered the database or nor
         if ($result) {
             $verdict['result'] = true;
+            $verdict["last_id"] = $conn->insert_id;
         } else {
             $verdict['result'] = false;
             $verdict['errorMessage'] =  $conn->error;
         }
         return $verdict;
+    }
+
+
+    public function updateFromTable(string $table, array $data, mixed $condition, $conn)
+    {
+        // construct the query string adding the column and values parts
+
+        /**
+         * @var string $sql a string querying the database to insert stuff
+         */
+        $sql = $this->makeUpdateQueryString($data, $table, $condition);
+
+        /** @var MySQLI_Result $result is an object containing query result information */
+        $result = $conn->query($sql);
+
+        // check whether the data actually entered the database or nor
+        if ($result) {
+            return true;
+        } else {
+            throw new DBError("can't update in this table, the system thrown this error instead: \n" . $conn->error, 3);
+        }
+    }
+
+    private function makeUpdateQueryString(array $data, string $table, $condition)
+    {
+        $sql = "UPDATE $table SET ";
+        $i = 1;
+        foreach ($data as $column => $value) {
+            if ((count($data) + 1) !== $i) {
+                $sql .= ($i == 1) ? "" : ", ";
+                $sql .= "$column = ";
+                $sql .= (is_numeric($value)) ? $value : "'$value'";
+            }
+            $i += 1;
+        }
+        $sql .= " WHERE $condition";
+
+        return $sql;
     }
 }

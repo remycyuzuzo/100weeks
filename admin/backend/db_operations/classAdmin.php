@@ -1,11 +1,11 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classUser.php";
-class Coach extends User
+class Admin extends User
 {
 
-    public function registerNewCoach(array $data)
+    public function registerNewAdmin(array $data)
     {
-        $this->result = $this->db::insertIntoDb("coaches", $data, $this->conn);
+        $this->result = $this->db::insertIntoDb("administrator", $data, $this->conn);
         if ($this->result["result"]) {
             return true;
         } else {
@@ -18,12 +18,12 @@ class Coach extends User
         return $this->result["last_id"];
     }
 
-    public function updateCoach(int $coachId)
+    public function updateAdmin(int $coachId)
     {
         # code...
     }
 
-    public function deleteCoach(int $coachId)
+    public function deleteAdmin(int $coachId)
     {
         # code...
     }

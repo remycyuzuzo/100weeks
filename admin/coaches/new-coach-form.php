@@ -37,7 +37,7 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
                     <div class="card-body">
                         <div class="d-flex mb-3 align-items-center">
                             <a href="<?= URL ?>/admin/users/" class="btn btn-primary d-block"><i class="fas fa-table"></i> all users</a>
-                            <h3 class="ml-3 mb-0">System Administrator creation form</h3>
+                            <h3 class="ml-3 mb-0">Coach Registration Form</h3>
                         </div>
                         <hr />
                         <div class="tab-contents">

@@ -41,7 +41,8 @@ require "./dependencies.php";
                             <small class="text-muted bg-light px-2"><i class="fas fa-question-circle"></i> any field marked with <span class="text-danger">*</span> is required and must be filled</small>
                         </div>
                         <div class="form py-3">
-                            <form action="" method="post">
+                            <form action="<?= URL ?>/admin/backend/submit_admin_registration.php" method="post">
+                                <input type="hidden" name="submit_new_admin">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="grouped-fields">
@@ -52,11 +53,11 @@ require "./dependencies.php";
                                                     <input type="text" class="form-control" placeholder="First name" name="fname" id="fname" data-required>
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="lname">Last name</label>
+                                                    <label for="lname">Last name <small>(optional)</small></label>
                                                     <input type="text" class="form-control" placeholder="Last name" id="lname" name="lname">
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="idcard">ID card / Passport number</label>
+                                                    <label for="idcard">ID card / Passport number <small>(optional)</small></label>
                                                     <input type="number" class="form-control" placeholder="ID card number" id="idcard" name="idcard">
                                                 </div>
                                                 <div class="form-group col-md-6">
@@ -66,7 +67,7 @@ require "./dependencies.php";
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="gender">Gender <span class="text-danger">*</span></label>
+                                                <label for="gender">Gender <small>(optional)</small></label>
                                                 <fieldset class="py-2">
                                                     <input type="radio" name="gender" value="F" id="radioFemale"> <label for="radioFemale">Female</label>
                                                     <input type="radio" name="gender" id="radioMale" value="M"> <label for="radioMale">Male</label>
@@ -87,10 +88,20 @@ require "./dependencies.php";
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="accept" class="d-block"><input type="checkbox" id="accept"> I agree that every info I filled is correct</label>
+                                        <label for="stayOnThisPage" class="d-block"><input type="checkbox" id="stayOnThisPage"> stay on this page after submitting data</label>
+                                    </div>
+
                                     <div class="submit-btn">
                                         <button type="button" class="btn btn-outline-danger">Cancel</button>
                                         <button type="submit" class="btn btn-primary" name="send">Submit</button>
                                     </div>
+                                </div>
+
+                                <div class="my-3">
+                                    <div class="result" data-result></div>
                                 </div>
 
                             </form>
@@ -111,8 +122,9 @@ require "./dependencies.php";
 
     <!-- JAVASCRIPT FILES -->
     <script src="<?= URL ?>/res/js/admin-sidebar.js"></script>
-    <script src="<?= URL ?>/res/js/form-validators/mentor-validate.js" type="module"></script>
+    <script src="<?= URL ?>/res/js/form-validators/admin-registration-validate.js" type="module"></script>
     <script src="<?= BOOTSTRAP_JS ?>"></script>
+    <script src="<?= AXIOS ?>"></script>
 </body>
 
 </html>
