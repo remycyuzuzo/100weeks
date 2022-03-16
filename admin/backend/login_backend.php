@@ -12,7 +12,7 @@ if (isset($_POST["email"])) {
     $email = $conn->real_escape_string($_POST['email']);
 
     /** Password obtained through the form */
-    $password = $conn->real_escape_string($_POST['password']);
+    $password = md5($conn->real_escape_string($_POST['password']));
 
     $result = array();
 
@@ -34,7 +34,8 @@ if (isset($_POST["email"])) {
     if ($result_coach === false || $result_admin === false) {
         $result = array("result" => false, "message" => "error: " . $conn->error);
     } else if ($result_coach !== null) {
-        $result = array("result" => false, "message" => "error: This user does not have any autholity");
+        $_SESSION["logged_in"] = $result_coach;
+        $result = array("result" => true, "message" => "Login success, Redirecting... ", "redirectURL" => URL . "/admin/dashboard.php");
     } else if ($result_admin !== null) {
         // add a session
         $_SESSION["logged_in"] = $result_admin;
