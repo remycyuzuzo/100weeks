@@ -53,7 +53,7 @@ try {
         // Immediatelly, store this info into the "users table"
         $system_user_data = array(
             "user_type" => "admin",
-            "user_id" => $admin->getLastId(),
+            "user_id" => $admin->getLastInsertId(),
             "password" => $password,
             "user_time_zone" => "+2 Cailo"
         );

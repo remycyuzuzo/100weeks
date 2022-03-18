@@ -13,7 +13,7 @@ class Admin extends User
         }
     }
 
-    public function getLastId()
+    public function getLastInsertId()
     {
         return $this->result["last_id"];
     }
