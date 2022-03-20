@@ -31,8 +31,12 @@ class User
 
     public function encryptPassword(string $password)
     {
-        $password = md5($password);
+        $password = ($password == "") ? md5($password) : "";
         return $password;
+    }
+
+    protected function getSingleUserInfo(int $user_id)
+    {
     }
 
     protected function updateSystemUser(int $user_id)

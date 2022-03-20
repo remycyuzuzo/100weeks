@@ -34,12 +34,30 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
                     <div class="card-body">
                         <?php
                         if (isset($_GET["coach-registered-successful"])) {
-                            echo "<div class=\"alert alert-success\" data-disappearing>The new coach registered successful \t &nbsp; <a href=\"#\" class='close'>dismiss</a></div>";
+                            echo "<div class=\"alert alert-success\" data-disappearing><i class='fas fa-check-circle'></i> The new coach registered successful \t &nbsp; <a href=\"#\" class='close'>dismiss</a></div>";
                         }
 
                         ?>
                         <div class="title">
                             <h3 class="mb-0"><i class="fas fa-users"></i> System users</h3>
+                        </div>
+
+                        <div class="my-4">
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Inbox
+                                    <span class="badge badge-primary badge-pill">12</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Ads
+                                    <span class="badge badge-primary badge-pill">50</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Junk
+                                    <span class="badge badge-primary badge-pill">99</span>
+                                </li>
+                            </ul>
+
                         </div>
                     </div>
                 </div>
