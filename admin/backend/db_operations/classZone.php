@@ -17,7 +17,7 @@ class VSLA_zone
      * @return array|null|MYSQLI_RESULT  if true or an array of errors
      * @param string $zone_type
      */
-    public function getAllZones(string $zone_type)
+    public function getAllZones(string $zone_type = "parish")
     {
 
         $sql = "SELECT * from vsla_zones where vsla_zone_type = '$zone_type'";
