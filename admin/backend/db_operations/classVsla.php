@@ -48,6 +48,23 @@ class VSLA
         else return $res->fetch_assoc();
     }
 
+    /**
+     * this function will update the vsla group's information
+     * @param int $VSLAId
+     * @param array $data
+     * @return bool
+     */
+    public function updateVSLAInfo(int $VSLAId, array $data)
+    {
+        $res = $this->db->updateFromTable("vsla_groups", $data, "VSLA_id = $VSLAId", $this->conn);
+        if ($res['result']) {
+            return true;
+        } else {
+            $this->error .= $this->conn->error;
+            return false;
+        }
+    }
+
     public function getErrors()
     {
         return ($this->error != "") ? $this->error : NULL;

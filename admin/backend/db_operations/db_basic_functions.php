@@ -134,4 +134,33 @@ class DB
 
         return $sql;
     }
+
+    # delete from the database
+    public function deleteFromTable(string $table, $condition, $conn)
+    {
+        $sql = "DELETE FROM $table WHERE $condition";
+        $result = $conn->query($sql);
+        if ($result) {
+            return true;
+        } else {
+            throw new DBError("can't delete from this table, the system thrown this error instead: \n" . $conn->error, 3);
+        }
+    }
+
+    /**
+     * This function helps to specifically select data from the database
+     * @param string $sql parse the database query
+     * @param MYSQLI $conn the database connection
+     */
+    public static function selectFromDbWithCondition($sql, $conn)
+    {
+        $res = $conn->query($sql);
+
+        // echo $conn->error;
+        if ($res !== false) {
+            if ($res->num_rows > 0) {
+                return $res;
+            } else return null;
+        } else return false;
+    }
 }

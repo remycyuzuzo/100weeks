@@ -18,7 +18,7 @@ class Beneficiary
     public function insert_into_db()
     {
         if ($this->doesBeneficiaryExists($this->data["beneficiary_id_card"])) {
-            $this->error .= "The beneficiary arleady exists";
+            $this->error .= "The beneficiary already exists";
             return false;
         }
         $res = $this->db::insertIntoDb("beneficiaries", $this->data, $this->conn);
@@ -84,6 +84,18 @@ class Beneficiary
             return false;
         } elseif ($res === null) return null;
         else return $res->fetch_assoc();
+    }
+
+    public function updateBeneficiary(array $data, string $beneficiary_id)
+    {
+        $res = $this->db->updateFromTable("beneficiaries", $data, "beneficiary_id_card = '$beneficiary_id'", $this->conn);
+        if ($res['result']) {
+            return true;
+        } else {
+            $this->error .= "\n" . $this->conn->error;
+            throw new DBError("There was an error preventing the data to be updated\nthe system thrown this error: \n" . $this->conn->error);
+            return false;
+        }
     }
 
     public function getErrors()

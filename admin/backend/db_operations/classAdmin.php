@@ -33,13 +33,28 @@ class Admin extends User
         }
     }
 
-    public function updateAdmin(int $coachId)
+    public function updateAdmin(array $data, int $adminID)
     {
-        # code...
+        $res = $this->db->updateFromTable("administrator", $data, "admin_id = $adminID", $this->conn);
+        if ($res["result"]) {
+            return true;
+        } else {
+            throw new DBError($res["errorMessage"]);
+        }
     }
 
     public function deleteAdmin(int $coachId)
     {
-        # code...
+        $res = $this->db->deleteFromTable("administrator", "admin_id = $coachId", $this->conn);
+        if ($res) {
+            $res = $this->deleteSystemUser($coachId);
+            if ($res) {
+                return true;
+            } else {
+                throw new DBError($this->getErrors());
+            }
+        } else {
+            throw new DBError($res);
+        }
     }
 }

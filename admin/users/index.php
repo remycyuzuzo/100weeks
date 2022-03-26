@@ -1,5 +1,14 @@
 <?php
-require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classUser.php";
+
+if (!class_exists("DBError")) {
+    class DBError extends Exception
+    {
+    }
+}
+
+$user = new User();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,34 +52,55 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
                         ?>
                         <div class="my-4">
                             <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <th>#</th>
-                                        <th>name</th>
-                                        <th>role</th>
-                                        <th>status</th>
-                                        <th>last sign-in</th>
-                                        <th>actions</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <?php
+                                $data = $user->getAllUsersDetails();
+                                if ($data != null) {
+                                ?>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <th>#</th>
+                                            <th>name</th>
+                                            <th>role</th>
+                                            <th>status</th>
+                                            <th>last sign-in</th>
+                                            <th>actions</th>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            foreach ($data as $values) {
+                                                $user_id = $values["user_id"];
+                                                $user_name = $values["fname"] . " " . $values["lname"];
+                                                $user_type = $values["user_type"];
+                                                $user_status = $values["user_status"];
+                                                $user_last_sign_in = $values["user_last_sign_in"];
+                                                $user_last_sign_in = date("d-m-Y H:i:s", strtotime($user_last_sign_in));
+                                                $user_status = $user_status == 1 ? "active" : "inactive";
+                                                $user_role = $user_type == "admin" ? "admin" : "coach";
+                                                echo "<tr>";
+                                                echo "<td>" . $user_id . "</td>";
+                                                echo "<td>" . $user_name . "</td>";
+                                                echo "<td>" . $user_role . "</td>";
+                                                echo "<td>" . $user_status . "</td>";
+                                                echo "<td>" . $user_last_sign_in . "</td>";
+                                                echo "<td>";
+                                                echo "<a href=\"#\" class=\"btn btn-primary btn-sm\"><i class=\"fas fa-edit\"></i></a>";
+                                                echo "<a href=\"#\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-trash-alt\"></i></a>";
+                                                echo "</td>";
+                                                echo "</tr>";
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                <?php
+                                } else {
+                                ?>
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-info-circle"></i> there is no user registered
+                                    </div>
+                                <?php
+                                }
+                                ?>
+
                             </div>
                         </div>
                     </div>

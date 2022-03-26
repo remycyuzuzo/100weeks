@@ -66,18 +66,20 @@ class User
     {
         $users_data = array();
         $result = $this->getAllUsers();
-        if ($result === NULL) return null;
+        if ($result === null) return null;
 
         while ($row = $result->fetch_assoc()) {
             $user_role = $row["user_type"];
-            if ($user_role == "admin") {
+            if ($user_role === "admin") {
                 $admin = new Admin();
                 $res = $admin->getSingleAdminInfo($row["user_id"], $showOnlyActiveUsers);
+                print_r($res);
                 array_push($users_data, $res);
             }
-            if ($user_role == "coach") {
+            if ($user_role === "coach") {
                 $coach = new Coach();
                 $res = $coach->getSingleCoachInfo($row["user_id"], $showOnlyActiveUsers);
+                print_r($res);
                 array_push($users_data, $res);
             }
             return $users_data;
@@ -104,12 +106,26 @@ class User
         return $user_data;
     }
 
-    protected function updateSystemUser(int $user_id)
+    protected function updateSystemUser(array $data, int $user_id)
     {
+        $this->result = $this->db->updateFromTable("system_users", $data, $user_id, $this->conn);
+        if ($this->result["result"]) {
+            return true;
+        } else {
+            throw new DBError($this->result["errorMessage"]);
+            return false;
+        }
     }
 
     protected function deleteSystemUser(int $user_id)
     {
+        $this->result = $this->db->deleteFromTable("system_users", $user_id, $this->conn);
+        if ($this->result["result"]) {
+            return true;
+        } else {
+            throw new DBError($this->result["errorMessage"]);
+            return false;
+        }
     }
 
     public function getLastInsertId()
