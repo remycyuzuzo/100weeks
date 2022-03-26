@@ -73,13 +73,13 @@ class User
             if ($user_role === "admin") {
                 $admin = new Admin();
                 $res = $admin->getSingleAdminInfo($row["user_id"], $showOnlyActiveUsers);
-                print_r($res);
+                $res["user_type"] = $row["user_type"];
                 array_push($users_data, $res);
             }
             if ($user_role === "coach") {
                 $coach = new Coach();
                 $res = $coach->getSingleCoachInfo($row["user_id"], $showOnlyActiveUsers);
-                print_r($res);
+                $res["user_type"] = "coach";
                 array_push($users_data, $res);
             }
             return $users_data;

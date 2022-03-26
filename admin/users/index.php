@@ -53,7 +53,12 @@ $user = new User();
                         <div class="my-4">
                             <div class="table-responsive">
                                 <?php
-                                $data = $user->getAllUsersDetails();
+                                try {
+                                    $data = $user->getAllUsersDetails();
+                                } catch (DBError $e) {
+                                    echo $e->getMessage() . "<br>File: " . $e->getFile() . "<br>Line: " . $e->getLine();
+                                }
+
                                 if ($data != null) {
                                 ?>
                                     <table class="table table-hover">
@@ -67,25 +72,16 @@ $user = new User();
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $i = 0;
                                             foreach ($data as $values) {
-                                                $user_id = $values["user_id"];
-                                                $user_name = $values["fname"] . " " . $values["lname"];
-                                                $user_type = $values["user_type"];
-                                                $user_status = $values["user_status"];
-                                                $user_last_sign_in = $values["user_last_sign_in"];
-                                                $user_last_sign_in = date("d-m-Y H:i:s", strtotime($user_last_sign_in));
-                                                $user_status = $user_status == 1 ? "active" : "inactive";
-                                                $user_role = $user_type == "admin" ? "admin" : "coach";
                                                 echo "<tr>";
-                                                echo "<td>" . $user_id . "</td>";
-                                                echo "<td>" . $user_name . "</td>";
-                                                echo "<td>" . $user_role . "</td>";
-                                                echo "<td>" . $user_status . "</td>";
-                                                echo "<td>" . $user_last_sign_in . "</td>";
-                                                echo "<td>";
-                                                echo "<a href=\"#\" class=\"btn btn-primary btn-sm\"><i class=\"fas fa-edit\"></i></a>";
-                                                echo "<a href=\"#\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-trash-alt\"></i></a>";
-                                                echo "</td>";
+                                                echo "<td>" . ++$i . "</td>";
+                                                echo "<td>" . $values["fname"] . " " . $values["lname"] . "</td>";
+                                                echo "<td>" . $values["user_type"] . "</td>";
+                                                echo "<td>" . $values["status"] . "</td>";
+                                                echo "<td>" . "" . "</td>";
+                                                echo "<td><button class='btn btn-secondary btn-sm'>edit</button></td>";
+
                                                 echo "</tr>";
                                             }
                                             ?>

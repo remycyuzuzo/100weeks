@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classUser.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/DBError.php";
 class Admin extends User
 {
 
@@ -20,7 +21,7 @@ class Admin extends User
 
     public function getSingleAdminInfo(int $adminID, $onlyActiveCoach = false)
     {
-        $sql = "SELECT * from coaches where coach_id = $adminID ";
+        $sql = "SELECT * from administrator where admin_id = $adminID ";
 
         if ($onlyActiveCoach)
             $sql .= "AND status='active'";
