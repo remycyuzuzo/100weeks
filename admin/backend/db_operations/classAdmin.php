@@ -18,6 +18,21 @@ class Admin extends User
         return $this->result["last_id"];
     }
 
+    public function getSingleAdminInfo(int $adminID, $onlyActiveCoach = false)
+    {
+        $sql = "SELECT * from coaches where coach_id = $adminID ";
+
+        if ($onlyActiveCoach)
+            $sql .= "AND status='active'";
+
+        $result = $this->db::selectFromDb($sql, $this->conn);
+        if ($result === false) throw new DBError("there was an error while retrieving data. \nThe system thrown this error:\n" . $this->conn->error);
+        if ($result == null) return NULL;
+        else {
+            return $result->fetch_assoc();
+        }
+    }
+
     public function updateAdmin(int $coachId)
     {
         # code...

@@ -31,6 +31,9 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
         <main class="main-contents">
             <div class="container">
                 <div class="card wrapper">
+                    <div class="card-header">
+                        <h3><i class="fas fa-users-cog"></i> System Users</h3>
+                    </div>
                     <div class="card-body">
                         <?php
                         if (isset($_GET["coach-registered-successful"])) {
@@ -38,26 +41,37 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
                         }
 
                         ?>
-                        <div class="title">
-                            <h3 class="mb-0"><i class="fas fa-users"></i> System users</h3>
-                        </div>
-
                         <div class="my-4">
-                            <ul class="list-group">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Inbox
-                                    <span class="badge badge-primary badge-pill">12</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Ads
-                                    <span class="badge badge-primary badge-pill">50</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Junk
-                                    <span class="badge badge-primary badge-pill">99</span>
-                                </li>
-                            </ul>
-
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <th>#</th>
+                                        <th>name</th>
+                                        <th>role</th>
+                                        <th>status</th>
+                                        <th>last sign-in</th>
+                                        <th>actions</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -129,6 +129,7 @@ class DB
             }
             $i += 1;
         }
+        if ($condition == "") $condition = 1;
         $sql .= " WHERE $condition";
 
         return $sql;
