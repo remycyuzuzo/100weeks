@@ -38,9 +38,9 @@ class User
         return $password;
     }
 
-    public function getSingleUserInfo(int $user_id)
+    public function getSingleUserInfo(int $user_id, string $user_type)
     {
-        $sql = "SELECT * from system_users where coach_id = $user_id ";
+        $sql = "SELECT * from system_users where user_id = $user_id AND user_type = '$user_type'";
 
         $result = $this->db::selectFromDb($sql, $this->conn);
         if ($result === false) throw new DBError("there was an error while retrieving data. \nThe system thrown this error:\n" . $this->conn->error);
@@ -62,7 +62,7 @@ class User
         }
     }
 
-    public function getAllUsersDetails($showOnlyActiveUsers = false)
+    public function getAllUsersDetails($showOnlyActiveUsers = false, $only_this_user_role = null)
     {
         $users_data = array();
         $result = $this->getAllUsers();
@@ -71,24 +71,32 @@ class User
         while ($row = $result->fetch_assoc()) {
             $user_role = $row["user_type"];
             if ($user_role === "admin") {
-                $admin = new Admin();
-                $res = $admin->getSingleAdminInfo($row["user_id"], $showOnlyActiveUsers);
-                $res["user_type"] = $row["user_type"];
-                array_push($users_data, $res);
+                if ($only_this_user_role !== null and $only_this_user_role !== "admin")
+                    echo "";
+                else {
+                    $admin = new Admin();
+                    $res = $admin->getSingleAdminInfo($row["user_id"], $showOnlyActiveUsers);
+                    $res["user_type"] = $row["user_type"];
+                    array_push($users_data, $res);
+                }
             }
             if ($user_role === "coach") {
-                $coach = new Coach();
-                $res = $coach->getSingleCoachInfo($row["user_id"], $showOnlyActiveUsers);
-                $res["user_type"] = "coach";
-                array_push($users_data, $res);
+                if ($only_this_user_role !== null and $only_this_user_role !== "coach")
+                    echo "";
+                else {
+                    $coach = new Coach();
+                    $res = $coach->getSingleCoachInfo($row["user_id"], $showOnlyActiveUsers);
+                    $res["user_type"] = $user_role;
+                    array_push($users_data, $res);
+                }
             }
-            return $users_data;
         }
+        return $users_data;
     }
 
-    public function getSingleUserDetails(int $user_id)
+    public function getSingleUserDetails(int $user_id, string $user_type)
     {
-        $result = $this->getSingleUserInfo($user_id);
+        $result = $this->getSingleUserInfo($user_id, $user_type);
         if ($result === NULL) return null;
 
         $row = $result;
@@ -97,22 +105,24 @@ class User
             $admin = new Admin();
             $res = $admin->getSingleAdminInfo($row["user_id"]);
             $user_data = $res;
+            $user_data["user_type"] = $user_role;
         }
         if ($user_role == "coach") {
             $coach = new Coach();
             $res = $coach->getSingleCoachInfo($row["user_id"]);
             $user_data = $res;
+            $user_data["user_type"] = $user_role;
         }
         return $user_data;
     }
 
-    protected function updateSystemUser(array $data, int $user_id)
+    protected function updateSystemUser(array $data, int $user_id, string $user_type)
     {
-        $this->result = $this->db->updateFromTable("system_users", $data, $user_id, $this->conn);
-        if ($this->result["result"]) {
+        $this->result = $this->db->updateFromTable("system_users", $data, "user_id = $user_id AND user_type='$user_type'", $this->conn);
+        if ($this->result) {
             return true;
         } else {
-            throw new DBError($this->result["errorMessage"]);
+            throw new DBError($this->conn->error);
             return false;
         }
     }

@@ -40,7 +40,6 @@ require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
                             <h3>Mentors/coaches</h3>
                             <div class="d-inline-block float-right">
                                 <a href="<?= URL ?>/admin/coaches/new-coach-form.php" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"></i> new coach</a>
-                                <button class="btn btn-light btn-sm"><i class="fas fa-download"></i> download</button>
                             </div>
                         </div>
 

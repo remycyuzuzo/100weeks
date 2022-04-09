@@ -1,3 +1,4 @@
+<script src="https://unpkg.com/@popperjs/core@2"></script>
 <div class="top-nav bg-white d-flex justify-content-between align-items-center pr-2 position-fixed fixed-top">
     <div class="logo  h-100">
         <div class="sidebar-toggler logo d-flex">
@@ -79,6 +80,13 @@
         <div class="notification-cont d-inline-block position-relative">
             <button class="btn btn-light notifications" title="3 new notifications"><i class="fas fa-bell"></i> <span class="badge bg-danger">3</span></button>
         </div>
-        <button class="btn btn-primary user "><i class="fas fa-user"></i></button>
+        <div class="user d-inline-block position-relative">
+            <button class="btn btn-primary user dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-user"></i></button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Link 1</a></li>
+                <li><a class="dropdown-item" href="#">Link 2</a></li>
+                <li><a class="dropdown-item" href="#">Link 3</a></li>
+            </ul>
+        </div>
     </div>
 </div>

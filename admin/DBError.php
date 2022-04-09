@@ -1,5 +1,7 @@
 <?php
 
-class DBError extends Exception
-{
+if (!class_exists("DBError")) {
+    class DBError extends Exception
+    {
+    }
 }

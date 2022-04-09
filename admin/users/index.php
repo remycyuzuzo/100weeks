@@ -1,4 +1,7 @@
 <?php
+
+use DBError as GlobalDBError;
+
 require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classUser.php";
 
@@ -38,66 +41,52 @@ $user = new User();
 
         <!-- main-contents -->
         <main class="main-contents">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="card wrapper">
-                    <div class="card-header">
-                        <h3><i class="fas fa-users-cog"></i> System Users</h3>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <a href="<?= URL ?>/admin/users/">
+                            <h3 class="mb-0"><i class="fas fa-users-cog"></i> System Users</h3>
+                        </a>
+                        <?php
+                        if (isset($_GET['edit']) || isset($_GET['reset-password']))
+                            echo " <button class=\"btn\" onclick='window.history.back()'><i class=\"fas fa-arrow-alt-circle-left\"></i> go back</button>";
+                        ?>
                     </div>
                     <div class="card-body">
                         <?php
                         if (isset($_GET["coach-registered-successful"])) {
                             echo "<div class=\"alert alert-success\" data-disappearing><i class='fas fa-check-circle'></i> The new coach registered successful \t &nbsp; <a href=\"#\" class='close'>dismiss</a></div>";
                         }
+                        if (isset($_GET["completed"])) {
+                            $actionUpdate = $_GET["status"];
+                            $actionCompleted = "user";
+                            $alertClass = ($actionUpdate == "success") ? "success" : "danger";
+                            $alertIcon = ($actionUpdate == "success") ? "fas fa-check-circle" : "fas fa-sad-cry";
+                            $message = ($actionUpdate == "success") ? "the $actionCompleted was updated successful " : "there was an error while updating the $actionCompleted";
 
+                            echo "<div class=\"alert alert-$alertClass\" data-disappearing><i class='$alertIcon'></i> $message <a href=\"#\" class='close'>dismiss</a></div>";
+                        }
                         ?>
                         <div class="my-4">
-                            <div class="table-responsive">
-                                <?php
-                                try {
-                                    $data = $user->getAllUsersDetails();
-                                } catch (DBError $e) {
-                                    echo $e->getMessage() . "<br>File: " . $e->getFile() . "<br>Line: " . $e->getLine();
-                                }
-
-                                if ($data != null) {
-                                ?>
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <th>#</th>
-                                            <th>name</th>
-                                            <th>role</th>
-                                            <th>status</th>
-                                            <th>last sign-in</th>
-                                            <th>actions</th>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $i = 0;
-                                            foreach ($data as $values) {
-                                                echo "<tr>";
-                                                echo "<td>" . ++$i . "</td>";
-                                                echo "<td>" . $values["fname"] . " " . $values["lname"] . "</td>";
-                                                echo "<td>" . $values["user_type"] . "</td>";
-                                                echo "<td>" . $values["status"] . "</td>";
-                                                echo "<td>" . "" . "</td>";
-                                                echo "<td><button class='btn btn-secondary btn-sm'>edit</button></td>";
-
-                                                echo "</tr>";
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                <?php
+                            <?php
+                            try {
+                                if (isset($_GET["edit"])) {
+                                    if ($_GET["edit"] == "coach") {
+                                        include "../coaches/update-coach.php";
+                                    } else if ($_GET["edit"] == "admin") {
+                                        include "./update-admin-form.php";
+                                    }
+                                } else if (isset($_GET['reset-password'])) {
+                                    include "reset-user-password-form.php";
+                                } else if (isset($_GET['change-status'])) {
+                                    include "";
                                 } else {
-                                ?>
-                                    <div class="alert alert-info">
-                                        <i class="fas fa-info-circle"></i> there is no user registered
-                                    </div>
-                                <?php
+                                    include "./user-table.php";
                                 }
-                                ?>
-
-                            </div>
+                            } catch (DBError $e) {
+                                echo "<div class=\"alert alert-danger\">something went wrong, the system thrown this error: " . $e->getMessage() . "</div>";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

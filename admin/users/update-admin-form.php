@@ -1,7 +1,7 @@
 <?php
 try {
     if (!isset($_GET["edit"])) {
-        echo "<script>window.location=\"/coach/users/\"</script>";
+        echo "<script>window.location=\"/admin/users/\"</script>";
     }
 
     if (!isset($_GET["user_id"])) {
@@ -14,10 +14,10 @@ try {
     if (empty($user_id))
         throw new DBError("Invalid parameter");
 
-    $coach = new Coach();
+    $admin = new Admin();
 
-    $coach_info = $coach->getSingleCoachInfo($user_id);
-    if ($coach_info === NULL) {
+    $admin_info = $admin->getSingleAdminInfo($user_id);
+    if ($admin_info === NULL) {
         throw new DBError("This user is not registered in our systems");
     }
 
@@ -29,47 +29,47 @@ try {
                 <i class="fas fa-question-circle"></i> you can only change personal information here
             </div>
             <hr>
-            <form action="/admin/coaches/submit_coach_updates.php" method="post" enctype="multipart/form-data">
+            <form action="submit_admin_updates.php" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <input type="hidden" name="user-id" value="<?= $_GET["user_id"] ?>">
                     <h4>change the name</h4>
                     <div class="form-group col-md-6">
                         <label for="fname">First Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" value="<?= $coach_info["fname"] ?>" placeholder="First name" name="fname" id="fname" data-required>
+                        <input type="text" class="form-control" value="<?= $admin_info["fname"] ?>" placeholder="First name" name="fname" id="fname" data-required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="lname">Last name</label>
-                        <input type="text" class="form-control" value="<?= $coach_info["lname"] ?>" placeholder="Last name" id="lname" name="lname">
+                        <input type="text" class="form-control" value="<?= $admin_info["lname"] ?>" placeholder="Last name" id="lname" name="lname">
                     </div>
                 </div>
                 <div class="row">
                     <h4>change other information</h4>
                     <div class="form-group col-md-6">
                         <label for="idcard">ID card / Passport number</label>
-                        <input type="number" class="form-control" value="<?= $coach_info["id_card_number"] ?>" placeholder="ID card number" id="idcard" name="idcard">
+                        <input type="number" class="form-control" value="<?= $admin_info["id_passport_number"] ?>" placeholder="ID card number" id="idcard" name="idcard">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="tel">Telephone number <span class="text-danger"></span></label>
-                        <input type="tel" class="form-control" value="<?= $coach_info["tel_number"] ?>" placeholder="Telephone number" id="tel" name="tel" data-required>
+                        <input type="tel" class="form-control" value="<?= $admin_info["tel_number"] ?>" placeholder="Telephone number" id="tel" name="tel" data-required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="email">Email Address <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" value="<?= $coach_info["email"] ?>" placeholder="Email address" id="email" name="email" data-required>
+                        <input type="email" class="form-control" value="<?= $admin_info["email"] ?>" placeholder="Email address" id="email" name="email" data-required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="gender">Gender</label>
                     <fieldset class="py-2">
-                        <label for="radioFemale"><input type="radio" name="gender" value="F" id="radioFemale" <?= ($coach_info["gender"] == "F") ? "checked" : "" ?>> Female</label>
-                        <label for="radioMale" class="pl-2" style="padding-left: 10px;"><input type="radio" name="gender" id="radioMale" value="M" <?= ($coach_info["gender"] == "M") ? "checked" : "" ?>> Male</label>
+                        <label for="radioFemale"><input type="radio" name="gender" value="F" id="radioFemale" <?= ($admin_info["gender"] == "F") ? "checked" : "" ?>> Female</label>
+                        <label for="radioMale" class="pl-2" style="padding-left: 10px;"><input type="radio" name="gender" id="radioMale" value="M" <?= ($admin_info["gender"] == "M") ? "checked" : "" ?>> Male</label>
                     </fieldset>
                 </div>
                 <div class="mt-3">
                     <button type="button" class="btn btn-light border" onclick="history.back()"><i class="fas fa-arrow-left"></i> Cancel</button>
                     <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i> save changes</button>
                 </div>
-                <input type="hidden" name="update_coach_info">
+                <input type="hidden" name="update_admin_info">
             </form>
             <div class="my-2" data-result></div>
         </div>
@@ -92,4 +92,4 @@ try {
 
 ?>
 
-<script src="/admin/coaches/js/validate-coach-updates-fields.js" type="module"></script>
+<script src="/res/js/form-validators/validate-required-fields.js" type="module"></script>

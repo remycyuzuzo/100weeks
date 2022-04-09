@@ -44,10 +44,10 @@
 
   // add an active CSS class on the current page menu on the sidebar
   const links = document.querySelectorAll("aside ul a");
-  let currentPage = window.location.pathname;
+  let currentPage = document.URL;
   const findPageUri = (pageFullPath) => {
     let pathArray = pageFullPath.split("/").slice(-1);
-    if (pathArray[0] == "") {
+    if (pathArray[0] == "" || pathArray[0].search(/[=]/) !== -1) {
       pathArray = pageFullPath.split("/").slice(-2);
     }
     return pathArray[0];

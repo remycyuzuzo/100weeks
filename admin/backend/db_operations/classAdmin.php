@@ -37,7 +37,7 @@ class Admin extends User
     public function updateAdmin(array $data, int $adminID)
     {
         $res = $this->db->updateFromTable("administrator", $data, "admin_id = $adminID", $this->conn);
-        if ($res["result"]) {
+        if ($res) {
             return true;
         } else {
             throw new DBError($res["errorMessage"]);

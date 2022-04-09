@@ -97,7 +97,7 @@ class DB
     }
 
 
-    public function updateFromTable(string $table, array $data, mixed $condition, $conn)
+    public function updateFromTable(string $table, array $data, $condition, $conn)
     {
         // construct the query string adding the column and values parts
 
