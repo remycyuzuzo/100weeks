@@ -116,7 +116,7 @@ class User
         return $user_data;
     }
 
-    protected function updateSystemUser(array $data, int $user_id, string $user_type)
+    public function updateSystemUser(array $data, int $user_id, string $user_type)
     {
         $this->result = $this->db->updateFromTable("system_users", $data, "user_id = $user_id AND user_type='$user_type'", $this->conn);
         if ($this->result) {
@@ -127,7 +127,7 @@ class User
         }
     }
 
-    protected function deleteSystemUser(int $user_id)
+    public function deleteSystemUser(int $user_id)
     {
         $this->result = $this->db->deleteFromTable("system_users", $user_id, $this->conn);
         if ($this->result["result"]) {

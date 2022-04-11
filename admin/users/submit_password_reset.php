@@ -2,42 +2,36 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
 require_once DB_CONNECT;
 require_once ROOT . "/admin/DBError.php";
-require_once ROOT . "admin/backend/db_operations/classCoach.php";
-require_once ROOT . "admin/backend/db_operations/classAdmin.php";
+require_once ROOT . "admin/backend/db_operations/classUser.php";
 
 try {
 
-    if (!isset($_POST['action']))
+    if (!isset($_POST['password']) || !isset($_POST['password-retype']))
         throw new DBError("invalid request");
 
-    if (!isset($_POST["user_id"]) || empty($_POST["user_id"]) || !isset($_POST["user_type"]) || empty($_POST["user_type"]))
+    if (!isset($_POST["user_id"]) || empty($_POST["user_id"]) || empty($_POST["password"]) || empty($_POST["password-retype"]))
         throw new DBError("some important parameters were not found in your request");
 
     $user_id = $conn->real_escape_string($_POST["user_id"]);
+    $password = $conn->real_escape_string($_POST["password"]);
+    $password_retype = $conn->real_escape_string($_POST["password-retype"]);
     $user_type = $conn->real_escape_string($_POST["user_type"]);
-    $action = $conn->real_escape_string($_POST["action"]);
+
+    if ($password !== $password_retype)
+        throw new DBError("both passwords doesn't match");
 
     // instantiate the User object
-    if ($user_type === "admin")
-        $user = new Admin();
-    else if ($user_type === "coach")
-        $user = new Coach();
-    else throw new DBError(_("The user-group specified is not valid"));
+    $user = new User();
 
     // check whether the user exists
-    if ($user->getSingleUserDetails($user_id, $user_type) === NULL)
-        throw new DBError(_("this user does not exists in our systems"));
+    if ($user->getSingleUserInfo($user_id, $user_type) === NULL)
+        throw new DBError("this user does not exists in our systems");
 
-    // write the new user status
-    if ($action === "disable")
-        $status = "disabled";
-    elseif ($action === "enable")
-        $status = "active";
+    // encrypt the password
+    $password = $user->encryptPassword($password);
 
-    if ($user_type === "admin")
-        $result = $user->updateAdmin(array("status" => $status), $user_id);
-    elseif ($user_type === "coach")
-        $result = $user->updateCoach($user_id, array("status" => $status));
+    // update the password
+    $result = $user->updateSystemUser(array("password" => $password), $user_id, $user_type);
 
     if ($result) {
         $response = array("result" => true, "message" => _("the password has been changed successfully"));

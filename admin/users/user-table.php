@@ -15,8 +15,8 @@
             </div>
         </form>
     </div>
-
 </div>
+<div data-results></div>
 <div class="table-responsive">
     <?php
     try {
@@ -58,7 +58,7 @@
                     echo "<td>
                         <a href='" . URL . "/admin/users/?edit=$values[user_type]&user_id=$user_id' class='btn btn-secondary btn-sm'><i class='fas fa-user-edit'></i> edit $values[user_type]</a>
                         <a href='" . URL . "/admin/users/?reset-password=$values[user_type]&user_id=$user_id' class='btn btn-secondary btn-sm'><i class='fas fa-key'></i> modify credentials</a>
-                        <a href='" . URL . "/admin/users/?change-status=$values[user_type]&user_id=$user_id&action=$action' class='btn btn-secondary btn-sm' data-userid=$user_id>$action</a>
+                        <a href='#' class='btn btn-secondary btn-sm' data-disable data-action=$action data-usertype=$values[user_type] data-userid=$user_id>$action</a>
                         
                         </td>";
 
@@ -78,3 +78,5 @@
     ?>
 
 </div>
+
+<script src="./js/disable_user.js"></script>

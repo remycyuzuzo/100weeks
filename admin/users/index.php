@@ -26,6 +26,7 @@ $user = new User();
     <link rel="stylesheet" href="<?= FONTAWESOME ?>">
     <link rel="stylesheet" href="<?= URL ?>/res/css/general-css.css">
     <link rel="stylesheet" href="<?= URL ?>/res/css/admin-styles.css">
+    <script src="<?= AXIOS ?>"></script>
     <title>100weeks - Manage system users</title>
 </head>
 
@@ -101,17 +102,19 @@ $user = new User();
     </div>
 
     <!-- JAVASCRIPT FILES -->
-    <script src="<?= AXIOS ?>"></script>
     <script src="<?= URL ?>/res/js/admin-sidebar.js"></script>
     <script src="<?= BOOTSTRAP_JS ?>"></script>
 
     <script>
-        const disappearingAlert = document.querySelector("[data-disappearing] .close")
+        const disappearingAlert = document.querySelectorAll("[data-disappearing] .close")
         if (disappearingAlert) {
-            disappearingAlert.onclick = (e) => {
-                e.preventDefault()
-                disappearingAlert.parentElement.remove()
-            }
+            disappearingAlert.forEach(el => {
+                el.onclick = (e) => {
+                    e.preventDefault()
+                    el.parentElement.remove()
+                }
+            })
+
         }
     </script>
 

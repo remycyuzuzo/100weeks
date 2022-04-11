@@ -28,7 +28,7 @@ export class UI {
     this.alertClassName = className;
     this.alert.className = "alert";
     this.alert.classList.add(`alert-${className}`);
-    this.alert.innerText = message;
+    this.alert.innerHTML = message;
   }
 
   static hideAlert() {

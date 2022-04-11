@@ -51,22 +51,24 @@ try {
                 <div class="mb-2">
                     <h3 class="text-center">Directly Reset the user's password here</h3>
                 </div>
-                <form action="" method="post" data-form>
+                <form action="submit_password_reset.php" method="post" data-form>
                     <div data-validate></div>
                     <div class="form-group mb-2">
                         <input type="password" name="password" placeholder="enter the new password" id="password" class="form-control">
                     </div>
                     <div class="form-group mb-2">
-                        <input type="password" name="retype-password" placeholder="re-enter the new password" id="retype-password" class="form-control">
+                        <input type="password" name="password-retype" placeholder="re-enter the new password" id="retype-password" class="form-control">
                     </div>
                     <div class="form-group button-box">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-user-lock"></i> change password</button>
                     </div>
+                    <input type="hidden" name="user_id" value="<?= $user_id ?>">
+                    <input type="hidden" name="user_type" value="<?= $user_type ?>">
                 </form>
             </div>
         </div>
     </div>
-    <script src="<?= URL ?>/res/js/form-validators/reset-password.js" type="module"></script>
+    <script src="./js/password-reset.js" type="module"></script>
 <?php
 } catch (DBError $e) {
     echo "<div class=\"alert alert-warning\">" . $e->getMessage() . " on line: " . $e->getLine() . "(" . $e->getFile() . ") </div>";
