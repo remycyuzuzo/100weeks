@@ -50,14 +50,14 @@
                     echo "<td>" . ++$i . "</td>";
                     echo "<td>" . $values["fname"] . " " . $values["lname"] . "</td>";
                     echo "<td>" . $values["user_type"] . "</td>";
-                    echo "<td>" . $values["status"] . "</td>";
+                    echo "<td data-status>" . $values["status"] . "</td>";
                     echo "<td>" . "" . "</td>";
                     if ($values["user_type"] === "coach") $user_id = $values["coach_id"];
                     if ($values["user_type"] === "admin") $user_id = $values["admin_id"];
                     $action = ($values["status"] === "active") ? "disable" : "enable";
                     echo "<td>
                         <a href='" . URL . "/admin/users/?edit=$values[user_type]&user_id=$user_id' class='btn btn-secondary btn-sm'><i class='fas fa-user-edit'></i> edit $values[user_type]</a>
-                        <a href='" . URL . "/admin/users/?reset-password=$values[user_type]&user_id=$user_id' class='btn btn-secondary btn-sm'><i class='fas fa-key'></i> modify credentials</a>
+                        <a href='" . URL . "/admin/users/?reset-password=$values[user_type]&user_id=$user_id' class='btn btn-secondary btn-sm'><i class='fas fa-key'></i> Reset password</a>
                         <a href='#' class='btn btn-secondary btn-sm' data-disable data-action=$action data-usertype=$values[user_type] data-userid=$user_id>$action</a>
                         
                         </td>";

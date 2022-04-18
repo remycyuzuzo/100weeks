@@ -6,7 +6,7 @@ require_once ROOT . "admin/backend/db_operations/classCoach.php";
 require_once ROOT . "admin/backend/db_operations/classAdmin.php";
 
 try {
-
+    // var_dump($_REQUEST);
     if (!isset($_POST['action']))
         throw new DBError("invalid request");
 
@@ -40,7 +40,7 @@ try {
         $result = $user->updateCoach($user_id, array("status" => $status));
 
     if ($result) {
-        $response = array("result" => true, "message" => _("the password has been changed successfully"));
+        $response = array("result" => true, "message" => _("The user status has been changed to $status"), "status" => $status);
     }
 } catch (DBError $e) {
     $response = array("result" => false, "errMessage" => $e->getMessage() . " on line: " . $e->getLine() . "(" . $e->getFile() . ")");
