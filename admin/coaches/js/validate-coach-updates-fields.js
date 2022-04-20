@@ -57,7 +57,7 @@ const submitForm = (data, url) => {
         document.querySelector(
           "[data-result]"
         ).innerHTML = `User updated! please wait..`;
-        window.location = "/admin/users/?completed=update-coach&status=success";
+        window.location = `/admin/users/?completed=update-coach&status=success`;
       } else {
         document.querySelector(
           "[data-result]"

@@ -29,7 +29,7 @@ try {
                 <i class="fas fa-question-circle"></i> you can only change personal information here
             </div>
             <hr>
-            <form action="/admin/coaches/submit_coach_updates.php" method="post" enctype="multipart/form-data">
+            <form action="<?= URL ?>/admin/coaches/submit_coach_updates.php" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <input type="hidden" name="user-id" value="<?= $_GET["user_id"] ?>">
                     <h4>change the name</h4>
@@ -92,4 +92,4 @@ try {
 
 ?>
 
-<script src="/admin/coaches/js/validate-coach-updates-fields.js" type="module"></script>
+<script src="<?= URL ?>/admin/coaches/js/validate-coach-updates-fields.js" type="module"></script>
