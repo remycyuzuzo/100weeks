@@ -41,7 +41,7 @@ if (isset($_REQUEST['vsla'])) {
     $data = array('VSLA_name' => $vsla_name, "vsla_zone_id" => $zone_id, "date_created" => $vsla_founding_date, "date_joined_the_organization" => $vsla_joining_date, "meetings_frequency" => 4, "amount_per_share" => $saving_amount, "social_funds_amount" => $social_funds, "maximum_loan_amount" => $maximum_loan, "default_overdue_loan_fine" => $loan_overdue_interest_rate);
 
     /** VSLA object */
-    $vsla = new VSLA($conn);
+    $vsla = new VSLA();
 
     // initialize vsla properties
     $vsla->set_vsla_data($data);

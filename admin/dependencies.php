@@ -1,14 +1,13 @@
 <?php
+
+
 require_once dirname(__FILE__, 2) . "/config.php";
 
 /** db connection */
-define("DB_CONNECT", $root . "//admin/backend/db_connection.php");
+define("DB_CONNECT", ROOT . "/admin/backend/db_connection.php");
 
 /** project url */
 define('URL', 'http://100weeks.test', true);
-
-define('ROOT', $root . "/", true);
-
 
 /** path of bootstrap.min.css file, replace this during production with remote package */
 define("BOOTSTRAP_CSS", URL . "/node_modules/bootstrap/dist/css/bootstrap.min.css", true);
@@ -30,6 +29,6 @@ define("DATATABLES_JS", URL . "/node_modules/vanilla-datatables/dist/vanilla-dat
 define("DATATABLES_CSS", URL . "/node_modules/vanilla-datatables/dist/vanilla-datatables.min.css");
 
 /** Bulletproof PHP library */
-define("BULLETPROOF_LIB", $_SERVER['DOCUMENT_ROOT'] . "/php_libs/bulletproof-master/src/bulletproof.php");
+// define("BULLETPROOF_LIB", $_SERVER['DOCUMENT_ROOT'] . "/php_libs/bulletproof-master/src/bulletproof.php");
 
 define("VSLA_ZONE_TYPE", "parish");

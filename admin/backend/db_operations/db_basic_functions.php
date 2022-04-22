@@ -5,17 +5,25 @@
  * @class DB 
  * | this class contains basic functions for directly operate the database
  */
-
 class DB
 {
+    protected $errors = "";
+    public $conn;
+
+    public function __construct()
+    {
+        require ROOT . "admin/backend/db_connection.php";
+        $this->conn = $conn;
+    }
 
     /**
      * This function helps to specifically select data from the database
      * @param string $sql parse the database query
      * @param MYSQLI $conn the database connection
      */
-    public static function selectFromDb($sql, $conn)
+    public function selectFromDb($sql)
     {
+        $conn = $this->conn;
         $res = $conn->query($sql);
 
         // echo $conn->error;
@@ -31,7 +39,7 @@ class DB
      * @param string $sql parse the database query
      * @param MYSQLI $conn the database connection
      */
-    public static function executeStandardQuery($sql, $conn)
+    public function executeStandardQuery($sql, $conn)
     {
         $result = $conn->query($sql);
         if ($result) {
@@ -51,7 +59,7 @@ class DB
      * @return array Returns ['result'=>true] if data are inserted successfully, returns false+error message
      * @param MYSQLI $conn the database connection
      */
-    public static function insertIntoDb(string $table, array $data, $conn)
+    public function insertIntoDb(string $table, array $data, $conn)
     {
         // construct the query string adding the column and values parts
 
@@ -152,7 +160,7 @@ class DB
      * @param string $sql parse the database query
      * @param MYSQLI $conn the database connection
      */
-    public static function selectFromDbWithCondition($sql, $conn)
+    public function selectFromDbWithCondition($sql, $conn)
     {
         $res = $conn->query($sql);
 
@@ -162,5 +170,10 @@ class DB
                 return $res;
             } else return null;
         } else return false;
+    }
+
+    public function getErrors()
+    {
+        return $this->errors;
     }
 }

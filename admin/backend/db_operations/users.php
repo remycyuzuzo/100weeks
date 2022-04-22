@@ -14,7 +14,7 @@ class User
                     LEFT JOIN coaches ON (coach_id=user_id)
                     WHERE user_id = $userId";
 
-        $result = DB::selectFromDb($sqlQuery, $conn);
+        $result = DB::selectFromDb($sqlQuery);
 
         if ($result === false) echo "there was an error: " . $conn->error;
         elseif ($result === null) echo "wrong password or username";

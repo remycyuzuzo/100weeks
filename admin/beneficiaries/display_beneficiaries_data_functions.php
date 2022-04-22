@@ -22,7 +22,7 @@ function displayBeneficiaryData($res_data, $conn)
                 <?php
                 $i = 0;
                 $vsla_zone = new VSLA_zone();
-                $vsla = new VSLA($conn);
+                $vsla = new VSLA();
 
                 while ($row = $res_data->fetch_assoc()) {
                     $vsla_info = $vsla->getSingleVSLAInfo($row["VSLA_id"]);

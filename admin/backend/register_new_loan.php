@@ -42,7 +42,7 @@ try {
 
     // before registering this loan, check whether this user is eligible to this loan
     $beneficiary_loan_info = new PaymentInfo();
-    $beneficiary = new Beneficiary($conn);
+    $beneficiary = new Beneficiary();
     // check whether this beneficiary is valid // just in case..
     if (!$beneficiary->doesBeneficiaryExists($id_number)) {
         throw new Exception("beneficiary with ID number $id_number cannot be found in our systems");

@@ -16,7 +16,10 @@ include __DIR__ . "/includes/head.php";
                         <div class="col-lg-3 col-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <div><b>54</b> new notifications</div>
+                                    <?php
+                                    $beneficiary = new Beneficiary();
+                                    ?>
+                                    <div><b><?= $beneficiary->countAllBeneficiaries("active") ?></b> beneficiaries registered</div>
                                     <span>
                                         <a href="#">view more <i class="fas fa-arrow-right"></i></a>
                                     </span>
@@ -26,7 +29,10 @@ include __DIR__ . "/includes/head.php";
                         <div class="col-lg-3 col-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <div><b>54</b> parishes</div>
+                                    <?php
+                                    $zone = new VSLA_zone()
+                                    ?>
+                                    <div><b><?= $zone->countZones() ?></b> parishes</div>
                                     <span>
                                         <a href="#">view more <i class="fas fa-arrow-right"></i></a>
                                     </span>
@@ -36,7 +42,10 @@ include __DIR__ . "/includes/head.php";
                         <div class="col-lg-3 col-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class=""><b>545</b> VSLAs</div>
+                                    <?php
+                                    $vsla = new VSLA();
+                                    ?>
+                                    <div class=""><b><?= $vsla->countAllVSLAs() ?></b> VSLAs</div>
                                     <span>
                                         <a href="#">view more <i class="fas fa-arrow-right"></i></a>
                                     </span>
@@ -46,7 +55,10 @@ include __DIR__ . "/includes/head.php";
                         <div class="col-lg-3 col-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <div><b>2617</b> members</div>
+                                    <?php
+                                    $user = new User();
+                                    ?>
+                                    <div><b><?= $user->countAllUsers() ?></b> users</div>
                                     <span>
                                         <a href="#">view more <i class="fas fa-arrow-right"></i></a>
                                     </span>

@@ -1,11 +1,10 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classUser.php";
 class Coach extends User
 {
 
     public function registerNewCoach(array $data)
     {
-        $this->result = $this->db::insertIntoDb("coaches", $data, $this->conn);
+        $this->result = $this->insertIntoDb("coaches", $data, $this->conn);
         if ($this->result["result"]) {
             return true;
         } else {
@@ -25,7 +24,7 @@ class Coach extends User
         if ($onlyActiveCoach)
             $sql .= "AND status='active'";
 
-        $result = $this->db::selectFromDb($sql, $this->conn);
+        $result = $this->selectFromDb($sql, $this->conn);
         if ($result === false) throw new DBError("there was an error while retrieving data. \nThe system thrown this error:\n" . $this->conn->error);
         if ($result == null) return NULL;
         else {
@@ -40,7 +39,7 @@ class Coach extends User
         if ($onlyActiveCoach)
             $sql .= "AND status='active'";
 
-        $result = $this->db::selectFromDb($sql, $this->conn);
+        $result = $this->selectFromDb($sql, $this->conn);
         if ($result === false) throw new DBError("there was an error while retrieving data. \nThe system thrown this error:\n" . $this->conn->error);
         if ($result == null) return NULL;
         else {
@@ -54,7 +53,7 @@ class Coach extends User
             throw new DBError("Invalid update request\nthere is no ID or data specified");
         }
 
-        $result = $this->db->updateFromTable("coaches", $data, "coach_id = $coachId", $this->conn);
+        $result = $this->updateFromTable("coaches", $data, "coach_id = $coachId", $this->conn);
         if ($result) {
             return true;
         }

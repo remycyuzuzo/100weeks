@@ -1,6 +1,3 @@
-<?php
-require "./dependencies.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 

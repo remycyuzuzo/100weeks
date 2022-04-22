@@ -1,7 +1,5 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
-
-require $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classZone.php";
+include "../dependencies.php";
 
 ?>
 <h3>Add new VSLA</h3>

@@ -8,7 +8,7 @@ try {
     $vsla_zone_type = VSLA_ZONE_TYPE;
     $sql_vsla_zone = "SELECT vsla_zone_id, vsla_zone_name from vsla_zones 
                         where vsla_zone_type='$vsla_zone_type'";
-    $res = DB::selectFromDb($sql_vsla_zone, $conn);
+    $res = DB::selectFromDb($sql_vsla_zone);
 
     // check whether returned results are valid
     if ($res === false) {
@@ -67,7 +67,7 @@ try {
                         vsla_groups.vsla_zone_id = $row[vsla_zone_id]
                 ";
 
-        $res1 = DB::selectFromDb($sql_savings, $conn);
+        $res1 = DB::selectFromDb($sql_savings);
 
         // loop though different tables related to the same VSLA
         if ($res1 === null) throw new Exception("Empty");

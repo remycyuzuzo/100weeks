@@ -1,12 +1,10 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classUser.php";
-require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/DBError.php";
 class Admin extends User
 {
 
     public function registerNewAdmin(array $data)
     {
-        $this->result = $this->db::insertIntoDb("administrator", $data, $this->conn);
+        $this->result = $this->insertIntoDb("administrator", $data, $this->conn);
         if ($this->result["result"]) {
             return true;
         } else {
@@ -26,7 +24,7 @@ class Admin extends User
         if ($onlyActiveCoach)
             $sql .= "AND status='active'";
 
-        $result = $this->db::selectFromDb($sql, $this->conn);
+        $result = $this->selectFromDb($sql, $this->conn);
         if ($result === false) throw new DBError("there was an error while retrieving data. \nThe system thrown this error:\n" . $this->conn->error);
         if ($result == null) return NULL;
         else {
@@ -36,7 +34,7 @@ class Admin extends User
 
     public function updateAdmin(array $data, int $adminID)
     {
-        $res = $this->db->updateFromTable("administrator", $data, "admin_id = $adminID", $this->conn);
+        $res = $this->updateFromTable("administrator", $data, "admin_id = $adminID", $this->conn);
         if ($res) {
             return true;
         } else {
@@ -46,7 +44,7 @@ class Admin extends User
 
     public function deleteAdmin(int $coachId)
     {
-        $res = $this->db->deleteFromTable("administrator", "admin_id = $coachId", $this->conn);
+        $res = $this->deleteFromTable("administrator", "admin_id = $coachId", $this->conn);
         if ($res) {
             $res = $this->deleteSystemUser($coachId);
             if ($res) {

@@ -4,15 +4,14 @@ session_start();
 if (isset($_POST["email"])) {
 
     // import required files
-    require $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_connection.php";
-    include $_SERVER["DOCUMENT_ROOT"] . "//admin/dependencies.php";
-    include $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/db_basic_functions.php";
+    include "../dependencies.php";
 
+    $db = new DB();
     /** Email address entered by the user through the form */
-    $email = $conn->real_escape_string($_POST['email']);
+    $email = $db->conn->real_escape_string($_POST['email']);
 
     /** Password obtained through the form */
-    $password = md5($conn->real_escape_string($_POST['password']));
+    $password = md5($db->conn->real_escape_string($_POST['password']));
 
     $result = array();
 
@@ -28,11 +27,11 @@ if (isset($_POST["email"])) {
                 where system_users.password = '$password' AND administrator.email = '$email'
                 ";
 
-    $result_coach = DB::selectFromDb($sql_coach, $conn);
-    $result_admin = DB::selectFromDb($sql_admin, $conn);
+    $result_coach = $db->selectFromDb($sql_coach);
+    $result_admin = $db->selectFromDb($sql_admin);
 
     if ($result_coach === false || $result_admin === false) {
-        $result = array("result" => false, "message" => "error: " . $conn->error);
+        $result = array("result" => false, "message" => "error: " . $db->conn->error);
     } else if ($result_coach !== null) {
         $_SESSION["logged_in"] = $result_coach;
         $result = array("result" => true, "message" => "Login success, Redirecting... ", "redirectURL" => URL . "/admin/dashboard.php");
@@ -60,11 +59,11 @@ if (isset($_POST["email"])) {
     //         WHERE system_users.user_id = 1
     // ";
 
-    // $result = DB::selectFromDb($sql, $conn);
+    // $result = $db->selectFromDb($sql, $db->conn);
 
     // if ($result === false) {
     //     $result["res"] = false;
-    //     $result["message"] = "there was an error: " . $conn->error;
+    //     $result["message"] = "there was an error: " . $db->conn->error;
     // } elseif ($result === null) {
     //     $result["res"] = false;
     //     $result["message"] =  "wrong password or username";

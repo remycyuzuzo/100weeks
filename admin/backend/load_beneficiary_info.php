@@ -18,7 +18,7 @@
 
         $beneficiary_id = $conn->real_escape_string($_GET['beneficiary_id']);
 
-        $beneficiary = new Beneficiary($conn);
+        $beneficiary = new Beneficiary();
 
         if ($beneficiary->doesBeneficiaryExists($beneficiary_id) === false) {
             throw new Exception("This person does not exists in our systems");
@@ -38,7 +38,7 @@
         $beneficiary_name = "$row[fname] $row[lname]";
 
         // get VSLA name 
-        $vsla = new VSLA($conn);
+        $vsla = new VSLA();
 
         $beneficiary_VSLA = $vsla->getSingleVSLAInfo($row["VSLA_id"]);
 

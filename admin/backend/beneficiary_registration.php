@@ -48,7 +48,7 @@ if (isset($_REQUEST['beneficiary_insert'])) {
     $data = array('beneficiary_id_card' => $idcardnumber, 'fname' => $fname, 'lname' => $lname, "VSLA_id" => $vsla_id, "tel_number" => $telnumber, "gender" => $gender, "date_joined" => date("Y:m:d"), "date_registered" => date("Y:m:d"), "profile_picture" => $image->getName() . "." . $image->getMime(), "status" => "active");
 
     /** VSLA object */
-    $beneficiary = new Beneficiary($conn);
+    $beneficiary = new Beneficiary();
 
     // initialize vsla properties
     $beneficiary->set_beneficiary_data($data);

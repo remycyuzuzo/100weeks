@@ -1,11 +1,11 @@
 <?php
-require $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
-require DB_CONNECT;
-require ROOT . "admin/backend/db_operations/db_basic_functions.php";
+require "../dependencies.php";
+
+$db = new DB();
 
 try {
     $sqlZone = "SELECT * from vsla_zones where vsla_zone_type = 'parish'";
-    $res = DB::selectFromDb($sqlZone, $conn);
+    $res = $db->selectFromDb($sqlZone);
 
     if ($res === false) throw new Exception("Error while fetching parish data", 1);
     if ($res === null) throw new Exception("Nothing found", 1);
@@ -28,7 +28,7 @@ try {
 
         // check vslas that are in the current VSLA zone
         $sqlVSLA = "SELECT VSLA_id from vsla_groups where vsla_zone_id = $row[vsla_zone_id] AND status = 'active'";
-        $res1 = DB::selectFromDb($sqlVSLA, $conn);
+        $res1 = $db->selectFromDb($sqlVSLA);
 
         if ($res1 === null) {
             $info_array = array(
@@ -54,7 +54,7 @@ try {
             $number_of_vsla += 1;
 
             $sql_beneficiary = "SELECT beneficiary_id_card,number_of_shares from beneficiaries WHERE VSLA_id = $row1[VSLA_id] AND status='active'";
-            $res_beneficiary = DB::selectFromDb($sql_beneficiary, $conn);
+            $res_beneficiary = $db->selectFromDb($sql_beneficiary);
             if ($res_beneficiary === null) {
                 continue;
             }
@@ -65,7 +65,7 @@ try {
                 $total_zone_members += 1;
                 # find beneficiary savings
                 $sql_savings = "SELECT sum(amount) as total_savings from saving_records where beneficiary_id='$row_beneficiary[beneficiary_id_card]'";
-                $res_savings = DB::selectFromDb($sql_savings, $conn);
+                $res_savings = $db->selectFromDb($sql_savings);
                 if ($res_savings !== null or $res_savings !== false) {
                     $row_savings = $res_savings->fetch_assoc();
                     $total_savings_in_zone += $row_savings["total_savings"];
@@ -73,14 +73,14 @@ try {
                 }
                 # find all about social funds
                 $sql_socialfunds = "SELECT sum(amount) as totalSs from social_funds_records where beneficiary_id='$row_beneficiary[beneficiary_id_card]'";
-                $res_ss = DB::selectFromDb($sql_socialfunds, $conn);
+                $res_ss = $db->selectFromDb($sql_socialfunds);
                 if ($res_ss !== null or $res_ss !== false) {
                     $row_ss = $res_ss->fetch_assoc();
                     $total_social_funds_in_zone += $row_ss["totalSs"];
                 }
                 # find about Loans
                 $sql_loan = "SELECT sum(loan_amount) as total_loan, count(loan_amount) as loan_number from loan_information where beneficiary_id='$row_beneficiary[beneficiary_id_card]'";
-                $res_loan = DB::selectFromDb($sql_loan, $conn);
+                $res_loan = $db->selectFromDb($sql_loan);
                 if ($res_loan !== null or $res_loan !== false) {
                     $row_loan = $res_loan->fetch_assoc();
                     $total_zone_loan_amount += $row_loan["total_loan"];

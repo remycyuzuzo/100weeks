@@ -1,28 +1,14 @@
 <?php
-include_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classAdmin.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/admin/backend/db_operations/classCoach.php";
 
-class User
+class User extends DB
 {
 
-    protected $conn;
-    protected $db;
     protected $errors = "";
     private $result;
 
-    public function __construct()
-    {
-        require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
-        require DB_CONNECT;
-        require_once ROOT . "admin/backend/db_operations/db_basic_functions.php";
-
-        $this->conn = $conn;
-        $this->db = new DB();
-    }
-
     public function registerSystemUser(array $user_data)
     {
-        $this->result = $this->db::insertIntoDb("system_users", $user_data, $this->conn);
+        $this->result = $this->insertIntoDb("system_users", $user_data, $this->conn);
         if ($this->result["result"]) {
             return true;
         } else {
@@ -42,7 +28,7 @@ class User
     {
         $sql = "SELECT * from system_users where user_id = $user_id AND user_type = '$user_type'";
 
-        $result = $this->db::selectFromDb($sql, $this->conn);
+        $result = $this->selectFromDb($sql, $this->conn);
         if ($result === false) throw new DBError("there was an error while retrieving data. \nThe system thrown this error:\n" . $this->conn->error);
         if ($result == null) return NULL;
         else {
@@ -53,8 +39,7 @@ class User
     public function getAllUsers()
     {
         $sql = "SELECT user_id, user_type, user_time_zone from system_users";
-
-        $result = $this->db::selectFromDb($sql, $this->conn);
+        $result = $this->selectFromDb($sql, $this->conn);
         if ($result === false) throw new DBError("there was an error while retrieving data. \nThe system thrown this error:\n" . $this->conn->error);
         if ($result == null) return NULL;
         else {
@@ -126,6 +111,16 @@ class User
             return false;
         }
     }
+
+    public function countAllUsers($specific = "all")
+    {
+        $status = ($specific === "all") ? 1 : "status = '$specific'";
+        $res = $this->selectFromDb("SELECT COUNT(user_id) as number_of_users from system_users where $status", $this->conn);
+        if ($res) {
+            return $res->fetch_assoc()["number_of_users"];
+        } elseif ($res === null) return 0;
+    }
+
 
     public function deleteSystemUser(int $user_id)
     {

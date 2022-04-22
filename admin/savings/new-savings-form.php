@@ -9,7 +9,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/classBen
 require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/BeneficiaryFinancialInformation.php";
 
 try {
-    $beneficiary = new Beneficiary($conn);
+    $beneficiary = new Beneficiary();
     $beneficiary_finances = new PaymentInfo();
     $res = $beneficiary->getSingleBeneficiary($_GET['member_id']);
     if ($res) {

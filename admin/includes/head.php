@@ -1,6 +1,6 @@
 <?php
 
-require ".\\dependencies.php";
+require dirname(__FILE__, 2) . "/dependencies.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,11 +21,11 @@ require ".\\dependencies.php";
 <body>
     <div id="root" class="h-100">
         <!-- top-nav -->
-        <?php include __DIR__."/top-nav.php" ?>
+        <?php include __DIR__ . "/top-nav.php" ?>
         <!-- ./top-nav -->
 
         <!-- side-bar menu -->
-        <?php include __DIR__."/side-bar.php"; ?>
+        <?php include __DIR__ . "/side-bar.php"; ?>
         <!-- ./side-bar -->
 
         <!-- main-contents -->

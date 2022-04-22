@@ -1,21 +1,9 @@
 <?php
 
 
-class PaymentInfo
+class PaymentInfo extends DB
 {
-    public function __construct()
-    {
-        require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
-        require DB_CONNECT;
-        require_once ROOT . "admin/backend/db_operations/db_basic_functions.php";
-        require_once ROOT . "admin/backend/db_operations/classVsla.php";
-        require_once ROOT . "admin/backend/db_operations/classLoans.php";
 
-        $this->conn = $conn;
-        $this->db = new DB();
-        $this->vsla = new VSLA($this->conn);
-        $this->loan = new Loan();
-    }
 
     /**
      * @param string $beneficiary_id
@@ -24,6 +12,7 @@ class PaymentInfo
     public function checkForPaymentInfo($beneficiary_id, $VSLAId)
     {
 
+        $this->vsla = new VSLA();
         $response = array();
 
         $sql = "SELECT * FROM loan_information where beneficiary_id = '$beneficiary_id' AND loan_status='active'";
@@ -35,7 +24,7 @@ class PaymentInfo
         }
 
         /** @var MYSQLI_RESULT $res */
-        $res = $this->db::selectFromDb($sql, $this->conn);
+        $res = $this->selectFromDb($sql);
         if ($res === false) {
             $response = array("result" => false, "error" => $this->conn->error, "message" => "error while getting loan information");
             return $response;
@@ -55,7 +44,7 @@ class PaymentInfo
     {
         $sql = "SELECT beneficiary_id, loan_status FROM loan_information where beneficiary_id = '$beneficiary_id' AND loan_status='active'";
 
-        $res = $this->db::selectFromDb($sql, $this->conn);
+        $res = $this->selectFromDb($sql, $this->conn);
 
         if ($res === false) throw new Exception("There is a processing error: " . $this->conn->error);
         if ($res === null) return false;

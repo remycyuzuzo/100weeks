@@ -8,7 +8,7 @@ require_once DB_CONNECT;
 require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/classBeneficiary.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "//admin/backend/db_operations/BeneficiaryFinancialInformation.php";
 
-$beneficiary = new Beneficiary($conn);
+$beneficiary = new Beneficiary();
 $res = $beneficiary->getSingleBeneficiary($_GET['member_id']);
 if ($res) {
     $row = $res;

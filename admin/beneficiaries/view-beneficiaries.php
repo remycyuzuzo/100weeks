@@ -65,7 +65,7 @@ require_once ROOT . "admin/beneficiaries/display_beneficiaries_data_functions.ph
                             <?php
 
 
-                            $beneficiary = new Beneficiary($conn);
+                            $beneficiary = new Beneficiary();
 
                             if (isset($_GET["view-single"])) {
                                 echo '<div class="mb-3"><a class="btn btn-light" href="' . URL . '/admin/beneficiaries/view-beneficiaries.php"><i class="fas fa-table"></i> view all</a></div>';

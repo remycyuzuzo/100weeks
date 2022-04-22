@@ -1,23 +1,12 @@
 <?php
 
-class Loan
+class Loan extends DB
 {
     /** @var string $errors this will keep the string representation of all generated errors  */
-    private $errors = "";
-
-    public function __construct()
-    {
-        require_once $_SERVER["DOCUMENT_ROOT"] . "/admin/dependencies.php";
-        require DB_CONNECT;
-        require_once ROOT . "admin/backend/db_operations/db_basic_functions.php";
-
-        $this->conn = $conn;
-        $this->db = new DB();
-    }
 
     public function registerNewLoan($data)
     {
-        $res = $this->db::insertIntoDb("loan_information", $data, $this->conn);
+        $res = $this->insertIntoDb("loan_information", $data, $this->conn);
         if ($res["result"] === true) {
             return true;
         } else {
@@ -33,7 +22,7 @@ class Loan
     {
         $sql = "SELECT loan_id, beneficiary_id_card, loan_amount, loan_approved, approval_date,loan_due_date, loan_status, debt_left, interest_rate, fname, lname, tel_number, profile_picture FROM loan_information INNER JOIN beneficiaries ON (beneficiary_id_card = beneficiary_id) where loan_status='active'";
 
-        $res = $this->db::selectFromDb($sql, $this->conn);
+        $res = $this->selectFromDb($sql, $this->conn);
 
         if ($res === null) {
             return null;
@@ -53,7 +42,7 @@ class Loan
     {
         $sql = "SELECT * FROM loan_information where beneficiary_id = $beneficiaryID AND loan_status='active'";
 
-        $res = $this->db::selectFromDb($sql, $this->conn);
+        $res = $this->selectFromDb($sql, $this->conn);
 
         if ($res === null) {
             return null;
@@ -69,7 +58,7 @@ class Loan
     {
         $sql = "SELECT sum(amount) from loan_payments WHERE loan_id = $loanID AND beneficiary_id='$beneficiaryID'";
 
-        $res = $this->db::selectFromDb($sql, $this->conn);
+        $res = $this->selectFromDb($sql, $this->conn);
 
         if ($res === null) {
             return null;
@@ -85,7 +74,7 @@ class Loan
     {
         $sql = "SELECT beneficiary_id FROM loan_information where beneficiary_id = $beneficiaryID AND loan_status='active'";
 
-        $res = $this->db::selectFromDb($sql, $this->conn);
+        $res = $this->selectFromDb($sql, $this->conn);
 
         if ($res === null) {
             return false;
@@ -96,7 +85,7 @@ class Loan
 
     public function registerLoanPayment(array $payment_data)
     {
-        $res = $this->db::insertIntoDb("loan_payments", $payment_data, $this->conn);
+        $res = $this->insertIntoDb("loan_payments", $payment_data, $this->conn);
         if ($res["result"] === true) {
             return true;
         } else {
